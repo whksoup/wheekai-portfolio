@@ -1,8 +1,8 @@
 import React from "react";
-
+import Image from "next/image";
 interface GalleryItem {
   src?: string;
-  alt?: string;
+  alt?: string; // make optional
   caption?: string;
   type?: "video" | "image";
 }
@@ -71,9 +71,10 @@ const ImageGalleryGray: React.FC<ImageGalleryGrayProps> = ({
                       className="w-full h-full object-contain"
                     />
                   ) : item.src ? (
-                    <img
-                      src={item.src}
-                      alt={item.alt}
+                    <Image
+                      src={item.src!} // non-null assertion because you check item.src
+                      alt={item.alt || ""}
+                      fill
                       className="max-w-[90%] max-h-[90%] object-contain"
                     />
                   ) : (

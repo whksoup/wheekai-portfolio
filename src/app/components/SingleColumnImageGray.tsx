@@ -1,5 +1,5 @@
 import React from "react";
-
+import Image from "next/image";
 interface MediaItem {
   src: string;
   alt?: string;
@@ -68,10 +68,11 @@ const SingleColumnMediaGray: React.FC<SingleColumnMediaGrayProps> = ({
                             Your browser does not support the video tag.
                           </video>
                         ) : (
-                          <img
+                          <Image
                             src={image.src}
                             alt={image.alt || ""}
-                            className={`w-full ${imageClassName}`}
+                            fill
+                            className="object-contain"
                           />
                         )}
                       </div>

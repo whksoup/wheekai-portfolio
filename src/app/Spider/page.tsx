@@ -22,7 +22,7 @@ export default function Home() {
         ClaudeGPT, design me a new [Yoyo, Rubik&apos;s Cube, Kendama]...
       </HeaderText>
       <FullBleedImage
-        src="/Assets/Spider/HeroWide.png"
+        src="/Assets/Spider/HeroWide.webp"
         alt=""
         caption=""
         aspectRatio="aspect-[16/6]"
@@ -84,7 +84,7 @@ export default function Home() {
         description={
           "No 'research' needed! \n\nUnlike most product design projects, we jumped right into making things with, and out of AI.\n\n2 Goals: We wanted to identify potential generative tools (evaluated on cost, versatility, fidelity) and codify tool typologies."
         }
-        mediaSrc="/Assets/Spider/2Wolves.png"
+        mediaSrc="/Assets/Spider/2Wolves.webp"
         mediaWidth="60%"
         mediaType="image"
         alt=""
@@ -100,19 +100,19 @@ export default function Home() {
 
           {
             type: "image",
-            src: "/Assets/Spider/Prompt1.png",
+            src: "/Assets/Spider/Prompt1.webp",
             alt: "We experimented with different prompt formats for concept generation, with various language models",
           },
 
           {
             type: "image",
-            src: "/Assets/Spider/Prompt2.png",
+            src: "/Assets/Spider/Prompt2.webp",
             alt: "Different prompt formats for straightforward text>image models",
           },
 
           {
             type: "image",
-            src: "/Assets/Spider/Hypersketch1.png",
+            src: "/Assets/Spider/Hypersketch1.webp",
             alt: "Hypersketch, a sketch to AI app developed by our platform supervisor, converting sketches into renders of different form/photo typologies",
           },
         ]}
@@ -138,19 +138,19 @@ export default function Home() {
         rowGap="gap-y-8"
         images={[
           {
-            src: "/Assets/Spider/PuzzleBoxAI.png",
+            src: "/Assets/Spider/PuzzleBoxAI.webp",
             alt: "The image that inspired the above concept. We approached the design by asking, 'How does this cube close? How are the pieces hovering?'",
           },
           {
-            src: "/Assets/Spider/PuzzleBoxAI15.png",
+            src: "/Assets/Spider/PuzzleBoxAI15.webp",
             alt: "''Make the cube 50% more interactive, with widget components and more obvious affordances''",
           },
           {
-            src: "/Assets/Spider/PuzzleBox15.jpg",
+            src: "/Assets/Spider/PuzzleBox15.webp",
             alt: "",
           },
           {
-            src: "/Assets/Spider/PuzzleBoxAI2.png",
+            src: "/Assets/Spider/PuzzleBoxAI2.webp",
             alt: "We realized we could gather more ideas for mechanisms by adding phrases like 'joints between...' or 'strings that brace...'.",
           },
           {
@@ -172,23 +172,23 @@ export default function Home() {
         images={[
           {
             type: "image",
-            src: "/Assets/Spider/SpiderMunComparison.png",
+            src: "/Assets/Spider/SpiderMunComparison.webp",
             alt: "We took photos of prototypes at particular angles and had image-gen 'fill' areas of the image, which resulted in more 'actionable' informatiion. ",
           },
           {
             type: "image",
-            src: "/Assets/Spider/Stake.png",
+            src: "/Assets/Spider/Stake.webp",
             alt: "",
           },
           {
             type: "image",
-            src: "/Assets/Spider/Crucifix.png",
+            src: "/Assets/Spider/Crucifix.webp",
             alt: "",
           },
 
           {
             type: "image",
-            src: "/Assets/Spider/Chandelier.png",
+            src: "/Assets/Spider/Chandelier.webp",
             alt: "",
           },
           {
@@ -267,7 +267,7 @@ export default function Home() {
         images={[
           {
             type: "image",
-            src: "/Assets/Spider/Inspo.png",
+            src: "/Assets/Spider/Inspo.webp",
             alt: "Hillary built around the relationship of the balls to the planks sandwiching them, asking how they might be suspended realistically.",
           },
           {
@@ -277,7 +277,7 @@ export default function Home() {
           },
           {
             type: "image",
-            src: "/Assets/Spider/Proto1.jpg",
+            src: "/Assets/Spider/Proto1.webp",
             alt: "",
           },
 
@@ -313,7 +313,7 @@ export default function Home() {
       <TextImageTwoThirds
         title=""
         heading="Creating something that preserved the open-ended discovery of this..."
-        imageSrc="/Assets/PYT/BrushMenu_3.png"
+        imageSrc="/Assets/PYT/BrushMenu_3.webp"
         body=""
         imageAspectRatio="aspect-video"
         alt="Placeholder graphic"
@@ -332,7 +332,7 @@ export default function Home() {
       <SingleColumnImageGray
         images={[
           {
-            src: "/Assets/Spider/eureka.png",
+            src: "/Assets/Spider/eureka.webp",
             alt: " ",
           },
         ]}
@@ -374,37 +374,37 @@ export default function Home() {
         imageGap="gap--10"
         images={[
           {
-            src: "/Assets/Spider/FormFinding1.png",
+            src: "/Assets/Spider/FormFinding1.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
           },
           {
-            src: "/Assets/Spider/FormFinding2.png",
+            src: "/Assets/Spider/FormFinding2.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
           },
           {
-            src: "/Assets/Spider/FormFinding3.png",
+            src: "/Assets/Spider/FormFinding3.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
           },
           {
-            src: "/Assets/Spider/FormFinding5.png",
+            src: "/Assets/Spider/FormFinding5.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
           },
           {
-            src: "/Assets/Spider/FormFinding6.png",
+            src: "/Assets/Spider/FormFinding6.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
           },
           {
-            src: "/Assets/Spider/FormFinding7.png",
+            src: "/Assets/Spider/FormFinding7.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
@@ -429,7 +429,7 @@ export default function Home() {
         description={
           "Acrylic had the right tensile / cost qualities for a rail, that did not require 300C heat like metal to ply into a rigid shape. \n\nHowever, there was a lot of difficulty in heat bending acrylic to a consistent width."
         }
-        mediaSrc="/Assets/Spider/FormFinding5.png"
+        mediaSrc="/Assets/Spider/FormFinding5.webp"
         mediaWidth="60%"
         mediaType="image"
         alt=""
@@ -455,7 +455,7 @@ export default function Home() {
         description={
           "We attached a bead to the string! By controlling its surface profile in relation to the acrylic tubes, we could create explosive movement profiles for the lower rail, and more delicate ones for the upper rail."
         }
-        mediaSrc="/Assets/Spider/Beads.png"
+        mediaSrc="/Assets/Spider/Beads.webp"
         mediaWidth="60%"
         mediaType="image"
         alt=""
@@ -467,7 +467,7 @@ export default function Home() {
         description={
           "With a combination of the above and a 1.8mm snap fit joint mechanism, we managed to produce a robust mechanical toy that sustained 6 hours of continuous play."
         }
-        mediaSrc="/Assets/Spider/SnapFit.png"
+        mediaSrc="/Assets/Spider/SnapFit.webp"
         mediaWidth="60%"
         mediaType="image"
         alt=""
@@ -476,7 +476,7 @@ export default function Home() {
       />
       <section id="finalOutcome" className="h-0 w-0 p-0 m-0" />
       <FullBleedImage
-        src="/Assets/Spider/HeroShot2.png"
+        src="/Assets/Spider/HeroShot2.webp"
         alt=""
         caption=""
         aspectRatio="aspect-[16/8]"
@@ -501,37 +501,37 @@ export default function Home() {
         imageGap="gap--10"
         images={[
           {
-            src: "/Assets/Spider/SpiderFolded.JPG",
+            src: "/Assets/Spider/SpiderFolded.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
           },
           {
-            src: "/Assets/Spider/SpiderHeld.JPG",
+            src: "/Assets/Spider/SpiderHeld.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
           },
           {
-            src: "/Assets/Sphinx/TroubleBasket 2.png",
+            src: "/Assets/Sphinx/TroubleBasket 2.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
           },
           {
-            src: "/Assets/Sphinx/FoldableBasket.png",
+            src: "/Assets/Sphinx/FoldableBasket.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
           },
           {
-            src: "/Assets/Sphinx/FisherBasket.png",
+            src: "/Assets/Sphinx/FisherBasket.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
           },
           {
-            src: "/Assets/Sphinx/Basket.png",
+            src: "/Assets/Sphinx/Basket.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
@@ -541,7 +541,7 @@ export default function Home() {
       <SingleColumnImageGray
         images={[
           {
-            src: "/Assets/Sphinx/RailSchema.png",
+            src: "/Assets/Sphinx/RailSchema.webp",
             alt: " ",
           },
         ]}
@@ -557,7 +557,7 @@ export default function Home() {
       />
 
       <FullBleedImage
-        src="/Assets/Sphinx/HeroShot.png"
+        src="/Assets/Sphinx/HeroShot.webp"
         alt=""
         caption=""
         aspectRatio="aspect-[16/8]"
@@ -585,7 +585,7 @@ export default function Home() {
         imageAspectRatio="aspect-16/5"
         alt="Placeholder graphic"
         marginBottom="mb-16"
-        imageSrc="Assets/Sphinx/AGrowingInterface.png"
+        imageSrc="Assets/Sphinx/AGrowingInterface.webp"
       />
       <TextImageTwoThirds
         heading="Has higher interaction rates vs current interfaces"
@@ -596,7 +596,7 @@ export default function Home() {
         imageAspectRatio="aspect-video"
         alt="Placeholder graphic"
         marginBottom="mb-16"
-        imageSrc="Assets/Sphinx/PhotoAlbum.png"
+        imageSrc="Assets/Sphinx/PhotoAlbum.webp"
       />
       <TextImageTwoThirds
         heading="A lightweight, scalable interface language"
@@ -607,7 +607,7 @@ export default function Home() {
         imageSrc="Assets/Sphinx/VoiceDemo.webm"
       />
       <FullBleedImage
-        src="/Assets/Sphinx/Riddle.png"
+        src="/Assets/Sphinx/Riddle.webp"
         alt=""
         caption=""
         aspectRatio="aspect-[16/5]"
@@ -618,7 +618,7 @@ export default function Home() {
       <SingleColumnImageGray
         images={[
           {
-            src: "/Assets/Sphinx/Schematic.png",
+            src: "/Assets/Sphinx/Schematic.webp",
             alt: "The final form is designed like a gift basket, for ease of carrying and assembly. ",
           },
         ]}

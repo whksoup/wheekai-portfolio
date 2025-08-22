@@ -30,7 +30,7 @@ const Navbar = () => {
   const leftItem = {
     href: "/",
     label: "Work / Home",
-    img: "/Assets/Intro/PlaceholderIcon.svg",
+    img: "/Assets/Intro/PlaceholderIcon.webp",
   };
 
   const rightItems = [

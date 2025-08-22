@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+import Image from "next/image";
 type ProjectCardProps = {
   name?: string;
   href: string;
@@ -40,11 +40,12 @@ export default function ProjectCard({
     >
       <div className={`${alignClass} flex flex-col gap-4`}>
         {/* Hero Image */}
-        <div className="w-full overflow-hidden rounded-2xl shadow-lg relative group">
-          <img
+        <div className="w-full aspect-[16/9] overflow-hidden rounded-2xl shadow-lg relative group">
+          <Image
+            fill
             src={image}
             alt={alt}
-            className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
 
           {/* WIP overlay appears only on hover */}

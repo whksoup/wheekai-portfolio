@@ -1,12 +1,21 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // This tells Next.js to output static HTML/CSS/JS files
+  output: 'export',
 
-const isProd = process.env.NODE_ENV === "production";
+  // Optional: Add a trailing slash to all paths (e.g., /about -> /about/)
+  // This can help with compatibility on some static hosting platforms.
+  trailingSlash: true,
 
-const nextConfig: NextConfig = {
-  output: "export",
-  images: { unoptimized: true },
-  basePath: isProd ? "/wheekai-portfolio" : "",
-  assetPrefix: isProd ? "/wheekai-portfolio/" : "",
-};
+  // Optional: Configure image optimization for static exports.
+  // Since the `next dev` and `next start` servers aren't present on a static host,
+  // you need to unoptimize images or use a third-party service.
+  images: {
+    unoptimized: true
+  }
 
-export default nextConfig;
+  // Note: The `output: 'export'` configuration disables API Routes and
+  // server-side rendering (getServerSideProps, etc.), as they are incompatible.
+}
+
+module.exports = nextConfig

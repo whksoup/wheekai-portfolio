@@ -1,3 +1,4 @@
+import Image from "next/image";
 interface ImageGridSectionProps {
   marginBottom?: string;
   containerPadding?: string;
@@ -64,9 +65,10 @@ export default function ImageGridSection({
                       Your browser does not support the video tag.
                     </video>
                   ) : (
-                    <img
+                    <Image
                       src={image.src}
                       alt={image.alt}
+                      fill
                       className="w-full h-full object-cover rounded-lg"
                     />
                   )

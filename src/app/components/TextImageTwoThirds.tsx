@@ -1,3 +1,4 @@
+import Image from "next/image";
 interface TextImageTwoThirdsProps {
   title?: string;
   heading: string;
@@ -51,7 +52,7 @@ export default function TextImageTwoThirds({
         <div className="w-full md:w-2/3">
           <div className="space-y-2">
             <div
-              className={`${imageAspectRatio} bg-gray-300 rounded-lg shadow-inner w-full`}
+              className={`relative ${imageAspectRatio} bg-gray-300 rounded-lg shadow-inner w-full`}
             >
               {imageSrc ? (
                 isVideo ? (
@@ -65,9 +66,10 @@ export default function TextImageTwoThirds({
                     aria-label={alt}
                   />
                 ) : (
-                  <img
+                  <Image
                     src={imageSrc}
                     alt={alt}
+                    fill
                     className="w-full h-full object-cover rounded-lg"
                   />
                 )

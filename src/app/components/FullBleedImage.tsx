@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
+import Image from "next/image";
 
 interface SlideItem {
   src: string;
@@ -11,7 +11,7 @@ interface SlideItem {
 }
 
 interface FullBleedImageProps {
-  src?: string;
+  src: string;
   alt?: string;
   caption?: string;
   aspectRatio?: string;
@@ -31,15 +31,14 @@ const FullBleedImage: React.FC<FullBleedImageProps> = ({
   className = "",
   captionClassName = "",
   overlayIntensity = "from-black/80",
-  slideshow = [], // { src, alt?, caption?, type?: "image"|"video", link?: string }
+  slideshow = [],
   interval = 5000,
   transitionDuration = 1000,
 }) => {
-  const hasSlideshow = Array.isArray(slideshow) && slideshow.length > 0;
+  const hasSlideshow = slideshow.length > 0;
   const [currentIndex, setCurrentIndex] = useState(0);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
-  // auto advance slideshow
   useEffect(() => {
     if (!hasSlideshow) return;
     const timer = setInterval(() => {
@@ -48,7 +47,6 @@ const FullBleedImage: React.FC<FullBleedImageProps> = ({
     return () => clearInterval(timer);
   }, [hasSlideshow, interval, slideshow.length]);
 
-  // restart video when it becomes active
   useEffect(() => {
     const currentSlide = hasSlideshow ? slideshow[currentIndex] : null;
     if (currentSlide?.type === "video" && videoRefs.current[currentIndex]) {
@@ -60,62 +58,82 @@ const FullBleedImage: React.FC<FullBleedImageProps> = ({
     }
   }, [currentIndex, hasSlideshow, slideshow]);
 
-  const currentSlide = hasSlideshow
-    ? slideshow[currentIndex]
-    : { src, alt, caption, type: "image" as const, link: undefined };
+  const slides = hasSlideshow
+    ? slideshow
+    : [{ src, alt, caption, type: "image" as const }];
 
   return (
     <div
-      className={`relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden ${aspectRatio} ${className}`}
+      className={`relative w-full ${aspectRatio} ${className} overflow-hidden`}
     >
-      {/* Slides */}
-      <div className="absolute inset-0">
-        {(hasSlideshow ? slideshow : [currentSlide]).map((slide, index) => {
-          const isActive = index === currentIndex;
-          const commonClasses = `w-full h-full object-cover absolute inset-0 transition-opacity ease-in-out ${
-            isActive ? "opacity-100" : "opacity-0"
-          }`;
-          const durationClass = `duration-[${transitionDuration}ms]`;
+      {slides.map((slide, index) => {
+        const isActive = index === currentIndex;
+        const style = {
+          transition: `opacity ${transitionDuration}ms ease-in-out`,
+        };
 
-          const content =
-            slide.type === "video" ? (
-              <video
-                ref={(el) => {
-                  videoRefs.current[index] = el;
-                }}
-                src={slide.src}
-                className={`${commonClasses} ${durationClass}`}
-                muted
-                playsInline
-              />
-            ) : (
-              <img
-                src={slide.src}
-                alt={slide.alt || ""}
-                className={`${commonClasses} ${durationClass}`}
-              />
-            );
-
-          return slide.link ? (
-            <Link key={index} href={slide.link}>
-              {content}
-            </Link>
+        const content =
+          slide.type === "video" ? (
+            <video
+              ref={(el) => {
+                videoRefs.current[index] = el; // assignment is fine
+              }}
+              src={slide.src}
+              muted
+              autoPlay
+              loop
+              playsInline
+              className="w-full h-full object-cover"
+            />
           ) : (
-            <div key={index}>{content}</div>
+            <Image
+              src={slide.src}
+              alt={slide.alt || ""}
+              className="w-full h-full object-cover"
+              width={1920} // fallback width
+              height={1080} // fallback height
+            />
           );
-        })}
-      </div>
+
+        const wrapper = slide.link ? (
+          <a
+            key={index}
+            href={slide.link}
+            className={`absolute inset-0 ${
+              isActive ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
+            style={style}
+          >
+            {content}
+          </a>
+        ) : (
+          <div
+            key={index}
+            className={`absolute inset-0 ${
+              isActive ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
+            style={style}
+          >
+            {content}
+          </div>
+        );
+
+        return wrapper;
+      })}
+
+      {/* Overlay */}
+      {overlayIntensity && (
+        <div
+          className={`absolute inset-0 bg-gradient-to-t ${overlayIntensity}`}
+        ></div>
+      )}
 
       {/* Caption */}
-      {currentSlide.caption && (
+      {slides[currentIndex]?.caption && (
         <div
-          className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t ${overlayIntensity} to-transparent p-6`}
+          className={`absolute bottom-0 left-0 w-full p-4 text-white ${captionClassName}`}
         >
-          <div className={`text-white max-w-4xl mx-auto ${captionClassName}`}>
-            <p className="text-xl md:text-2xl font-medium">
-              {currentSlide.caption}
-            </p>
-          </div>
+          {slides[currentIndex].caption}
         </div>
       )}
     </div>

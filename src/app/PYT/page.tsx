@@ -80,7 +80,7 @@ export default function Home() {
       <TextImageTwoThirds
         title="Problem 1"
         heading="VR controls for complex, spatial applications are convoluted"
-        imageSrc="/Assets/PYT/BrushMenu_3.png"
+        imageSrc="/Assets/PYT/BrushMenu_3.webp"
         body="Options are hidden in nested 2D menus or abstract contextual button presses, resulting in 3× actions needed to achieve modelling tasks (e.g., blend 2 surfaces) vs other workflows (e.g., clay, Blender)."
         imageAspectRatio="aspect-video"
         alt="Placeholder graphic"
@@ -90,7 +90,7 @@ export default function Home() {
         title="Problem 2"
         marginBottom="mb-16"
         heading="We can't really feel what we're doing in VR."
-        imageSrc="/Assets/PYT/VR_Competitors.png"
+        imageSrc="/Assets/PYT/VR_Competitors.webp"
         body={`This results in disengagement and inaccuracies when working.
 
               Currently, VR haptic peripherals align physical surfaces to virtual ones, resulting in expensive, overengineered solutions. 
@@ -134,7 +134,7 @@ export default function Home() {
             src: "/Assets/PYT/AndrewTest.webm",
             alt: "Timelapse Footage",
             type: "video",
-            poster: "/media/clip1-thumb.jpg",
+            poster: "/media/clip1-thumb.webp",
             aspectRatio: "aspect-square",
           },
           {
@@ -147,7 +147,7 @@ export default function Home() {
             src: "/Assets/PYT/ClaytonUserTest.webm",
             alt: "Research Interview",
             type: "video",
-            poster: "/media/clip2-thumb.jpg",
+            poster: "/media/clip2-thumb.webp",
             aspectRatio: "aspect-square",
           },
         ]}
@@ -208,7 +208,7 @@ export default function Home() {
             alt: "",
           },
           { type: "video", src: "/Assets/PYT/Pulling.webm", alt: "" },
-          { type: "image", src: "/Assets/PYT/BernHorse.png", alt: "" },
+          { type: "image", src: "/Assets/PYT/BernHorse.webp", alt: "" },
           {
             type: "video",
             src: "/Assets/PYT/AbrarTriangleChamfer.webm",
@@ -236,7 +236,7 @@ export default function Home() {
           "I developed 1 addition, 1 subtraction and 1 fine-surface interaction to greater depth.\n \nUsers were evaluated on simple mesh manipulation tasks against quantitative metrics like speed and accuracy of completion, and qualitative. \n\ne.g, if proxy material enhanced the experience, if particular shapes were more useful."
         }
         mediaType="image"
-        mediaSrc="/Assets/PYT/ShapePrototypes.png"
+        mediaSrc="/Assets/PYT/ShapePrototypes.webp"
         alt=""
         mediaWidth={undefined}
         mediaHeight={undefined}
@@ -251,7 +251,7 @@ export default function Home() {
             alt: "",
           },
           { type: "video", src: "/Assets/PYT/ShapeRefine3.webm", alt: "" },
-          { type: "image", src: "/Assets/PYT/MaterialTest.png", alt: "" },
+          { type: "image", src: "/Assets/PYT/MaterialTest.webp", alt: "" },
           {
             type: "video",
             src: "/Assets/PYT/ShapeRefine5.webm",
@@ -269,45 +269,45 @@ export default function Home() {
         images={[
           {
             type: "image",
-            src: "/Assets/PYT/Shape5.png",
+            src: "/Assets/PYT/Shape5.webp",
             alt: "Multi faceted 'dices' were less effective than a simple block for flat surfacing",
           },
 
           {
             type: "image",
-            src: "/Assets/PYT/Shape7.png",
+            src: "/Assets/PYT/Shape7.webp",
             alt: "Sharp edges felt unfriendly to users, even when blended",
           },
           {
             type: "image",
-            src: "/Assets/PYT/Shape3.png",
+            src: "/Assets/PYT/Shape3.webp",
             alt: "2 Blended convex surfaces exploring multi-grip proxies",
           },
           {
             type: "image",
-            src: "/Assets/PYT/Shape6.png",
+            src: "/Assets/PYT/Shape6.webp",
             alt: "Complex, non-symmetrical geometry was harder to use in general",
           },
           {
             type: "image",
-            src: "/Assets/PYT/Shape1.png",
+            src: "/Assets/PYT/Shape1.webp",
             alt: "A slightly curved tube could be used to produce highly concave surfaces, demonstrating how tiny surfaces could be 'extrapolated' to great effect.",
           },
 
           {
             type: "image",
-            src: "/Assets/PYT/Shape4.png",
+            src: "/Assets/PYT/Shape4.webp",
             alt: "A Hollow ring was naturally used as a guide for 'drilling holes' of different sizes, even without any prompts",
           },
 
           {
             type: "image",
-            src: "/Assets/PYT/Shape8.png",
+            src: "/Assets/PYT/Shape8.webp",
             alt: "A subdivided cube surface mounted on an ergonomic grip felt easy to use",
           },
           {
             type: "image",
-            src: "/Assets/PYT/Shape2.png",
+            src: "/Assets/PYT/Shape2.webp",
             alt: "A Dupin Cyclide, with a high variation of gaussian curvature arranged neatly, was the most versatile tool for curves",
           },
         ]}
@@ -317,7 +317,7 @@ export default function Home() {
         backgroundColor="bg-gray-50" // Lighter background
       />
       <FullBleedImage
-        src="/Assets/PYT/Fruit_Bowl.png"
+        src="/Assets/PYT/Fruit_Bowl.webp"
         alt=""
         caption="Models coated in Silicone EcoFlex-0030, demonstrating early design principles in proxy geometry uncovered during user testing."
         aspectRatio="aspect-[16/7]"
@@ -353,7 +353,7 @@ export default function Home() {
         description={
           "If physical tools had an AR component, could the way we hold them change how they function? \n\nOne promising research outcome was the design of active tools that modified their outputs (brush shape, size, intensity) based on how they were handled."
         }
-        mediaSrc="/Assets/PYT/Toolheads.jpg"
+        mediaSrc="/Assets/PYT/Toolheads.webp"
         alt=""
         mediaWidth={undefined}
         mediaHeight={undefined}
@@ -376,43 +376,43 @@ export default function Home() {
         images={[
           {
             type: "image",
-            src: "/Assets/PYT/Cone0.png",
+            src: "/Assets/PYT/Cone0.webp",
             alt: "Functional file removal 1",
           },
           {
             type: "image",
-            src: "/Assets/PYT/Cone1.jpg",
+            src: "/Assets/PYT/Cone1.webp",
             alt: "V1 with a grounded pivot, and various surfaces for texture/different interfaces",
           },
           {
             type: "image",
-            src: "/Assets/PYT/Cone2.jpg",
+            src: "/Assets/PYT/Cone2.webp",
             alt: "Found potential relationship between ergonomics and tool parameters",
           },
           {
             type: "image",
-            src: "/Assets/PYT/Cone3.jpg",
+            src: "/Assets/PYT/Cone3.webp",
             alt: "1D Handle gradation",
           },
           {
             type: "image",
-            src: "/Assets/PYT/Cone4.jpg",
+            src: "/Assets/PYT/Cone4.webp",
             alt: "Flat 'mating' surface with proxy'",
           },
           {
             type: "image",
-            src: "/Assets/PYT/Cone5.jpg",
+            src: "/Assets/PYT/Cone5.webp",
             alt: "Curved mating interface (flat side)",
           },
 
           {
             type: "image",
-            src: "/Assets/PYT/Cone7.jpg",
+            src: "/Assets/PYT/Cone7.webp",
             alt: "2 Criteria established: a linear handle gradation & flat active interface",
           },
           {
             type: "image",
-            src: "/Assets/PYT/Cone8.jpg",
+            src: "/Assets/PYT/Cone8.webp",
             alt: "...Iterated towards inevitability",
           },
         ]}
@@ -424,44 +424,44 @@ export default function Home() {
         images={[
           {
             type: "image",
-            src: "/Assets/PYT/Misc1.png",
+            src: "/Assets/PYT/Misc1.webp",
             alt: "",
           },
           {
             type: "image",
-            src: "/Assets/PYT/Misc2.png",
+            src: "/Assets/PYT/Misc2.webp",
             alt: "",
           },
           {
             type: "image",
-            src: "/Assets/PYT/Misc3.png",
+            src: "/Assets/PYT/Misc3.webp",
             alt: "",
           },
           {
             type: "image",
-            src: "/Assets/PYT/Misc4.png",
+            src: "/Assets/PYT/Misc4.webp",
             alt: "",
           },
           {
             type: "image",
-            src: "/Assets/PYT/Misc5.png",
+            src: "/Assets/PYT/Misc5.webp",
             alt: "",
           },
-          { type: "image", src: "/Assets/PYT/Cone5.jpg", alt: "" },
+          { type: "image", src: "/Assets/PYT/Cone5.webp", alt: "" },
 
           {
             type: "image",
-            src: "/Assets/PYT/Misc6.png",
+            src: "/Assets/PYT/Misc6.webp",
             alt: "",
           },
           {
             type: "image",
-            src: "/Assets/PYT/Misc7.png",
+            src: "/Assets/PYT/Misc7.webp",
             alt: "",
           },
           {
             type: "image",
-            src: "/Assets/PYT/Misc8.png",
+            src: "/Assets/PYT/Misc8.webp",
             alt: "",
           },
         ]}
@@ -471,7 +471,7 @@ export default function Home() {
       />
       <section id="finalOutcome" className="h-0 w-0 p-0 m-0" />
       <FullBleedImage
-        src="/Assets/PYT/PYT_HERO_L.png"
+        src="/Assets/PYT/PYT_HERO_L.webp"
         alt=""
         caption=""
         aspectRatio="aspect-[16/7]"
@@ -511,7 +511,7 @@ export default function Home() {
         marginBottom="mb-64"
         imageAspectRatio="aspect-full"
         alt="Placeholder graphic"
-        imageSrc="Assets/PYT/Donut_ComponentVisual.png"
+        imageSrc="Assets/PYT/Donut_ComponentVisual.webp"
       />
       <SystemDesignText
         column="left"

@@ -1,4 +1,5 @@
 "use client";
+
 import BirdSimulation from "@/app/components/MatterBirdSimulationCopy";
 
 import Intro from "@/app/components/Intro";
@@ -46,7 +47,7 @@ export default function Home() {
         {/* Overlay image */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <img
-            src="/Assets/Intro/HKTest.png" // make sure this path is correct relative to your public folder
+            src="/Assets/Intro/HKTest.webp" // make sure this path is correct relative to your public folder
             alt="Overlay"
             className="max-w-full max-h-full"
           />
@@ -63,12 +64,12 @@ export default function Home() {
       <FullBleedImage
         slideshow={[
           {
-            src: "/Assets/Sphinx/HeroShot.png",
+            src: "/Assets/Sphinx/HeroShot.webp",
             alt: "First",
             caption: "",
           },
           {
-            src: "/Assets/Spider/HeroShot2.png",
+            src: "/Assets/Spider/HeroShot2.webp",
             alt: "Second",
             caption: "",
           },
@@ -88,6 +89,7 @@ export default function Home() {
         aspectRatio="aspect-[16/5]"
         interval={4000}
         transitionDuration={800}
+        src={""}
       />
       <Intro
         marginBottom="mb-16"
