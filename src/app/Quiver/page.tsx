@@ -99,7 +99,7 @@ export default function Home() {
         description={
           "I had to verify that TENG could work with store-bought materials in a temperate environment. \n\nThen, new mechanisms were prototyped and evaluated on signal cleanliness, range, and potential interactions in the health/wellness space."
         }
-        mediaSrc="/Assets/Quiver/TengMoodboard.webp"
+        mediaSrc="/Assets/Quiver/tengMoodboard1.webp"
         mediaType="image"
         alt=""
         caption=""
@@ -176,7 +176,7 @@ export default function Home() {
       <SingleColumnImageGray
         images={[
           {
-            src: "/Assets/Quiver/TengMechanism.webm",
+            src: "/Assets/Quiver/stengMechanism.webm",
             alt: " ",
           },
         ]}
