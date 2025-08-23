@@ -17,7 +17,7 @@ import YouMightLike from "@/app/components/YouMightLike";
 export default function Home() {
   return (
     <>
-      <HeaderText>What?</HeaderText>
+      <HeaderText>What can we do with TENG?</HeaderText>
       {/* Section 1: Two-column layout */}
       <TitleCard
         title="Quiver:"
@@ -41,7 +41,7 @@ export default function Home() {
 
       {/* Section 2: Three-column layout */}
       <ProjectDescriptor
-        team={["Dr Yen Chin Chuan, Professor", "Wong He Kai, Me"]}
+        team={["Dr Yen Ching Chuan, Professor", "Wong He Kai, Me"]}
         responsibilities={[
           "Prototyped Detection Mechanisms using TENG",
           "Low, Mid, High-Fidelity Prototyping of sensor architecture and novel interactions",
@@ -75,7 +75,7 @@ export default function Home() {
         marginBottom="mb-16"
         title="Currently(2022).."
         heading="Commercial TENG Mechanisms are straightforward & limited"
-        imageSrc="/Assets/Quiver/tengschematic.webp"
+        imageSrc="/Assets/Quiver/stengschematic.webp"
         body="They involve a rubbery material rubbing against a metal to generate electric signals"
         imageAspectRatio="aspect-16/7"
         alt="Placeholder graphic"
@@ -83,7 +83,7 @@ export default function Home() {
       <TextImageTwoThirds
         title=""
         heading="They're also facing issues with durability and scalability"
-        imageSrc="/Assets/Quiver/TengMaterial.webp"
+        imageSrc="/Assets/Quiver/stengMaterial.webp"
         body={`The materials typically used require fabrication techniques that are currently lab scale. 
             
             Even then, the reliance on material friction for signals result in comparatively higher wear and tear to conventional detectors.`}
