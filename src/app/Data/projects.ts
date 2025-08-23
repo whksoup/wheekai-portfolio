@@ -104,7 +104,7 @@ export const projects: Project[] = [
     type: "spatial",
     slug: "cello",
     href: "/Spider",
-    image: "/Assets/Intro/Soundweave.webp",
+    image: "/Assets/Intro/1soundweave.webp",
     subtitle: "2025 Undergrad Thesis",
     title:
       "PYT : Alternative Control Interactions for Virtual Reality Sculpting",
