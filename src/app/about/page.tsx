@@ -32,10 +32,10 @@ export default function About() {
         <section className="mb-16 text-center">
           <h1 className="text-4xl font-bold mb-4">About Me (23 Aug 2025)</h1>
           <p className="text-2xl font-medium text-gray-700 text-left">
-            Hi! I'm <span className="font-semibold">He Kai</span>, a fresh
+            Hi! I&apos;m <span className="font-semibold">He Kai</span>, a fresh
             Industrial Design graduate currently freelancing as an AR/Hardware
             Dev for medical/military simulation, and as a designer for a
-            Creative Tech Studio. I've worked in commercial projects for
+            Creative Tech Studio. I&apos;ve worked in commercial projects for
             companies, big and small, as well as artists and schizophrenics.
             <br />
             <br />
@@ -57,7 +57,7 @@ export default function About() {
             <br />
             <br />
             Currently obsessed with object tracking in augmented reality, and
-            building a bird house. I'm also an amateur boxer!
+            building a bird house. I&apos;m also an amateur boxer!
           </p>
         </section>
 
