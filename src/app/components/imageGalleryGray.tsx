@@ -1,8 +1,9 @@
 import React from "react";
 import Image from "next/image";
+
 interface GalleryItem {
   src?: string;
-  alt?: string; // make optional
+  alt?: string; // optional
   caption?: string;
   type?: "video" | "image";
 }
@@ -15,7 +16,7 @@ interface ImageGalleryGrayProps {
   containerPadding?: string;
   columnGap?: string;
   rowGap?: string;
-  gridCellSize?: string;
+  gridCellSize?: string; // Tailwind classes now, not raw CSS
   paddingTop?: string;
   paddingBottom?: string;
   showCaptions?: boolean;
@@ -30,14 +31,14 @@ const ImageGalleryGray: React.FC<ImageGalleryGrayProps> = ({
   containerPadding = "p-4 md:p-8",
   columnGap = "gap-x-6 md:gap-x-8",
   rowGap = "gap-y-24 md:gap-y-24",
-  gridCellSize = "40vh md:60vh",
+  gridCellSize = "h-[40vh] w-[40vh] md:h-[60vh] md:w-[60vh]",
   paddingTop = "pt-32",
-
+  paddingBottom = "pb-16",
   showCaptions = true,
   summaryCaption = "",
 }) => {
   const imagesToShow = rows * 2;
-  const displayedImages = images.slice(0, imagesToShow);
+  const displayedImages: GalleryItem[] = images.slice(0, imagesToShow);
 
   while (displayedImages.length < imagesToShow) {
     displayedImages.push({});
@@ -48,18 +49,16 @@ const ImageGalleryGray: React.FC<ImageGalleryGrayProps> = ({
       className={`${marginBottom} flex justify-center ${containerPadding}`}
     >
       <div className="max-w-screen-xl w-full px-4 md:px-8">
-        <div className={`${backgroundColor} rounded-lg ${paddingTop} pb-16`}>
+        <div
+          className={`${backgroundColor} rounded-lg ${paddingTop} ${paddingBottom}`}
+        >
           <div
             className={`grid grid-cols-1 md:grid-cols-2 ${columnGap} ${rowGap} justify-items-center`}
           >
             {displayedImages.map((item, index) => (
               <div key={index} className="flex flex-col items-center">
                 <div
-                  className="relative flex justify-center items-center"
-                  style={{
-                    height: gridCellSize,
-                    width: gridCellSize,
-                  }}
+                  className={`relative flex justify-center items-center ${gridCellSize}`}
                 >
                   {item.type === "video" && item.src ? (
                     <video
@@ -72,10 +71,10 @@ const ImageGalleryGray: React.FC<ImageGalleryGrayProps> = ({
                     />
                   ) : item.src ? (
                     <Image
-                      src={item.src!} // non-null assertion because you check item.src
+                      src={item.src}
                       alt={item.alt || ""}
                       fill
-                      className="max-w-[90%] max-h-[90%] object-contain"
+                      className="object-contain"
                     />
                   ) : (
                     <div className="absolute inset-0 bg-gray-300 rounded-md"></div>

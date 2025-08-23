@@ -12,7 +12,8 @@ import TitleCard from "@/app/components/TitleCard";
 import ProjectDescriptor from "@/app/components/ProjectDescriptor";
 import FullBleedImage from "@/app/components/FullBleedImage";
 import VideoPage from "@/app/components/VideoPage";
-
+import { projects } from "@/app/Data/projects";
+import YouMightLike from "@/app/components/YouMightLike";
 export default function Home() {
   return (
     <>
@@ -53,7 +54,7 @@ export default function Home() {
         ]}
       />
       <FullBleedImage
-        src="/Assets/Quiver/Quiver_HeroShotWide.png"
+        src="/Assets/Quiver/Quiver_HeroShotWide.webp"
         alt=""
         caption=""
         aspectRatio="aspect-[16/9]"
@@ -73,16 +74,16 @@ export default function Home() {
       <TextImageTwoThirds
         marginBottom="mb-16"
         title="Currently(2022).."
-        heading="Commercial TENG Mechanisms are fairly straightforward"
-        imageSrc="/Assets/Quiver/TengSchematic.png"
+        heading="Commercial TENG Mechanisms are straightforward & limited"
+        imageSrc="/Assets/Quiver/tengschematic.webp"
         body="They involve a rubbery material rubbing against a metal to generate electric signals"
-        imageAspectRatio=""
+        imageAspectRatio="aspect-16/7"
         alt="Placeholder graphic"
       />
       <TextImageTwoThirds
         title=""
         heading="They're also facing issues with durability and scalability"
-        imageSrc="/Assets/Quiver/TengMaterial.png"
+        imageSrc="/Assets/Quiver/TengMaterial.webp"
         body={`The materials typically used require fabrication techniques that are currently lab scale. 
             
             Even then, the reliance on material friction for signals result in comparatively higher wear and tear to conventional detectors.`}
@@ -98,7 +99,7 @@ export default function Home() {
         description={
           "I had to verify that TENG could work with store-bought materials in a temperate environment. \n\nThen, new mechanisms were prototyped and evaluated on signal cleanliness, range, and potential interactions in the health/wellness space."
         }
-        mediaSrc="/Assets/Quiver/TengMoodboard.jpg"
+        mediaSrc="/Assets/Quiver/TengMoodboard.webp"
         mediaType="image"
         alt=""
         caption=""
@@ -107,63 +108,63 @@ export default function Home() {
         images={[
           {
             type: "image",
-            src: "/Assets/Quiver/FirstExplo_1.jpg",
+            src: "/Assets/Quiver/FirstExplo_1.webp",
             alt: "",
           },
 
           {
             type: "image",
-            src: "/Assets/Quiver/FirstExploResult_1.jpg",
+            src: "/Assets/Quiver/FirstExploResult_1.webp",
             alt: "First simplifying the classical TENG mechanism with store bought materials. The signals are predictably messier and difficult to work with",
           },
           {
             type: "image",
-            src: "/Assets/Quiver/FirstExplo_3.jpg",
+            src: "/Assets/Quiver/FirstExplo_3.webp",
             alt: "",
           },
 
           {
             type: "image",
-            src: "/Assets/Quiver/FirstExploResult_3.jpg",
+            src: "/Assets/Quiver/FirstExploResult_3.webp",
             alt: "A contactless prototype using a PET roll. The signals were surprisingly noticeable.",
           },
           {
             type: "image",
-            src: "/Assets/Quiver/FirstExplo_5.jpg",
+            src: "/Assets/Quiver/FirstExplo_5.webp",
             alt: "",
           },
 
           {
             type: "image",
-            src: "/Assets/Quiver/FirstExploResult_5.jpg",
+            src: "/Assets/Quiver/FirstExploResult_5.webp",
             alt: "A foldable ladder configuration of alternating silicone and aluminium layers generated a clean and predictable signal. ",
           },
           {
             type: "image",
-            src: "/Assets/Quiver/FirstExplo_7.jpg",
+            src: "/Assets/Quiver/FirstExplo_7.webp",
             alt: "",
           },
 
           {
             type: "image",
-            src: "/Assets/Quiver/FirstExploResult_7.jpg",
+            src: "/Assets/Quiver/FirstExploResult_7.webp",
             alt: "Generating a clean signal was a combination of the right materials and introducing tiny slacking between the layers.",
           },
           {
             type: "image",
-            src: "/Assets/Quiver/FirstExplo_6.png",
+            src: "/Assets/Quiver/FirstExplo_6.webp",
             alt: "",
           },
 
           {
             type: "image",
-            src: "/Assets/Quiver/FirstExploResult_6.jpg",
+            src: "/Assets/Quiver/FirstExploResult_6.webp",
             alt: "By increasing the slack between layers, the prototype began registering signals from around the device. But why?",
           },
         ]}
         summaryCaption="Early prototypes leading to the final mechanical concept."
         rows={5}
-        gridCellSize="50vh" // Smaller cells to fit more content
+        // Smaller cells to fit more content
         backgroundColor="bg-gray-50" // Lighter background
       />
       <SystemDesignText
@@ -196,7 +197,7 @@ export default function Home() {
         description={
           "Subsequent iterations explored how different forms:\n\n1) affected signal sensitivity\n\n2) affected percieved interactive affordances\n\n3) harmonized visually in urban environments\n\n4) communicated the DIY nature of the project and its materials"
         }
-        mediaSrc="/Assets/Quiver/Sketches.png"
+        mediaSrc="/Assets/Quiver/Sketches.webp"
         mediaType="image"
         alt=""
       />
@@ -204,25 +205,25 @@ export default function Home() {
       <ImageGridSection
         images={[
           {
-            src: "/Assets/Quiver/ProtoZoom1.png",
+            src: "/Assets/Quiver/ProtoZoom1.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
           },
           {
-            src: "/Assets/Quiver/ProtoZoom2.png",
+            src: "/Assets/Quiver/ProtoZoom2.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
           },
           {
-            src: "/Assets/Quiver/ProtoZoom3.png",
+            src: "/Assets/Quiver/ProtoZoom3.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
           },
           {
-            src: "/Assets/Quiver/ProtoZoom4.png",
+            src: "/Assets/Quiver/ProtoZoom4.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
@@ -231,7 +232,7 @@ export default function Home() {
       />
 
       <FullBleedImage
-        src="/Assets/Quiver/PrototypeSplash.png"
+        src="/Assets/Quiver/PrototypeSplash.webp"
         alt=""
         caption=""
         aspectRatio="aspect-[16/9]"
@@ -267,7 +268,7 @@ export default function Home() {
       <ImageGridSection
         images={[
           {
-            src: "/Assets/Quiver/FinalDimensions.png",
+            src: "/Assets/Quiver/FinalDimensions.webp",
             alt: "Beautiful Landscape",
             type: "image",
             aspectRatio: "aspect-square",
@@ -279,13 +280,13 @@ export default function Home() {
             type: "video",
           },
           {
-            src: "/Assets/Quiver/HeroSquare.png",
+            src: "/Assets/Quiver/HeroSquare.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-square",
             type: "image",
           },
           {
-            src: "/Assets/Quiver/Assembly.png",
+            src: "/Assets/Quiver/Assembly.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-square",
             type: "image",
@@ -307,7 +308,7 @@ export default function Home() {
         description={
           "What if fidgeting could be reframed in public spaces? \n\nIt's looked down upon in Asian countries -> Can we make it socially acceptable?\n\n It's a sign of discomfort -> Can we use fidgeting to identify and comfort users?\n\nIt quintuples static caloric burn -> Can we make it more fun?"
         }
-        mediaSrc="/Assets/Quiver/RandomToDirected.png"
+        mediaSrc="/Assets/Quiver/RandomToDirected.webp"
         alt=""
       />
       <Prototyping
@@ -315,7 +316,7 @@ export default function Home() {
         subtitle="It's sensitive."
         title="Capable of distinguishing a step, from a tap, from a jog,"
         description={
-          "Quiver was able to run seamlessly, and consistently for 6 hours of play. \n\nThese 3 inputs can be calibrated for different environments and action contexts."
+          "Quiver was able to run seamlessly, and consistently for 3 hours of play. \n\nThese 3 inputs can be calibrated for different environments and action contexts. \n\nFor this project, the context was 2 opposing public bus stops, where passers-by inadvertently activate and play a multiplayer TETRIS game, building a bridge towards each other before a car smashes it down."
         }
         mediaSrc="/Assets/Quiver/OrangeAndGreen.webm"
         mediaType="webm"
@@ -324,8 +325,10 @@ export default function Home() {
       <Prototyping
         subtitle=""
         title="And it's cheap!"
-        description="Affordable for less than $5 SGD, with materials you can find in a convenient store (and a microcontroller), Quiver is a proof of concept, deployable application of TENG technology for public spaces in the future."
-        mediaSrc="/Assets/Quiver/BusStop.png"
+        description={
+          "Affordable for less than $5 SGD, with materials you can find in a convenient store (and a microcontroller).\n\n Quiver is a proof of concept, deployable application of TENG technology for public spaces in the future."
+        }
+        mediaSrc="/Assets/Quiver/BusStop.webp"
         alt=""
       />
 
@@ -360,7 +363,7 @@ export default function Home() {
         ]}
       />
 
-      <div className="w-full aspect-[16/6] bg-gray-300"></div>
+      <YouMightLike projects={projects} currentHref="/Quiver" />
     </>
   );
 }

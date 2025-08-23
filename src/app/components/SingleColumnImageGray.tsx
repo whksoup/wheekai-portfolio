@@ -54,7 +54,7 @@ const SingleColumnMediaGray: React.FC<SingleColumnMediaGrayProps> = ({
                 <div key={idx} className={`${imageMaxWidth} w-full`}>
                   {image.src ? (
                     <div className="flex flex-col items-center">
-                      <div className={`w-full ${aspectRatio}`}>
+                      <div className={`relative w-full ${aspectRatio}`}>
                         {isVideo ? (
                           <video
                             src={image.src}
@@ -71,8 +71,9 @@ const SingleColumnMediaGray: React.FC<SingleColumnMediaGrayProps> = ({
                           <Image
                             src={image.src}
                             alt={image.alt || ""}
-                            fill
-                            className="object-contain"
+                            width={800}
+                            height={600}
+                            className={`w-full h-auto ${imageClassName}`}
                           />
                         )}
                       </div>

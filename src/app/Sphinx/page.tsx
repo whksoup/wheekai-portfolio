@@ -14,6 +14,8 @@ import FullBleedImage from "@/app/components/FullBleedImage";
 import VideoPage from "@/app/components/VideoPage";
 import SingleColumnHeaderText from "@/app/components/SingleColumnHeaderText";
 import VideoEmbed from "@/app/components/VideoEmbed";
+import { projects } from "@/app/Data/projects";
+import YouMightLike from "@/app/components/YouMightLike";
 
 export default function Home() {
   return (
@@ -22,10 +24,10 @@ export default function Home() {
         What form can an AI Companion take for single living elderly in Taiwan?
       </HeaderText>
       <FullBleedImage
-        src="/Assets/Sphinx/Title.png"
+        src="/Assets/Sphinx/Title.webp"
         alt=""
         caption=""
-        aspectRatio="aspect-[16/6]"
+        aspectRatio="aspect-[16/5]"
         className="my-16"
         overlayIntensity="from-black/70"
         captionClassName="text-center"
@@ -40,7 +42,7 @@ export default function Home() {
           "SCHOOL PROJECT",
         ]}
         paragraphs={[
-          "In this 3 month Design Platform, my groupmates and I were tasked to design a product that could integrate with its 2030 digitized healthcare ecosystem for the Elderly. This could take any form, from a wheelchair, to a workshop, to an app.\n\nOur product is Sphinx, a plant-based AI management interface that grows with its user. \n\nThrough projection mapping, the custom application turns plant features (leaves, stems, flowers) into widgets that promote and habit-stack therapist/health service interactions at key points of an elderly's day. ",
+          "In this 3 month Design Platform in Taiwan, my groupmates and I were tasked to design a product that could integrate with its 2030 digitized healthcare ecosystem for the Elderly. This could take any form, from a wheelchair, to a workshop, to an app.\n\nOur product is Sphinx, a plant-based AI management interface that grows with its user. \n\nThrough projection mapping, the custom application turns plant features (leaves, stems, flowers) into widgets that promote and habit-stack therapist/health service interactions at key points of an elderly's day. ",
         ]}
       />
       {/* Section 2: Three-column layout */}
@@ -87,7 +89,7 @@ export default function Home() {
         description={
           "As the only 3 exchange students in the platform, we had to be crafty with how we gathered data. \n\nWe got in contact with local community leaders, engaged with elderly care centers, and befriended uncles and aunties on the streets."
         }
-        mediaSrc="/Assets/Sphinx/Interview_1.png"
+        mediaSrc="/Assets/Sphinx/Interview_1.webp"
         mediaWidth="60%"
         mediaType="image"
         alt=""
@@ -97,31 +99,31 @@ export default function Home() {
         images={[
           {
             type: "image",
-            src: "/Assets/Sphinx/Interviews_1.png",
+            src: "/Assets/Sphinx/Interviews_1.webp",
             alt: "Interviews first began with anyone we could get; Probing broad topics across lifestyles, mobility, social habits",
           },
 
           {
             type: "image",
-            src: "/Assets/Sphinx/DiscussionGuide_1.png",
+            src: "/Assets/Sphinx/DiscussionGuide_1.webp",
             alt: "Between phases, we prepared discussion guides, which honed in on key problems identified from previous rounds",
           },
 
           {
             type: "image",
-            src: "/Assets/Sphinx/Interviewees.png",
+            src: "/Assets/Sphinx/Interviewees.webp",
             alt: "We eventually worked further with 8 individuals who fit the criteria of single living, retired, aged 65+",
           },
 
           {
             type: "image",
-            src: "/Assets/Sphinx/Interviews_2.png",
-            alt: "Super grateful for my charismatic groupmate Geraldine, who got us into their homes & spaces where we really got to experience their lifestyles",
+            src: "/Assets/Sphinx/Interviews_2.webp",
+            alt: "Super grateful for my charismatic groupmate Geraldine, who got us welcomed into their homes & spaces where we really got to experience their lifestyles",
           },
         ]}
         summaryCaption="User Research"
         rows={2}
-        gridCellSize="50vh" // Smaller cells to fit more content
+        // Smaller cells to fit more content
         backgroundColor="bg-gray-50" // Lighter background
       />
       <Insight
@@ -148,16 +150,16 @@ export default function Home() {
         marginBottom="mb-0"
         title="So the healthcare resources do exist..."
         heading="But they aren't accessed"
-        imageSrc="/Assets/Sphinx/Blurb.png"
+        imageSrc="/Assets/Sphinx/Blurb.webp"
         body="We realized that most single living elderly had personal reasons (pride, bad experiences, gossip) that prevented them from reaching out."
-        imageAspectRatio=""
+        imageAspectRatio="aspect-16/12"
         alt="Placeholder graphic"
       />
       <TextImageTwoThirds
         marginBottom="mb-16"
-        title="And it usually begins... "
+        title="And deterioration usually begins... "
         heading="When their kids leave."
-        imageSrc="/Assets/Sphinx/IsolationTimeline.png"
+        imageSrc="/Assets/Sphinx/IsolationTimeline.webp"
         body={`And their social and work habits are uprooted .
           
           Learning to live alone compounds with physical and mental deterioration from aging, leading to shame and isolation.`}
@@ -170,9 +172,9 @@ export default function Home() {
         marginBottom="mb-48"
         title="But we could also identify..."
         heading="Some overlapping routines"
-        imageSrc="/Assets/Sphinx/Behaviours.png"
+        imageSrc="/Assets/Sphinx/Behaviours.webp"
         body="Like gardening, which was reported in 90% of our 20 interviews."
-        imageAspectRatio=""
+        imageAspectRatio="aspect-16/6"
         alt="Placeholder graphic"
       />
       <SystemDesignText
@@ -189,9 +191,10 @@ export default function Home() {
         description={
           "Using the plant cycle as touchpoints, we built prototypes that explored how they could be used for healthcare/communication."
         }
-        mediaSrc="/Assets/Sphinx/Phone.png"
+        mediaSrc="/Assets/Sphinx/Phone.webp"
         mediaType="image"
-        mediaHeight={"600"}
+        mediaHeight={"300"}
+        mediaWidth="300"
         objectFit="contain"
         alt=""
         caption=""
@@ -200,47 +203,47 @@ export default function Home() {
         images={[
           {
             type: "image",
-            src: "/Assets/Sphinx/Prototype_1.png",
+            src: "/Assets/Sphinx/Prototype_1.webp",
             alt: "We first began with UX paper prototypes to test what functions might resonate with the elderly",
           },
 
           {
             type: "image",
-            src: "/Assets/Sphinx/App_Mockup_1.png",
+            src: "/Assets/Sphinx/App_Mockup_1.webp",
             alt: "We tested basic mobile mockups to verify UX flows",
           },
           {
             type: "image",
-            src: "/Assets/Sphinx/Projection_1.png",
+            src: "/Assets/Sphinx/Projection_1.webp",
             alt: "We explored projection mapping as a proof of concept",
           },
 
           {
             type: "image",
-            src: "/Assets/Sphinx/VR_Modelling.jpg",
+            src: "/Assets/Sphinx/VR_Modelling.webp",
             alt: "...With the projection matrix mathed out in VR!",
           },
           {
             type: "image",
-            src: "/Assets/Sphinx/CardboardPlant.png",
+            src: "/Assets/Sphinx/CardboardPlant.webp",
             alt: "A cardboard plant was used for user testing.",
           },
 
           {
             type: "image",
-            src: "/Assets/Sphinx/IconTest.png",
+            src: "/Assets/Sphinx/IconTest.webp",
             alt: "Different UI elements and leaves",
           },
         ]}
         summaryCaption="Prototyping"
         rows={3}
-        gridCellSize="50vh" // Smaller cells to fit more content
+        // Smaller cells to fit more content
         backgroundColor="bg-gray-50" // Lighter background
       />
       <SystemDesignText
         column="left"
         sectionTitle="Bridging towards a feasible prototype "
-        heading=""
+        heading="The plant interface worked..."
         paragraph={
           "While several functionalities were well recieved by users (like time tracking or photo albums), the interaction schemes had to be refined further.  "
         }
@@ -270,24 +273,24 @@ export default function Home() {
         images={[
           {
             type: "image",
-            src: "/Assets/Sphinx/Midas1.png",
+            src: "/Assets/Sphinx/Midas1.webp",
             alt: "",
           },
 
           {
             type: "image",
-            src: "/Assets/Sphinx/Midas2.png",
+            src: "/Assets/Sphinx/Midas2.webp",
             alt: "",
           },
           {
             type: "image",
-            src: "/Assets/Sphinx/Midas3.png",
+            src: "/Assets/Sphinx/Midas3.webp",
             alt: "",
           },
 
           {
             type: "image",
-            src: "/Assets/Sphinx/Midas5.png",
+            src: "/Assets/Sphinx/Midas5.webp",
             alt: "Shoutout to Bin, my vietnamese roommate while I was in Taiwan!",
           },
         ]}
@@ -295,7 +298,7 @@ export default function Home() {
         rowGap="gap-y-0 md:gap-y-0"
         summaryCaption="Playing with different versions of MiDAS, a CV model for depth detection, with another model for hand tracking. Its medium model was sensitive enough to detect 3cm differences in depth in our plant setup."
         rows={2}
-        gridCellSize="70vh" // Smaller cells to fit more content
+        // Smaller cells to fit more content
         backgroundColor="bg-gray-50" // Lighter background
       />
       <SystemDesignText
@@ -312,37 +315,37 @@ export default function Home() {
         imageGap="gap--10"
         images={[
           {
-            src: "/Assets/Sphinx/InitialForm.png",
+            src: "/Assets/Sphinx/InitialForm.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
           },
           {
-            src: "/Assets/Sphinx/WeaveBasket.png",
+            src: "/Assets/Sphinx/WeaveBasket.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
           },
           {
-            src: "/Assets/Sphinx/TroubleBasket 2.png",
+            src: "/Assets/Sphinx/TroubleBasket 2.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
           },
           {
-            src: "/Assets/Sphinx/FoldableBasket.png",
+            src: "/Assets/Sphinx/FoldableBasket.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
           },
           {
-            src: "/Assets/Sphinx/FisherBasket.png",
+            src: "/Assets/Sphinx/FisherBasket.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
           },
           {
-            src: "/Assets/Sphinx/Basket.png",
+            src: "/Assets/Sphinx/Basket.webp",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-3/4",
             type: "image",
@@ -352,7 +355,7 @@ export default function Home() {
       <SingleColumnImageGray
         images={[
           {
-            src: "/Assets/Sphinx/RailSchema.png",
+            src: "/Assets/Sphinx/RailSchema.webp",
             alt: " ",
           },
         ]}
@@ -368,7 +371,7 @@ export default function Home() {
       />
       <section id="finalOutcome" className="h-0 w-0 p-0 m-0" />
       <FullBleedImage
-        src="/Assets/Sphinx/HeroShot.png"
+        src="/Assets/Sphinx/HeroShot.webp"
         alt=""
         caption=""
         aspectRatio="aspect-[16/8]"
@@ -396,7 +399,7 @@ export default function Home() {
         imageAspectRatio="aspect-16/5"
         alt="Placeholder graphic"
         marginBottom="mb-16"
-        imageSrc="Assets/Sphinx/AGrowingInterface.png"
+        imageSrc="/Assets/Sphinx/AGrowingInterface.webp"
       />
       <TextImageTwoThirds
         heading="Has higher interaction rates vs current interfaces"
@@ -407,7 +410,7 @@ export default function Home() {
         imageAspectRatio="aspect-video"
         alt="Placeholder graphic"
         marginBottom="mb-16"
-        imageSrc="Assets/Sphinx/PhotoAlbum.png"
+        imageSrc="/Assets/Sphinx/PhotoAlbum.webp"
       />
       <TextImageTwoThirds
         heading="A lightweight, scalable interface language"
@@ -415,10 +418,10 @@ export default function Home() {
         marginBottom="mb-24"
         imageAspectRatio="aspect-full"
         alt="Placeholder graphic"
-        imageSrc="Assets/Sphinx/VoiceDemo.webm"
+        imageSrc="/Assets/Sphinx/VoiceDemo.webm"
       />
       <FullBleedImage
-        src="/Assets/Sphinx/Riddle.png"
+        src="/Assets/Sphinx/Riddle.webp"
         alt=""
         caption=""
         aspectRatio="aspect-[16/5]"
@@ -429,7 +432,7 @@ export default function Home() {
       <SingleColumnImageGray
         images={[
           {
-            src: "/Assets/Sphinx/Schematic.png",
+            src: "/Assets/Sphinx/Schematic.webp",
             alt: "The final form is designed like a gift basket, for ease of carrying and assembly. ",
           },
         ]}
@@ -478,7 +481,7 @@ export default function Home() {
           },
         ]}
       />
-      <div className="w-full aspect-[16/6] bg-gray-300"></div>
+      <YouMightLike projects={projects} currentHref="/Sphinx" />
     </>
   );
 }

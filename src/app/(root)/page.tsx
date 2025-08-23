@@ -54,9 +54,9 @@ export default function Home() {
         </div>
       </div>
       <Intro
-        subtitle="Introduction"
+        subtitle="Introduction 01"
         text={
-          "He Kai is a designer who loves crazy and complicated problem spaces, which has led to a passion for technology related projects, where things are always new! \n\nHe Kai believes in an elegant universe, where underlying all complex phenomena is a stupid simple set of truths; Design is finding that truth."
+          "He Kai is a designer who loves crazy and complicated problem spaces, which has led to a passion for technology related projects. \n\nThis is grounded by a practice of hypothesis driven processes and definable metrics, which he believes are in themselves good design outcomes.\n\nHe Kai believes in an elegant universe, where underlying all complex phenomena is a stupid simple set of truths; Design is finding that truth."
         }
         align="left"
       />
@@ -95,7 +95,7 @@ export default function Home() {
         marginBottom="mb-16"
         subtitle="Introduction"
         text={
-          "He Kai is currently freelancing as an AR simulation/hardware dev at a research center, and working with SERIAL_CO as an interactive designer. He has had previous working experiences at NOK (Next of Kin) Design Studio and The Interactive Materials Lab."
+          "He Kai is currently freelancing as an AR simulation/hardware dev at a research center, and working with SERIAL_CO as a designer. He has had previous working experiences at NOK (Next of Kin) Design Studio and The Interactive Materials Lab. "
         }
         align="right"
       />

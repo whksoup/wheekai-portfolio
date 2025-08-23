@@ -13,7 +13,8 @@ import ProjectDescriptor from "@/app/components/ProjectDescriptor";
 import FullBleedImage from "@/app/components/FullBleedImage";
 //import ProjectCard from "@/app/components/ProjectCard";
 import VideoEmbed from "@/app/components/VideoEmbed";
-
+import { projects } from "@/app/Data/projects";
+import YouMightLike from "@/app/components/YouMightLike";
 export default function Home() {
   return (
     <>
@@ -37,7 +38,7 @@ export default function Home() {
         }
       >
         <video
-          src="/Assets/PYT/EyeSculpt.mp4"
+          src="/Assets/PYT/EyeSculpt.webm"
           autoPlay
           loop
           muted
@@ -104,7 +105,7 @@ export default function Home() {
       <SystemDesignText
         column="right"
         sectionTitle=""
-        heading="How might we make VR Sculpting more intuitive for new VR users?"
+        heading="How might we make VR Sculpting more intuitive, more 'feeling' for new VR users?"
         paragraph=""
         marginBottom="mb-8"
       />
@@ -155,7 +156,7 @@ export default function Home() {
 
       <Insight
         title="'Modelling with my tools and hands feels instinctive and familiar.'"
-        highlightColorClass={["text-green-500", "text-orange-500"]}
+        highlightColorClass={["text-green-500", "text-red-500"]}
         insights={[
           {
             label: "TRUE",
@@ -163,14 +164,14 @@ export default function Home() {
             headline:
               "Operating through tool and proxy is way more tactile and satisfying, and seems more intuitive.",
             description:
-              "Amount of screen entry/exit points in the modal is not correlated to the efficiency in task completion because these entry/exit points might not necessarily have conveyed its intended meaning. A back button cannot be assumed to reliably confirm a user’s choice.",
+              "When asked how to 'remove or add' material, answers converged towards extremely similar interactions. All participants responded positively to the haptic proxy.",
           },
           {
             label: "UNTRUE",
             headline:
-              "Users would intuitively treat the haptic proxy as a substitute for the sculpture/model, manipulating it like a voodoo doll.",
+              "Hypothesis: Users would intuitively treat the haptic proxy as a substitute for the sculpture/model, manipulating it like a voodoo doll.",
             description:
-              "Users would tap both options before hitting on one, increasing the amount of time taken. Some users are also unsure about the banking terms used as category headers.",
+              "The relationship between proxy and how it represented the model heavily relied on how users were 'primed', either by the visuals of the simulation or prior experiences with plastic material (clay or wood,etc.)",
           },
         ]}
       />
@@ -208,7 +209,7 @@ export default function Home() {
             alt: "",
           },
           { type: "video", src: "/Assets/PYT/Pulling.webm", alt: "" },
-          { type: "image", src: "/Assets/PYT/BernHorse.webp", alt: "" },
+          { type: "image", src: "/Assets/PYT/BernHorse1.webp", alt: "" },
           {
             type: "video",
             src: "/Assets/PYT/AbrarTriangleChamfer.webm",
@@ -217,7 +218,7 @@ export default function Home() {
           {
             type: "video",
             src: "/Assets/PYT/HammerDavidProto.webm",
-            alt: "",
+            alt: "Alternative deformation engines were still tested at this stage",
           },
         ]}
         summaryCaption="Prototypes evaluated on functionality and intuitivity foremost. Users performed extremely basic tasks like chamfering or blending 2 surfaces, adding protrusions, making indents"
@@ -227,11 +228,13 @@ export default function Home() {
         column="right"
         sectionTitle="I found out that..."
         heading="The proxy, when framed as a guiding tool, vastly influenced how users thought about the making process"
-        paragraph="e.g, Flat surfaces encouraging planar building, e.g, faceting or padding. Curved surfaces encouraging fluid surfaces and destructive operations; By using a proxy's geometry like a '3d ruler', users could intuitively control surfacing with much higher accuracy vs normal VR control systems, and pick it up more quickly."
+        paragraph={
+          "e.g, Flat surfaces encouraging planar building, e.g, faceting or padding. Curved surfaces encouraging fluid surfaces and destructive operations; \n\nBy using a proxy's geometry like a '3d ruler', users could intuitively control surfacing with much higher accuracy vs normal VR control systems, and pick it up more quickly."
+        }
       />
       <Prototyping
         subtitle="Prototyping 3"
-        title="Discovering design parameters in a new interactive space"
+        title="Finding design parameters in a new interactive space"
         description={
           "I developed 1 addition, 1 subtraction and 1 fine-surface interaction to greater depth.\n \nUsers were evaluated on simple mesh manipulation tasks against quantitative metrics like speed and accuracy of completion, and qualitative. \n\ne.g, if proxy material enhanced the experience, if particular shapes were more useful."
         }
@@ -244,28 +247,41 @@ export default function Home() {
       <ImageGalleryGray
         rows={3}
         images={[
-          { type: "video", src: "/Assets/PYT/ShapeRefine_1.webm", alt: "" },
+          {
+            type: "video",
+            src: "/Assets/PYT/ShapeRefine_1.webm",
+            alt: "User testing with a modular head brush",
+          },
           {
             type: "video",
             src: "/Assets/PYT/ShapeRefine2.webm",
             alt: "",
           },
-          { type: "video", src: "/Assets/PYT/ShapeRefine3.webm", alt: "" },
-          { type: "image", src: "/Assets/PYT/MaterialTest.webp", alt: "" },
+          {
+            type: "video",
+            src: "/Assets/PYT/ShapeRefine3.webm",
+            alt: "User producing a clean blended surface with a sphere proxy",
+          },
+          {
+            type: "image",
+            src: "/Assets/PYT/MaterialTest.webp",
+            alt: "A totem used to evaluate different materials for convex proxies.",
+          },
           {
             type: "video",
             src: "/Assets/PYT/ShapeRefine5.webm",
-            alt: "",
+            alt: "User grabbing different physical brushes to change brush",
           },
           {
             type: "video",
             src: "/Assets/PYT/AmeliaShape.webm",
-            alt: "",
+            alt: "Users had fun exploring how the stranger shapes might be used! Most remarked on how their 'movesets' expanded.",
           },
         ]}
         summaryCaption="Prototypes evaluated on efficiency of task completion, affordances, and versatility in surfacing scenarios."
       />
       <ImageGalleryGray
+        rows={4}
         images={[
           {
             type: "image",
@@ -312,8 +328,7 @@ export default function Home() {
           },
         ]}
         summaryCaption="Research on the affordances of shape proxies is currently ongoing!"
-        rows={4}
-        gridCellSize="50vh" // Smaller cells to fit more content
+        // Smaller cells to fit more content
         backgroundColor="bg-gray-50" // Lighter background
       />
       <FullBleedImage
@@ -417,7 +432,7 @@ export default function Home() {
           },
         ]}
         rows={4}
-        gridCellSize="50vh" // Smaller cells to fit more content
+        // Smaller cells to fit more content
         backgroundColor="bg-gray-50" // Lighter background
       />
       <ImageGalleryGray
@@ -435,38 +450,38 @@ export default function Home() {
           {
             type: "image",
             src: "/Assets/PYT/Misc3.webp",
-            alt: "",
+            alt: "A pinch and pull interaction",
           },
           {
             type: "image",
             src: "/Assets/PYT/Misc4.webp",
-            alt: "",
+            alt: "A stylus with a blob nib",
           },
           {
             type: "image",
             src: "/Assets/PYT/Misc5.webp",
-            alt: "",
+            alt: "A pom for brushing",
           },
-          { type: "image", src: "/Assets/PYT/Cone5.webp", alt: "" },
 
           {
             type: "image",
             src: "/Assets/PYT/Misc6.webp",
-            alt: "",
+            alt: "A file",
           },
           {
             type: "image",
             src: "/Assets/PYT/Misc7.webp",
-            alt: "",
+            alt: "A hammer",
           },
           {
             type: "image",
             src: "/Assets/PYT/Misc8.webp",
-            alt: "",
+            alt: "A toolhead 'brush' with an adjustable ridge profile",
           },
         ]}
         rows={4}
-        gridCellSize="30vh" // Smaller cells to fit more content
+        // Smaller cells to fit more content
+        summaryCaption="Other miscellaneous tool explorations"
         backgroundColor="bg-gray-50" // Lighter background
       />
       <section id="finalOutcome" className="h-0 w-0 p-0 m-0" />
@@ -492,9 +507,9 @@ export default function Home() {
         heading="Has more intuitive input dimensions than regular VR"
         body="... leveraging pressure, shear force, brush angles, brush contact area, etc, in a manner that mirrors how we manipulate plastic matter in real life."
         imageAspectRatio="aspect-video"
-        alt="Placeholder graphic"
+        //alt="Placeholder graphic"
         marginBottom="mb-16"
-        imageSrc="Assets/PYT/FiveMoreInputs.webm"
+        imageSrc="/Assets/PYT/FiveMoreInputs.webm"
       />
       <TextImageTwoThirds
         heading="Has higher accuracy & potentially lower compute costs,"
@@ -503,19 +518,20 @@ export default function Home() {
         imageAspectRatio="aspect-video"
         alt="Placeholder graphic"
         marginBottom="mb-16"
-        imageSrc="Assets/PYT/DonutSrfDemo.webm"
+        imageSrc="/Assets/PYT/DonutSrfDemo.webm"
       />
       <TextImageTwoThirds
         heading="..And provides designers with tools to developing more versatile tactile experiences"
         body="by providing applications with a) physical force receptors that can vary in material, haptics, or geometry, and b) new typologies of 'active controllers' "
         marginBottom="mb-64"
-        imageAspectRatio="aspect-full"
+        imageAspectRatio="aspect-16/9"
         alt="Placeholder graphic"
-        imageSrc="Assets/PYT/Donut_ComponentVisual.webp"
+        imageSrc="/Assets/PYT/DonutComponentVisual.webp"
       />
+
       <SystemDesignText
         column="left"
-        sectionTitle="TLDR"
+        sectionTitle=""
         heading="3 Interaction Artefacts:"
         paragraph=""
       />
@@ -592,7 +608,7 @@ export default function Home() {
         ]}
       />
 
-      <div className="w-full aspect-[16/6] bg-gray-300"></div>
+      <YouMightLike projects={projects} currentHref="/PYT" />
     </>
   );
 }

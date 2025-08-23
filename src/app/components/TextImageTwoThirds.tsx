@@ -26,7 +26,7 @@ export default function TextImageTwoThirds({
   className = "",
   caption,
 }: TextImageTwoThirdsProps) {
-  const isVideo = imageSrc?.match(/\.(webm|mp4|ogg)$/i); // Check if video file
+  const isVideo = imageSrc?.match(/\.(webm|mp4|webm)$/i); // Check if video file
 
   return (
     <section

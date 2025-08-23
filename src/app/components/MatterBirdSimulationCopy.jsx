@@ -1,71 +1,127 @@
-"use client";
 import React, { useEffect, useRef, useState } from "react";
 import Matter from "matter-js";
 
 const BirdSimulation = () => {
   const sceneRef = useRef(null);
+  const containerRef = useRef(null);
   const engineRef = useRef(null);
   const renderRef = useRef(null);
   const birdsRef = useRef([]);
   const animationRef = useRef(null);
   const clickHandlerRef = useRef(null);
-  const [isReady, setIsReady] = useState(false); // Add ready state
+  const [isReady, setIsReady] = useState(false);
+  const [containerDimensions, setContainerDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
 
-  // Dynamic canvas sizing based on screen size
-  const getCanvasDimensions = () => {
-    const screenWidth =
-      typeof window !== "undefined" ? window.innerWidth : 1200;
-    const screenHeight =
-      typeof window !== "undefined" ? window.innerHeight : 600;
+  // Dynamic canvas sizing based on container size
+  const getCanvasDimensions = (containerWidth, containerHeight) => {
+    if (!containerWidth || !containerHeight) {
+      // Fallback dimensions - increased by 1.5x
+      return { width: 1800, height: 900 };
+    }
 
-    // For large desktops (>1400px), use 1200px width
-    if (screenWidth > 1400) {
-      return { width: 1200, height: 600 };
+    const padding = 40; // Account for container padding
+    const availableWidth = containerWidth - padding;
+    const availableHeight = containerHeight - padding;
+
+    // Base dimensions increased by 1.5x
+    const baseWidth = 1800; // was 1200
+    const baseHeight = 900; // was 600
+
+    // Maintain aspect ratio while fitting in container
+    const maxWidth = Math.min(baseWidth, availableWidth);
+    const maxHeight = Math.min(baseHeight, availableHeight);
+
+    // If container is very wide, limit height and adjust width proportionally
+    const aspectRatio = baseWidth / baseHeight;
+    let width = maxWidth;
+    let height = width / aspectRatio;
+
+    if (height > maxHeight) {
+      height = maxHeight;
+      width = height * aspectRatio;
     }
-    // For medium screens (800-1400px), use 90% of screen width
-    else if (screenWidth > 800) {
-      return {
-        width: Math.floor(screenWidth * 0.9),
-        height: Math.floor(screenHeight * 0.7),
-      };
-    }
-    // For small screens (<800px), use 95% of screen width
-    else {
-      return {
-        width: Math.floor(screenWidth * 0.95),
-        height: Math.floor(screenHeight * 0.6),
-      };
-    }
+
+    return {
+      width: Math.floor(width),
+      height: Math.floor(height),
+    };
   };
 
-  const [dimensions, setDimensions] = useState(getCanvasDimensions());
+  const [dimensions, setDimensions] = useState({ width: 1800, height: 900 });
   const mapWidth = dimensions.width;
   const mapHeight = dimensions.height;
 
-  // Handle window resize
+  // Measure container dimensions
   useEffect(() => {
-    const handleResize = () => {
-      setDimensions(getCanvasDimensions());
+    const measureContainer = () => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        setContainerDimensions({
+          width: rect.width,
+          height: rect.height,
+        });
+      }
     };
 
-    if (typeof window !== "undefined") {
+    // Use ResizeObserver for more accurate container size detection
+    let resizeObserver;
+    if (containerRef.current && window.ResizeObserver) {
+      resizeObserver = new ResizeObserver((entries) => {
+        for (let entry of entries) {
+          const { width, height } = entry.contentRect;
+          setContainerDimensions({ width, height });
+        }
+      });
+      resizeObserver.observe(containerRef.current);
+    } else {
+      // Fallback to window resize
+      measureContainer();
+      const handleResize = () => measureContainer();
       window.addEventListener("resize", handleResize);
       return () => window.removeEventListener("resize", handleResize);
     }
+
+    return () => {
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
+    };
   }, []);
 
-  // Delay initialization until component is fully mounted and layout is settled
+  // Update dimensions when container size changes
   useEffect(() => {
-    const initTimer = setTimeout(() => {
-      setIsReady(true);
-    }, 100); // Small delay to ensure layout is calculated
+    if (containerDimensions.width > 0 && containerDimensions.height > 0) {
+      const newDimensions = getCanvasDimensions(
+        containerDimensions.width,
+        containerDimensions.height
+      );
+      setDimensions(newDimensions);
+    }
+  }, [containerDimensions]);
 
-    return () => clearTimeout(initTimer);
-  }, []);
+  // Delay initialization until component is fully mounted and dimensions are set
+  useEffect(() => {
+    if (dimensions.width > 0 && dimensions.height > 0) {
+      const initTimer = setTimeout(() => {
+        setIsReady(true);
+      }, 150); // Slightly longer delay to ensure everything is settled
+
+      return () => clearTimeout(initTimer);
+    }
+  }, [dimensions]);
 
   useEffect(() => {
     // Only initialize when ready and dimensions are set
-    if (!isReady || engineRef.current) return;
+    if (
+      !isReady ||
+      engineRef.current ||
+      !dimensions.width ||
+      !dimensions.height
+    )
+      return;
 
     // Module aliases
     const Engine = Matter.Engine;
@@ -650,15 +706,20 @@ const BirdSimulation = () => {
       // Clear birds array
       birdsRef.current = [];
     };
-  }, [mapWidth, mapHeight, isReady]); // Added isReady to dependencies
+  }, [mapWidth, mapHeight, isReady]);
 
   return (
     <div
+      ref={containerRef}
       style={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        padding: "20px",
+        justifyContent: "center",
+        padding: "10px",
+        width: "100%",
+        height: "100%",
+        minHeight: "700px", // Ensure minimum height
       }}
     >
       <div

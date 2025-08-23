@@ -14,7 +14,8 @@ import FullBleedImage from "@/app/components/FullBleedImage";
 import VideoPage from "@/app/components/VideoPage";
 import SingleColumnHeaderText from "@/app/components/SingleColumnHeaderText";
 import VideoEmbed from "@/app/components/VideoEmbed";
-
+import YouMightLike from "@/app/components/YouMightLike";
+import { projects } from "@/app/Data/projects";
 export default function Home() {
   return (
     <>
@@ -113,19 +114,19 @@ export default function Home() {
           {
             type: "image",
             src: "/Assets/Spider/Hypersketch1.webp",
-            alt: "Hypersketch, a sketch to AI app developed by our platform supervisor, converting sketches into renders of different form/photo typologies",
+            alt: "Hypersketch, a sketch to AI app developed by our platform supervisor, converting sketches into renders of different form/photo typologies. These were really useful for rapid image generation.",
           },
         ]}
         summaryCaption=""
         rows={2}
-        gridCellSize="50vh" // Smaller cells to fit more content
+        // Smaller cells to fit more content
         backgroundColor="bg-gray-50" // Lighter background
       />
       <Prototyping
         subtitle="Prototyping 2"
         title="Linking AI to real world production methods"
         description={
-          "How might AI output be converted into functional, mechanical designs? \n\nWe explored different ways of translating AI, as well as multi-phase (AI>Physical>AI) processes of iteration"
+          "How might AI output be converted into functional, mechanical designs? \n\nWe explored different ways of translating AI, as well as multi-phase (AI>Physical>AI) processes of iteration."
         }
         mediaSrc="/Assets/Spider/PuzzleBox1.webm"
         mediaWidth="100%"
@@ -147,7 +148,7 @@ export default function Home() {
           },
           {
             src: "/Assets/Spider/PuzzleBox15.webp",
-            alt: "",
+            alt: "The widgets in this prototype made it 'too' engaging, resulting in it breaking by some forceful users",
           },
           {
             src: "/Assets/Spider/PuzzleBoxAI2.webp",
@@ -173,23 +174,23 @@ export default function Home() {
           {
             type: "image",
             src: "/Assets/Spider/SpiderMunComparison.webp",
-            alt: "We took photos of prototypes at particular angles and had image-gen 'fill' areas of the image, which resulted in more 'actionable' informatiion. ",
+            alt: "We took photos of prototypes at particular angles and had image-gen 'fill' areas of the image, which resulted in more 'actionable' informatiion. Ah!  A spider!",
           },
           {
             type: "image",
             src: "/Assets/Spider/Stake.webp",
-            alt: "",
+            alt: "A marble trapping game",
           },
           {
             type: "image",
             src: "/Assets/Spider/Crucifix.webp",
-            alt: "",
+            alt: "A balancing game on a cross",
           },
 
           {
             type: "image",
             src: "/Assets/Spider/Chandelier.webp",
-            alt: "",
+            alt: "A really fun (but engineering nightmare) game about building an island for marbles using swing strings.",
           },
           {
             type: "video",
@@ -204,13 +205,13 @@ export default function Home() {
         ]}
         summaryCaption=""
         rows={3}
-        gridCellSize="50vh" // Smaller cells to fit more content
+        // Smaller cells to fit more content
         backgroundColor="bg-gray-50" // Lighter background
       />
       <SystemDesignText
         column="left"
         sectionTitle="Making AI into real prototypes was brain bending."
-        heading="We eventually realized that we could simplify by building around a specific object relationship in an AI image."
+        heading="We eventually realized that we could simplify AI input by building around a specific object relationship in an AI image. "
         paragraph={
           "e.g, Just solving how a ball related to the cross underneath it in an AI image unleashed a wealth of mechanical relationships to explore."
         }
@@ -247,9 +248,9 @@ export default function Home() {
       />
       <Prototyping
         subtitle="Breakthrough"
-        title="Simple, yet never done before"
+        title="So simple I could cry!"
         description={
-          "A ball, guided along a rail system you control using your hands as pivots!\n\nThe interaction felt simple yet dynamic, and incredibly tactile. \n\nThere was an exciting visual element and an interesting structural language."
+          "A ball, guided along a rail system you control using your hands as pivots!\n\nThe interaction felt simple yet dynamic, and incredibly tactile. \n\nThere was an exciting visual element and a unique structural language."
         }
         mediaSrc="/Assets/Spider/FirstSpider.webm"
         mediaWidth="100%"
@@ -261,14 +262,16 @@ export default function Home() {
         column="left"
         sectionTitle="Cool, so..."
         heading="How can we / AI push this further?"
-        paragraph={""}
+        paragraph={
+          "We had a mechanism (e.g, Mario could jump on goombas). Now what is the game (World 1)? What are first goals, what is the mastery, where is the replayability? \nHow is the game communicated through the toy's design?"
+        }
       />
       <ImageGalleryGray
         images={[
           {
             type: "image",
             src: "/Assets/Spider/Inspo.webp",
-            alt: "Hillary built around the relationship of the balls to the planks sandwiching them, asking how they might be suspended realistically.",
+            alt: "The idea originally came when Hillary built around the relationship of the balls to the planks sandwiching them, asking how they might be suspended realistically.",
           },
           {
             type: "video",
@@ -278,7 +281,7 @@ export default function Home() {
           {
             type: "image",
             src: "/Assets/Spider/Proto1.webp",
-            alt: "",
+            alt: "There were no real affordances in the early prototypes, which had some sort of appeal, from user feedback.",
           },
 
           {
@@ -290,31 +293,31 @@ export default function Home() {
           {
             type: "video",
             src: "/Assets/Spider/Proto2.webm",
-            alt: "",
+            alt: "Acrylic was rigid like metal, yet more pliable, cheaper for prototyping. It gave a 'science experiment' aesthetic which we enjoyed exploring!",
           },
           {
             type: "video",
             src: "/Assets/Spider/Winners.webm",
-            alt: "With a hoop addition, there was a satisfying and achievable goal to the toy. But it also made the play binary, creating clear winners and losers, and restricted creative expression.",
+            alt: "With a hoop addition, there was a satisfying and achievable goal to the toy. But it also made the play binary, creating clear winners and losers (which discouraged experimentation), and restricted creative expression.",
           },
         ]}
         summaryCaption=""
         rows={3}
-        gridCellSize="60vh" // Smaller cells to fit more content
+        // Smaller cells to fit more content
         backgroundColor="bg-gray-50" // Lighter background
       />
 
       <SystemDesignText
         column="left"
-        sectionTitle="The key issue was the difficulty."
+        sectionTitle="The key issue now was the difficulty."
         heading="We saw potential to reach the expressiveness of a lego set, the tactility of a yoyo, as well as the simplicity of a 2x2 cube..."
         paragraph={""}
       />
       <TextImageTwoThirds
         title=""
         heading="Creating something that preserved the open-ended discovery of this..."
-        imageSrc="/Assets/PYT/BrushMenu_3.webp"
-        body=""
+        imageSrc="/Assets/Spider/AdamDiscovery.webm"
+        body="He managed to keep the ball moving while the toy was turned on its side!"
         imageAspectRatio="aspect-video"
         alt="Placeholder graphic"
         marginBottom="mb-16"
@@ -346,7 +349,7 @@ export default function Home() {
         subtitle="Yup."
         title="This provided an easy 'level 2' for a first time user."
         description={
-          "8 of 8 users could replicate the move consistently within 20 tries, which we took as a sign to proceed forward."
+          "8 of 8 users could replicate the move consistently within 20 tries, which we took as a sign to proceed forward. \n\nWe settled on a '3 height' level design, with a non linear path of 'easy wins' (rolling the ball without tipping it on its side, balancing momentum)\n\nMedium wins (getting from lower to middle, middle to top) \n\nAnd hard (Lower to top instantly), on top of many variations in between."
         }
         mediaSrc="/Assets/Spider/MeHappy2.webm"
         mediaType="webm"
@@ -359,7 +362,7 @@ export default function Home() {
         images={[
           {
             src: "/Assets/Spider/DrawbridgePrototyping.webm",
-            alt: " ",
+            alt: "Tweaking the rail profiles and lengths, the strength/haptic profile of the action, the height of the horizontal levels etc.",
           },
         ]}
         imageMaxWidth="max-w-xl"
@@ -368,9 +371,21 @@ export default function Home() {
         backgroundColor="bg-gray-100"
         summaryCaption=""
       />
+
+      <SystemDesignText
+        column="left"
+        sectionTitle="Form Refinement"
+        heading="It's the last 3 weeks. From this point, we didn't use too much AI."
+        paragraph={
+          "There were enough design conditions that we felt like we could iterate towards inevitability. The next section will be geeking out about some cool design details, that you can skip with the button below. "
+        }
+      />
+      <div className="mb-16 flex justify-center">
+        <ScrollButton targetId="finalOutcome">To Project Outcome</ScrollButton>
+      </div>
       <ImageGridSection
         rows={3}
-        imageScale={0.7}
+        imageScale={1.0}
         imageGap="gap--10"
         images={[
           {
@@ -411,17 +426,6 @@ export default function Home() {
           },
         ]}
       />
-      <SystemDesignText
-        column="left"
-        sectionTitle="Form Refinement"
-        heading="From this point, we didn't use too much AI."
-        paragraph={
-          "There were enough design conditions that we felt like we could iterate towards inevitability. The next section will be geeking out about some cool design details, that you can skip with the button below. "
-        }
-      />
-      <div className="mb-16 flex justify-center">
-        <ScrollButton targetId="finalOutcome">To Project Outcome</ScrollButton>
-      </div>
 
       <Prototyping
         subtitle="Detail 1"
@@ -465,7 +469,7 @@ export default function Home() {
         subtitle="Detail 3"
         title="It's entirely glueless!"
         description={
-          "With a combination of the above and a 1.8mm snap fit joint mechanism, we managed to produce a robust mechanical toy that sustained 6 hours of continuous play."
+          "With a combination of the above and a 1.8mm snap fit joint mechanism (also relentlessly prototyped), we managed to produce a robust mechanical toy that sustained 6 hours of continuous play in its exhibition \n\n(the exhibition ended. Spider is still alive.)"
         }
         mediaSrc="/Assets/Spider/SnapFit.webp"
         mediaWidth="60%"
@@ -473,6 +477,18 @@ export default function Home() {
         alt=""
         caption=""
         reverse
+      />
+      <Prototyping
+        subtitle="Detail 4"
+        title="The materiality of PLA printing"
+        description={
+          "In some wooden japanese toys, the natural grain and texture of the wood is allowed to express itself in the form of growth patterns. \n\nI wanted to see if a 3D print could express a similar 'growth materiality'; By designing with respect to the print direction/nozzle resolution, PLA gets a 'grain' of its own."
+        }
+        mediaSrc="/Assets/Spider/TreeRings.webp"
+        mediaWidth="60%"
+        mediaType="image"
+        alt=""
+        caption=""
       />
       <section id="finalOutcome" className="h-0 w-0 p-0 m-0" />
       <FullBleedImage
@@ -496,8 +512,8 @@ export default function Home() {
       <VideoEmbed videoId="SK-UOPVvEDk" maxWidth="max-w-screen-md" />
 
       <ImageGridSection
-        rows={3}
-        imageScale={0.7}
+        rows={2}
+        imageScale={1.0}
         imageGap="gap--10"
         images={[
           {
@@ -513,161 +529,50 @@ export default function Home() {
             type: "image",
           },
           {
-            src: "/Assets/Sphinx/TroubleBasket 2.webp",
+            src: "/Assets/Spider/SpiderRender1.webp",
             alt: "Beautiful Landscape",
-            aspectRatio: "aspect-3/4",
+            aspectRatio: "aspect-16/9",
             type: "image",
           },
           {
-            src: "/Assets/Sphinx/FoldableBasket.webp",
+            src: "/Assets/Spider/SpiderRender2.webp",
             alt: "Beautiful Landscape",
-            aspectRatio: "aspect-3/4",
-            type: "image",
-          },
-          {
-            src: "/Assets/Sphinx/FisherBasket.webp",
-            alt: "Beautiful Landscape",
-            aspectRatio: "aspect-3/4",
-            type: "image",
-          },
-          {
-            src: "/Assets/Sphinx/Basket.webp",
-            alt: "Beautiful Landscape",
-            aspectRatio: "aspect-3/4",
+            aspectRatio: "aspect-16/9",
             type: "image",
           },
         ]}
-      />
-      <SingleColumnImageGray
-        images={[
-          {
-            src: "/Assets/Sphinx/RailSchema.webp",
-            alt: " ",
-          },
-        ]}
-        imageClassName="object-scale-down"
-        aspectRatio="aspect-auto"
-        backgroundColor="bg-gray-100"
-        imageMaxWidth="max-w-2xl"
-        summaryCaption=""
-        marginBottom="mb-48"
-        containerPadding="p-0 md:p-0"
-        paddingTop="pt-0"
-        paddingBottom="pb-0"
-      />
-
-      <FullBleedImage
-        src="/Assets/Sphinx/HeroShot.webp"
-        alt=""
-        caption=""
-        aspectRatio="aspect-[16/8]"
-        className="my-16"
-        overlayIntensity="from-black/70"
-        captionClassName="text-center"
-      />
-      <SystemDesignText
-        column="left"
-        sectionTitle=""
-        heading="Say hi to Sphinx!"
-        paragraph={
-          "Inspired by reed fields, a dot pattern leverages an elderly's motion sensitivity to co-locate interactive elements on a plant interface, as motion sensitivity declines significantly slower than vision with age.\n\nThe dots similarly aid the CV depth model in triangulating leaf/hand depth."
-        }
-      />
-      <SystemDesignText
-        column="right"
-        sectionTitle=""
-        heading="Sphinx is a health management interface that grows with its user"
-        paragraph="Habit stacking onto common daily rituals around gardening, Sphinx is an approachable interface for the elderly towards digital health services."
-      />
-      <TextImageTwoThirds
-        heading="It grows with its user..."
-        body="Eliminating the choice/menu paralysis of current systems in favor of personalized options that evolve gradually."
-        imageAspectRatio="aspect-16/5"
-        alt="Placeholder graphic"
-        marginBottom="mb-16"
-        imageSrc="Assets/Sphinx/AGrowingInterface.webp"
-      />
-      <TextImageTwoThirds
-        heading="Has higher interaction rates vs current interfaces"
-        body={
-          "Big leafy buttons flicker on when the plant is watered, turning a primed positive moment (watering, cleaning plants) into productive action.\n\nResulting in an increase in digital communication when we deployed it in small user tests, the interface demands minimal dexterity and technology-knowledge."
-        }
-        reverse
-        imageAspectRatio="aspect-video"
-        alt="Placeholder graphic"
-        marginBottom="mb-16"
-        imageSrc="Assets/Sphinx/PhotoAlbum.webp"
-      />
-      <TextImageTwoThirds
-        heading="A lightweight, scalable interface language"
-        body="A lightweight GPU particle system and a variety of sensors allow for a variety of creative visual elements that feel responsive and gentle for sensitive eyes."
-        marginBottom="mb-24"
-        imageAspectRatio="aspect-full"
-        alt="Placeholder graphic"
-        imageSrc="Assets/Sphinx/VoiceDemo.webm"
-      />
-      <FullBleedImage
-        src="/Assets/Sphinx/Riddle.webp"
-        alt=""
-        caption=""
-        aspectRatio="aspect-[16/5]"
-        className="mb-48"
-        overlayIntensity="from-black/70"
-        captionClassName="text-center"
-      />
-      <SingleColumnImageGray
-        images={[
-          {
-            src: "/Assets/Sphinx/Schematic.webp",
-            alt: "The final form is designed like a gift basket, for ease of carrying and assembly. ",
-          },
-        ]}
-        imageClassName="object-fit"
-        aspectRatio="aspect-[16/3]"
-        autoplay={true}
-        backgroundColor="bg-gray-100"
-        summaryCaption=""
-        marginBottom="mb-48"
-        containerPadding="p-0 md:p-0"
-        paddingTop="pt-16"
-        paddingBottom="pb-16"
-      />
-
-      <VideoEmbed
-        videoId="YxCmR1P7PwY"
-        aspectRatio="4/3"
-        marginTop="mt-8"
-        marginBottom="mb-16"
-        rounded="rounded-xl"
-        className="bg-gray-100"
       />
 
       <Insight
-        title="What I've Learned: "
-        highlightColorClass={["text-green-500", "text-red-500"]}
+        title="A crazy 12 weeks! What I've Learned: "
+        highlightColorClass={[
+          "text-green-500",
+          "text-red-500",
+          "text-blue-500",
+        ]}
         insights={[
           {
             label: "TRUE",
 
-            headline: "Design for specific ecosystems",
+            headline: "Designing with AI goes so much deeper than a prompt",
             description:
-              "As my first overseas design experience, I was surprised by how much culture could influence user behaviour, as well as how different service/manufacturing infrastructures could be. This project was very much about abandoning personal instincts in favour of user feedback.",
+              "Between images, videos, photoshops as inputs, AI shouldn't just be seen as a starting point, but another iterative tool that should be valued for its high resolution, its ability to draw from wide subcultures and form languages, and above all its inconsistencies with reality.",
           },
           {
             label: "TO BE IMPROVED",
-            headline: "Dichotomize! Research =/= Value",
+            headline: "Much more to explore: AI in the late stages of design",
             description:
-              "While the project outcome turned out well, the final outcome did not aid the people we interviewed in the immediate future, which was what we initially had set out to do. I think this project needed more time in high fidelity user testing to see if we could ground the project to a nearer future.",
+              "Circling the final submission, I had so many ideas on using AI in the refining process (e.g, feeding the modelling software live feed into stable diffusion), but time was so short.",
           },
           {
-            label: "TO BE IMPROVED",
-            headline: "Interviewing with empathy",
+            label: "INTERESTING",
+            headline: "Non-linear/Open Play Design Processes",
             description:
-              "My groupmate, a service designer, was able to get so much out of our users in a way I don't think I can do (at the moment). I think it has something to do with body cues, and a general desire to listen to the life stories of others (patience and commiseration).",
+              "From other UX projects, user flows and tasks are well defined, and the designer is like a traffic conductor placing cues and cones to direct energy towards specific places. \n\nDesigning open interactions as in a physical toy felt more like cooking at a Ramen restaurant, dicing components and ingredients into a soup, with the goal of maximizing valuable potential connections between components, which is really cool!",
           },
         ]}
       />
-      <div className="w-full aspect-[16/6] bg-gray-300"></div>
+      <YouMightLike projects={projects} currentHref="/Spider" />
     </>
   );
 }
