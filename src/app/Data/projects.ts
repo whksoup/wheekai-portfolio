@@ -16,7 +16,7 @@ export const projects: Project[] = [
   {
     name: "PYT : Alternative Control Interactions for Virtual Reality Sculpting",
     type: "spatial",
-    slug: "pyt",
+    slug: "spatial_computing",
     href: "/PYT",
     image: "/Assets/PYT/Donut.webp",
     subtitle: "2025 Undergrad Thesis",
@@ -29,7 +29,7 @@ export const projects: Project[] = [
   {
     name: "Spider: A Toy ft. ChatGPT",
     type: "product",
-    slug: "toys",
+    slug: "fun_objects",
     href: "/Spider",
     image: "/Assets/Spider/HeroShot2.webp",
     subtitle: "Student Project",
@@ -42,7 +42,7 @@ export const projects: Project[] = [
   {
     name: "Sphinx: Quiet digital interfaces for Taiwanese Elderly",
     type: "product",
-    slug: "plant",
+    slug: "quietInterfaces",
     href: "/Sphinx",
     image: "/Assets/Sphinx/HeroShot.webp",
     subtitle: "Student Project",
@@ -54,7 +54,7 @@ export const projects: Project[] = [
   {
     name: "Quiver: A $5 Motion Sensor",
     type: "product",
-    slug: "sail",
+    slug: "sails",
     href: "/Quiver",
     image: "/Assets/Quiver/Quiver_HeroShotWide.webp",
     subtitle: "Student Project",
@@ -66,13 +66,18 @@ export const projects: Project[] = [
   {
     name: "Canning Climb: Exploring safety tolerances in Play Space Design",
     type: "product",
-    slug: "climb",
-    href: "/Spider",
+    slug: "play",
+    href: "/CanningClimb",
     image: "/Assets/CanningClimb/HeroShot.webp",
     subtitle: "Student Project",
-    title: "What happens when ChatGPT is used to design mechanical toys?",
-    tags: ["UX Research", "Spatial Design", "Play Design"],
-    wip: true,
+    title: "Injure your kids: Exploring risk in Play Space Design",
+    tags: [
+      "UX Research",
+      "Spatial Design",
+      "Play Design",
+      "Concept Storytelling",
+    ],
+    wip: false,
     year: "2022",
   },
   {

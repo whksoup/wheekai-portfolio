@@ -5,6 +5,14 @@ type YouMightLikeProps = {
   projects: Project[];
   currentHref: string; // exclude this project
 };
+function shuffleArray<T>(array: T[]): T[] {
+  const arr = [...array]; // avoid mutating original
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
 
 export default function YouMightLike({
   projects,
@@ -12,9 +20,9 @@ export default function YouMightLike({
 }: YouMightLikeProps) {
   // Filter: exclude WIP projects and the current one
   const filtered = projects.filter((p) => !p.wip && p.href !== currentHref);
-
+  const shuffled = shuffleArray(filtered);
   // Pick only up to 3 suggestions
-  const suggestions = filtered.slice(0, 3);
+  const suggestions = shuffled.slice(0, 3);
 
   if (suggestions.length === 0) return null;
 

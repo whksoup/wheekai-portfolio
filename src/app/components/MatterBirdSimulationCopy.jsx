@@ -9,6 +9,10 @@ const BirdSimulation = () => {
   const birdsRef = useRef([]);
   const animationRef = useRef(null);
   const clickHandlerRef = useRef(null);
+  const mouseFollowerRef = useRef(null);
+  const mouseMoveHandlerRef = useRef(null);
+  const mouseLeaveHandlerRef = useRef(null);
+  const mouseEnterHandlerRef = useRef(null);
   const [isReady, setIsReady] = useState(false);
   const [containerDimensions, setContainerDimensions] = useState({
     width: 0,
@@ -158,6 +162,75 @@ const BirdSimulation = () => {
     const redCategory = 0x0004;
     const blueCategory = 0x0008;
     const floorCategory = 0x0010;
+    const mouseCategory = 0x0020;
+
+    // Create mouse follower sphere
+    const createMouseFollower = () => {
+      const mouseFollower = Bodies.circle(-100, -100, 40, {
+        density: 0.1,
+        restitution: 0.3,
+        render: {
+          fillStyle: "#ff6b6b",
+          strokeStyle: "#ff4757",
+          lineWidth: 2,
+        },
+        isStatic: true,
+        collisionFilter: {
+          category: mouseCategory,
+          mask: redCategory | greenCategory | blueCategory,
+        },
+      });
+
+      Composite.add(engine.world, mouseFollower);
+      mouseFollowerRef.current = mouseFollower;
+      return mouseFollower;
+    };
+
+    const mouseFollower = createMouseFollower();
+
+    // Mouse event handlers
+    const handleMouseMove = (e) => {
+      if (!mouseFollowerRef.current || !sceneRef.current) return;
+
+      const rect = sceneRef.current.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+
+      // Check if mouse is within canvas bounds
+      if (
+        mouseX >= 0 &&
+        mouseX <= mapWidth &&
+        mouseY >= 0 &&
+        mouseY <= mapHeight
+      ) {
+        // Smoothly move the mouse follower to the cursor position
+        Body.setPosition(mouseFollowerRef.current, { x: mouseX, y: mouseY });
+
+        // Make it visible if it was hidden
+        mouseFollowerRef.current.render.visible = true;
+      }
+    };
+
+    const handleMouseLeave = () => {
+      if (mouseFollowerRef.current) {
+        // Hide the mouse follower when mouse leaves canvas
+        mouseFollowerRef.current.render.visible = false;
+        // Move it off screen
+        Body.setPosition(mouseFollowerRef.current, { x: -100, y: -100 });
+      }
+    };
+
+    const handleMouseEnter = () => {
+      if (mouseFollowerRef.current) {
+        // Show the mouse follower when mouse enters canvas
+        mouseFollowerRef.current.render.visible = true;
+      }
+    };
+
+    // Store handlers for cleanup
+    mouseMoveHandlerRef.current = handleMouseMove;
+    mouseLeaveHandlerRef.current = handleMouseLeave;
+    mouseEnterHandlerRef.current = handleMouseEnter;
 
     class Bird {
       constructor(torsoX, torsoY, holdItem, flying) {
@@ -182,7 +255,7 @@ const BirdSimulation = () => {
           restitution: 0.5,
           collisionFilter: {
             category: greenCategory,
-            mask: floorCategory | greenCategory,
+            mask: floorCategory | greenCategory | mouseCategory,
           },
         });
 
@@ -192,7 +265,7 @@ const BirdSimulation = () => {
           inertia: Infinity,
           collisionFilter: {
             category: greenCategory,
-            mask: floorCategory | greenCategory,
+            mask: floorCategory | greenCategory | mouseCategory,
           },
         });
 
@@ -203,7 +276,7 @@ const BirdSimulation = () => {
           frictionStatic: 1,
           collisionFilter: {
             category: redCategory,
-            mask: floorCategory | redCategory,
+            mask: floorCategory | redCategory | mouseCategory,
           },
         });
 
@@ -212,7 +285,7 @@ const BirdSimulation = () => {
           restitution: 0,
           collisionFilter: {
             category: greenCategory,
-            mask: floorCategory | greenCategory,
+            mask: floorCategory | greenCategory | mouseCategory,
           },
           inertia: Infinity,
         });
@@ -222,7 +295,7 @@ const BirdSimulation = () => {
           restitution: 0,
           collisionFilter: {
             category: blueCategory,
-            mask: floorCategory | blueCategory,
+            mask: floorCategory | blueCategory | mouseCategory,
           },
         });
 
@@ -230,7 +303,7 @@ const BirdSimulation = () => {
           density: 0.001,
           collisionFilter: {
             category: blueCategory,
-            mask: floorCategory | blueCategory,
+            mask: floorCategory | blueCategory | mouseCategory,
           },
         });
 
@@ -600,6 +673,9 @@ const BirdSimulation = () => {
 
     if (sceneRef.current) {
       sceneRef.current.addEventListener("click", handleClick);
+      sceneRef.current.addEventListener("mousemove", handleMouseMove);
+      sceneRef.current.addEventListener("mouseleave", handleMouseLeave);
+      sceneRef.current.addEventListener("mouseenter", handleMouseEnter);
     }
 
     // Animation loop with halved timestep
@@ -659,19 +735,65 @@ const BirdSimulation = () => {
         clearInterval(birdInterval);
       }
 
-      // Remove event listener with null check
-      if (sceneRef.current && clickHandlerRef.current) {
-        try {
-          sceneRef.current.removeEventListener(
-            "click",
-            clickHandlerRef.current
-          );
-        } catch (error) {
-          // Silently handle the error if element is already removed
-          console.warn("Could not remove event listener:", error);
+      // Remove event listeners with null checks
+      if (sceneRef.current) {
+        if (clickHandlerRef.current) {
+          try {
+            sceneRef.current.removeEventListener(
+              "click",
+              clickHandlerRef.current
+            );
+          } catch (error) {
+            console.warn("Could not remove click listener:", error);
+          }
+        }
+        if (mouseMoveHandlerRef.current) {
+          try {
+            sceneRef.current.removeEventListener(
+              "mousemove",
+              mouseMoveHandlerRef.current
+            );
+          } catch (error) {
+            console.warn("Could not remove mousemove listener:", error);
+          }
+        }
+        if (mouseLeaveHandlerRef.current) {
+          try {
+            sceneRef.current.removeEventListener(
+              "mouseleave",
+              mouseLeaveHandlerRef.current
+            );
+          } catch (error) {
+            console.warn("Could not remove mouseleave listener:", error);
+          }
+        }
+        if (mouseEnterHandlerRef.current) {
+          try {
+            sceneRef.current.removeEventListener(
+              "mouseenter",
+              mouseEnterHandlerRef.current
+            );
+          } catch (error) {
+            console.warn("Could not remove mouseenter listener:", error);
+          }
         }
       }
+
+      // Clear handler references
       clickHandlerRef.current = null;
+      mouseMoveHandlerRef.current = null;
+      mouseLeaveHandlerRef.current = null;
+      mouseEnterHandlerRef.current = null;
+
+      // Remove mouse follower
+      if (mouseFollowerRef.current && engineRef.current) {
+        try {
+          Composite.remove(engineRef.current.world, mouseFollowerRef.current);
+        } catch (error) {
+          console.warn("Could not remove mouse follower:", error);
+        }
+        mouseFollowerRef.current = null;
+      }
 
       // Stop renderer
       if (renderRef.current) {
@@ -749,7 +871,10 @@ const BirdSimulation = () => {
           color: "#ccc",
           textAlign: "center",
         }}
-      ></div>
+      >
+        Don't leave this window in the background too long! Birds will keep
+        spawning
+      </div>
     </div>
   );
 };

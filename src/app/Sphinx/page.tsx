@@ -311,7 +311,7 @@ export default function Home() {
       />
       <ImageGridSection
         rows={3}
-        imageScale={0.7}
+        imageScale={1.0}
         imageGap="gap--10"
         images={[
           {

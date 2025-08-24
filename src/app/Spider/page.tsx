@@ -568,7 +568,7 @@ export default function Home() {
             label: "INTERESTING",
             headline: "Non-linear/Open Play Design Processes",
             description:
-              "From other UX projects, user flows and tasks are well defined, and the designer is like a traffic conductor placing cues and cones to direct energy towards specific places. \n\nDesigning open interactions as in a physical toy felt more like cooking at a Ramen restaurant, dicing components and ingredients into a soup, with the goal of maximizing valuable potential connections between components, which is really cool!",
+              "I've designed open play systems before (where it's about designing for exciting interactions between elements), but not like this, within a single object! \n\nDesigning open interactions in a single physical toy required thinking of the toy not as a single object, but an ecosystem of mechanical states, user goals, and environmental contexts that transform the framing of the toy's controls from moment to moment.",
           },
         ]}
       />

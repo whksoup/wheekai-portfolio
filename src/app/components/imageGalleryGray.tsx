@@ -31,7 +31,7 @@ const ImageGalleryGray: React.FC<ImageGalleryGrayProps> = ({
   containerPadding = "p-4 md:p-8",
   columnGap = "gap-x-6 md:gap-x-8",
   rowGap = "gap-y-24 md:gap-y-24",
-  gridCellSize = "h-[40vh] w-[40vh] md:h-[60vh] md:w-[60vh]",
+  gridCellSize = "h-[40vh] w-[40vh] md:h-[50vh] md:w-[50vh]",
   paddingTop = "pt-32",
   paddingBottom = "pb-16",
   showCaptions = true,
@@ -58,7 +58,7 @@ const ImageGalleryGray: React.FC<ImageGalleryGrayProps> = ({
             {displayedImages.map((item, index) => (
               <div key={index} className="flex flex-col items-center">
                 <div
-                  className={`relative flex justify-center items-center ${gridCellSize}`}
+                  className={`relative overflow-hidden flex justify-center items-center ${gridCellSize}`}
                 >
                   {item.type === "video" && item.src ? (
                     <video
@@ -92,7 +92,7 @@ const ImageGalleryGray: React.FC<ImageGalleryGrayProps> = ({
 
           {summaryCaption && (
             <div className="mt-24 text-center">
-              <p className="text-base text-gray-700 max-w-2xl mx-auto">
+              <p className="text-base text-gray-700 max-w-2xl mx-auto whitespace-pre-line">
                 {summaryCaption}
               </p>
             </div>

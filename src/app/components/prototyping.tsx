@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface PrototypingProps {
   subtitle?: string;
@@ -39,11 +40,12 @@ const Prototyping: React.FC<PrototypingProps> = ({
     borderRadius: "0.5rem",
   };
 
-  const imgStyle: React.CSSProperties = {
+  const imgWrapperStyle: React.CSSProperties = {
+    position: "relative",
     width: mediaWidth || "100%",
-    height: mediaHeight || "100%",
-    objectFit,
+    height: mediaHeight || "400px", // fallback height for fill
     borderRadius: "0.5rem",
+    overflow: "hidden",
   };
 
   return (
@@ -67,7 +69,7 @@ const Prototyping: React.FC<PrototypingProps> = ({
         {/* Media */}
         <div className="w-full md:w-2/3">
           <div className="space-y-2">
-            <div className="w-full rounded-lg overflow-hidden flex justify-center">
+            <div className="w-full flex justify-center">
               {mediaSrc ? (
                 isVideo ? (
                   <video
@@ -82,7 +84,14 @@ const Prototyping: React.FC<PrototypingProps> = ({
                     Your browser does not support the video tag.
                   </video>
                 ) : (
-                  <img src={mediaSrc} alt={alt} style={imgStyle} />
+                  <div style={imgWrapperStyle}>
+                    <Image
+                      src={mediaSrc}
+                      alt={alt}
+                      fill
+                      style={{ objectFit }}
+                    />
+                  </div>
                 )
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-gray-500">

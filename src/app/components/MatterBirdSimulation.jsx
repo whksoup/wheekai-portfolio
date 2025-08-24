@@ -1,19 +1,127 @@
-"use client";
 import React, { useEffect, useRef, useState } from "react";
 import Matter from "matter-js";
 
 const BirdSimulation = () => {
   const sceneRef = useRef(null);
+  const containerRef = useRef(null);
   const engineRef = useRef(null);
   const renderRef = useRef(null);
   const birdsRef = useRef([]);
   const animationRef = useRef(null);
-  const [mapWidth, setMapWidth] = useState(800);
-  const [mapHeight, setMapHeight] = useState(800);
+  const clickHandlerRef = useRef(null);
+  const [isReady, setIsReady] = useState(false);
+  const [containerDimensions, setContainerDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
+
+  // Dynamic canvas sizing based on container size
+  const getCanvasDimensions = (containerWidth, containerHeight) => {
+    if (!containerWidth || !containerHeight) {
+      // Fallback dimensions - increased by 1.5x
+      return { width: 1800, height: 900 };
+    }
+
+    const padding = 40; // Account for container padding
+    const availableWidth = containerWidth - padding;
+    const availableHeight = containerHeight - padding;
+
+    // Base dimensions increased by 1.5x
+    const baseWidth = 1800; // was 1200
+    const baseHeight = 900; // was 600
+
+    // Maintain aspect ratio while fitting in container
+    const maxWidth = Math.min(baseWidth, availableWidth);
+    const maxHeight = Math.min(baseHeight, availableHeight);
+
+    // If container is very wide, limit height and adjust width proportionally
+    const aspectRatio = baseWidth / baseHeight;
+    let width = maxWidth;
+    let height = width / aspectRatio;
+
+    if (height > maxHeight) {
+      height = maxHeight;
+      width = height * aspectRatio;
+    }
+
+    return {
+      width: Math.floor(width),
+      height: Math.floor(height),
+    };
+  };
+
+  const [dimensions, setDimensions] = useState({ width: 1800, height: 900 });
+  const mapWidth = dimensions.width;
+  const mapHeight = dimensions.height;
+
+  // Measure container dimensions
+  useEffect(() => {
+    const measureContainer = () => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        setContainerDimensions({
+          width: rect.width,
+          height: rect.height,
+        });
+      }
+    };
+
+    // Use ResizeObserver for more accurate container size detection
+    let resizeObserver;
+    if (containerRef.current && window.ResizeObserver) {
+      resizeObserver = new ResizeObserver((entries) => {
+        for (let entry of entries) {
+          const { width, height } = entry.contentRect;
+          setContainerDimensions({ width, height });
+        }
+      });
+      resizeObserver.observe(containerRef.current);
+    } else {
+      // Fallback to window resize
+      measureContainer();
+      const handleResize = () => measureContainer();
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
+
+    return () => {
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
+    };
+  }, []);
+
+  // Update dimensions when container size changes
+  useEffect(() => {
+    if (containerDimensions.width > 0 && containerDimensions.height > 0) {
+      const newDimensions = getCanvasDimensions(
+        containerDimensions.width,
+        containerDimensions.height
+      );
+      setDimensions(newDimensions);
+    }
+  }, [containerDimensions]);
+
+  // Delay initialization until component is fully mounted and dimensions are set
+  useEffect(() => {
+    if (dimensions.width > 0 && dimensions.height > 0) {
+      const initTimer = setTimeout(() => {
+        setIsReady(true);
+      }, 150); // Slightly longer delay to ensure everything is settled
+
+      return () => clearTimeout(initTimer);
+    }
+  }, [dimensions]);
 
   useEffect(() => {
-    // Only initialize once
-    if (engineRef.current) return;
+    // Only initialize when ready and dimensions are set
+    if (
+      !isReady ||
+      engineRef.current ||
+      !dimensions.width ||
+      !dimensions.height
+    )
+      return;
 
     // Module aliases
     const Engine = Matter.Engine;
@@ -24,13 +132,13 @@ const BirdSimulation = () => {
     const Composite = Matter.Composite;
     const Constraint = Matter.Constraint;
 
-    // Create engine
+    // Create engine with halved gravity
     const engine = Engine.create({
-      gravity: { x: 0, y: 0.5 },
+      gravity: { x: 0, y: 0.25 }, // Halved from 0.5 to 0.25
       enableSleeping: false,
     });
     engineRef.current = engine;
-    const { mapWidth, mapHeight } = sceneRef.current.getBoundingClientRect();
+
     // Create renderer
     const render = Render.create({
       element: sceneRef.current,
@@ -72,6 +180,10 @@ const BirdSimulation = () => {
         this.birdHead = Bodies.circle(torsoX, torsoY - 20, 20, {
           density: 0.1,
           restitution: 0.5,
+          collisionFilter: {
+            category: greenCategory,
+            mask: floorCategory | greenCategory,
+          },
         });
 
         this.birdTorso1 = Bodies.circle(torsoX - 20, torsoY, 30, {
@@ -132,7 +244,7 @@ const BirdSimulation = () => {
           length: 10,
           render: {
             type: "line",
-            strokeStyle: "#000000", // Black color
+            strokeStyle: "#000000",
             lineWidth: 2,
           },
         });
@@ -146,7 +258,7 @@ const BirdSimulation = () => {
           length: 30,
           render: {
             type: "line",
-            strokeStyle: "#000000", // Black color
+            strokeStyle: "#000000",
             lineWidth: 2,
           },
         });
@@ -159,7 +271,7 @@ const BirdSimulation = () => {
           length: 8,
           render: {
             type: "line",
-            strokeStyle: "#000000", // Black color
+            strokeStyle: "#000000",
             lineWidth: 2,
           },
         });
@@ -173,7 +285,7 @@ const BirdSimulation = () => {
           length: 10,
           render: {
             type: "line",
-            strokeStyle: "#000000", // Black color
+            strokeStyle: "#000000",
             lineWidth: 2,
           },
         });
@@ -188,7 +300,7 @@ const BirdSimulation = () => {
           length: 20,
           render: {
             type: "line",
-            strokeStyle: "#000000", // Black color
+            strokeStyle: "#000000",
             lineWidth: 2,
           },
         });
@@ -203,7 +315,7 @@ const BirdSimulation = () => {
           length: 20,
           render: {
             type: "line",
-            strokeStyle: "#000000", // Black color
+            strokeStyle: "#000000",
             lineWidth: 2,
           },
         });
@@ -219,7 +331,7 @@ const BirdSimulation = () => {
           damping: 0,
           render: {
             type: "line",
-            strokeStyle: "#000000", // Black color
+            strokeStyle: "#000000",
             lineWidth: 2,
           },
         });
@@ -232,7 +344,7 @@ const BirdSimulation = () => {
             this.birdHead,
             this.birdWing,
             this.birdWingRect,
-            this.newItem,
+            //this.newItem,
           ],
           constraints: [
             this.birdWingConnect1,
@@ -255,7 +367,7 @@ const BirdSimulation = () => {
       }
 
       flapWing() {
-        const forceMagnitude = 80;
+        const forceMagnitude = 40; // Halved from 80 to 40
         Body.setVelocity(this.birdWing, {
           x: -forceMagnitude * 2,
           y: forceMagnitude + forceMagnitude,
@@ -265,7 +377,12 @@ const BirdSimulation = () => {
       boostUp() {
         Body.setVelocity(this.birdTorso2, {
           x: 0,
-          y: -12,
+          y: -6, // Halved from -12 to -6
+        });
+      }
+      boostSideways() {
+        Body.setVelocity(this.birdTorso2, {
+          x: Math.random(-1, 1),
         });
       }
 
@@ -275,6 +392,7 @@ const BirdSimulation = () => {
         }
         if (this.flyAwayTimer % 3 === 0) {
           this.boostUp();
+          // this.boostSideways();
         }
       }
 
@@ -314,21 +432,22 @@ const BirdSimulation = () => {
       }
 
       boostSide() {
-        let horizontalX = Math.random() * 7 + 3;
+        let horizontalX = (Math.random() * 3 + 3) * 0.25; // Halved horizontal speed
         if (this.boosted <= 1) {
-          if (this.initialCoordsX < 250) {
+          if (this.initialCoordsX < mapWidth * 0.2) {
+            // Scale with canvas width
             horizontalX = -horizontalX;
           }
           Body.setVelocity(this.birdTorso2, {
             x: -horizontalX,
-            y: Math.random() * 4 - 2,
+            y: (Math.random() * 4 - 2) * 0.5, // Halved vertical movement
           });
           this.boosted++;
         }
       }
 
       birdHome() {
-        const anchorX = 250;
+        const anchorX = mapWidth * 0.2; // Scale anchor with canvas width
         const anchorY = this.mapHeight - 88;
 
         this.homeDist = Math.sqrt(
@@ -338,7 +457,7 @@ const BirdSimulation = () => {
 
         if (this.homeDist <= 1500 && this.snared === 0) {
           Body.applyForce(this.birdTorso2, this.birdTorso2.position, {
-            x: (anchorX - this.birdTorso2.position.x) * 0.5,
+            x: (anchorX - this.birdTorso2.position.x) * 0.125, // Halved force
             y: 0,
           });
         }
@@ -346,16 +465,16 @@ const BirdSimulation = () => {
         if (this.homeDist <= 550 && this.snared <= 1) {
           this.snared = 1;
           Body.applyForce(this.birdTorso2, this.birdTorso2.position, {
-            x: (anchorX - this.birdTorso1.position.x) * 0.9,
-            y: (anchorX - this.birdTorso1.position.y) * 0.3,
+            x: (anchorX - this.birdTorso1.position.x) * 0.45, // Halved force
+            y: (anchorX - this.birdTorso1.position.y) * 0.15, // Halved force
           });
         }
 
         if (this.homeDist <= 350 && this.snared <= 2) {
           this.snared = 2;
           Body.applyForce(this.birdTorso2, this.birdTorso2.position, {
-            x: (anchorX - this.birdTorso1.position.x) * 0.5,
-            y: -(1 / (anchorY - this.birdTorso2.position.y)) * 3,
+            x: (anchorX - this.birdTorso1.position.x) * 0.25, // Halved force
+            y: -(1 / (anchorY - this.birdTorso2.position.y)) * 1.5, // Halved force
           });
         }
 
@@ -368,8 +487,8 @@ const BirdSimulation = () => {
             this.t = 0;
           }
           Body.setVelocity(this.birdTorso2, {
-            x: (anchorX - this.birdTorso2.position.x) * 0.02,
-            y: (anchorY - this.birdTorso2.position.y) * 0.02,
+            x: (anchorX - this.birdTorso2.position.x) * 0.01, // Halved velocity
+            y: (anchorY - this.birdTorso2.position.y) * 0.01, // Halved velocity
           });
         }
       }
@@ -391,22 +510,61 @@ const BirdSimulation = () => {
     // Create boundaries
     const ground = Bodies.rectangle(
       mapWidth / 2,
-      mapHeight + 10,
+      mapHeight + 30,
       mapWidth + 10,
       60,
       {
         isStatic: true,
-        render: { fillStyle: "#333333" },
+        render: { fillStyle: "#000000ff" },
         collisionFilter: {
           category: floorCategory,
           mask: redCategory | blueCategory | greenCategory,
         },
       }
     );
-    Composite.add(engine.world, [ground]);
+
+    // Load perch image (placeholder for now)
+    const perchImage = new Image();
+    perchImage.src =
+      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='20'%3E%3Crect width='200' height='20' fill='%23654321'/%3E%3C/svg%3E";
+
+    const perch = Bodies.rectangle(
+      mapWidth / 2, // center X
+      mapHeight / 2, // middle Y
+      Math.min(200, mapWidth * 0.15), // Scale perch width with canvas
+      20, // height
+      {
+        isStatic: true,
+        render: {
+          fillStyle: "transparent", // Make the rectangle transparent
+        },
+        collisionFilter: {
+          category: floorCategory,
+          mask: redCategory | blueCategory | greenCategory,
+        },
+      }
+    );
+
+    Composite.add(engine.world, [ground, perch]);
+
     // Start the engine and renderer
     Engine.run(engine);
     Render.run(render);
+
+    // Custom rendering for perch image
+    const customRender = () => {
+      const ctx = render.canvas.getContext("2d");
+
+      // Draw the perch image
+      if (perchImage.complete) {
+        const perchWidth = Math.min(200, mapWidth * 0.15);
+        const perchHeight = 20;
+        const perchX = mapWidth / 2 - perchWidth / 2;
+        const perchY = mapHeight / 2 - perchHeight / 2;
+
+        ctx.drawImage(perchImage, perchX, perchY, perchWidth, perchHeight);
+      }
+    };
 
     // Random XY position generator
     const randomXY = () => {
@@ -432,30 +590,22 @@ const BirdSimulation = () => {
       birdsRef.current.push(bird);
     };
 
-    // Fly scatter function
-    const flyScatter = () => {
-      birdsRef.current.forEach((bird) => {
-        bird.flyAwayTimer = 1;
-      });
-    };
-
-    // Add event listeners
+    // Add event listeners with proper cleanup handling
     const handleClick = (e) => {
       makeBird();
     };
 
-    const handleKeyDown = (e) => {
-      if (e.key === " ") {
-        flyScatter();
-      }
-    };
+    // Store the handler reference for cleanup
+    clickHandlerRef.current = handleClick;
 
-    sceneRef.current.addEventListener("click", handleClick);
-    window.addEventListener("keydown", handleKeyDown);
+    if (sceneRef.current) {
+      sceneRef.current.addEventListener("click", handleClick);
+    }
 
-    // Animation loop
+    // Animation loop with halved timestep
     const animate = () => {
-      Matter.Engine.update(engine);
+      // Update engine with halved timestep for slower simulation
+      Matter.Engine.update(engine, (1000 / 60) * 0.5); // Half the normal timestep
 
       // Update all birds
       const activeBirds = [];
@@ -470,9 +620,10 @@ const BirdSimulation = () => {
       }
       birdsRef.current = activeBirds;
 
-      // Random wing flaps
+      // Random wing flaps (reduced frequency for slower pace)
       birdsRef.current.forEach((bird) => {
-        if (Math.random() < 0.03) {
+        if (Math.random() < 0.015) {
+          // Halved from 0.03 to 0.015
           bird.flapWing();
         }
       });
@@ -480,43 +631,126 @@ const BirdSimulation = () => {
       animationRef.current = requestAnimationFrame(animate);
     };
 
+    // Initial birds and interval
+    let birdInterval;
+    setTimeout(() => {
+      for (let i = 0; i < 10; i++) {
+        makeBird();
+      }
+    }, 1000);
+
+    birdInterval = setInterval(() => {
+      makeBird();
+    }, 3000);
+
     // Start the animation loop
     animationRef.current = requestAnimationFrame(animate);
 
-    // Cleanup
+    // Cleanup function with proper null checks
     return () => {
+      // Stop animation
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
+        animationRef.current = null;
       }
+
+      // Clear bird interval
+      if (birdInterval) {
+        clearInterval(birdInterval);
+      }
+
+      // Remove event listener with null check
+      if (sceneRef.current && clickHandlerRef.current) {
+        try {
+          sceneRef.current.removeEventListener(
+            "click",
+            clickHandlerRef.current
+          );
+        } catch (error) {
+          // Silently handle the error if element is already removed
+          console.warn("Could not remove event listener:", error);
+        }
+      }
+      clickHandlerRef.current = null;
+
+      // Stop renderer
       if (renderRef.current) {
-        Render.stop(renderRef.current);
-        sceneRef.current.removeEventListener("click", handleClick);
-        window.removeEventListener("keydown", handleKeyDown);
+        try {
+          Render.stop(renderRef.current);
+        } catch (error) {
+          console.warn("Could not stop renderer:", error);
+        }
+        renderRef.current = null;
       }
+
+      // Clear engine
       if (engineRef.current) {
-        Engine.clear(engineRef.current);
+        try {
+          Engine.clear(engineRef.current);
+        } catch (error) {
+          console.warn("Could not clear engine:", error);
+        }
+        engineRef.current = null;
       }
-      if (renderRef.current?.canvas) {
-        renderRef.current.canvas.remove();
+
+      // Remove canvas if it exists
+      try {
+        const canvas = document.querySelector("canvas");
+        if (canvas && canvas.parentNode) {
+          canvas.parentNode.removeChild(canvas);
+        }
+      } catch (error) {
+        console.warn("Could not remove canvas:", error);
       }
+
+      // Clear birds array
       birdsRef.current = [];
     };
-  }, [mapWidth, mapHeight]);
+  }, [mapWidth, mapHeight, isReady]);
 
   return (
     <div
-      ref={sceneRef}
+      ref={containerRef}
       style={{
-        width: `${mapWidth}px`,
-        height: `${mapHeight}px`,
-        border: "1px solid #ccc",
-        borderRadius: "8px",
-        cursor: "pointer",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "10px",
+        width: "100%",
+        height: "100%",
+        minHeight: "700px", // Ensure minimum height
       }}
-      onClick={(e) => {
-        // Click handler is already set up in useEffect, but we can add additional logic here if needed
-      }}
-    />
+    >
+      <div
+        style={{
+          marginBottom: "10px",
+          textAlign: "center",
+          fontSize: "14px",
+          color: "#ccc",
+        }}
+      ></div>
+      <div
+        ref={sceneRef}
+        style={{
+          width: `${mapWidth}px`,
+          height: `${mapHeight}px`,
+          border: "1px solid #ffffffff",
+          borderRadius: "8px",
+          cursor: "pointer",
+          maxWidth: "100%",
+          boxSizing: "border-box",
+        }}
+      />
+      <div
+        style={{
+          marginTop: "10px",
+          fontSize: "12px",
+          color: "#ccc",
+          textAlign: "center",
+        }}
+      ></div>
+    </div>
   );
 };
 

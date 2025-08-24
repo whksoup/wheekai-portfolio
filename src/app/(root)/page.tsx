@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import BirdSimulation from "@/app/components/MatterBirdSimulationCopy";
 
 import Intro from "@/app/components/Intro";
@@ -27,7 +27,9 @@ export default function Home() {
   const slugs = slugsParam ? slugsParam.split("-") : [];
 
   const selectedProjects = slugs.length
-    ? projects.filter((p) => slugs.includes(p.slug))
+    ? projects
+        .filter((p) => slugs.includes(p.slug))
+        .sort((a, b) => slugs.indexOf(a.slug) - slugs.indexOf(b.slug))
     : projects.slice(0, 3); // fallback
   const categoryHeaders: Record<string, string> = {
     spatial: "Spatial Computing",
@@ -46,9 +48,11 @@ export default function Home() {
 
         {/* Overlay image */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <img
+          <Image
             src="/Assets/Intro/HKTest.webp" // make sure this path is correct relative to your public folder
             alt="Overlay"
+            width={200} // pick an actual width in px
+            height={200}
             className="max-w-full max-h-full"
           />
         </div>
@@ -104,7 +108,7 @@ export default function Home() {
         <SystemDesignText
           column="right"
           sectionTitle=""
-          heading="He Kai thinks you might like some of the following projects.."
+          heading={`He Kai thinks you might like some of the following projects about ${slugs[0]}`}
           paragraph=""
         />
       ) : (
