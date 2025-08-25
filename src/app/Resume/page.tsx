@@ -161,7 +161,7 @@ export default function PortfolioResume() {
 
               <div className="border-l-4 border-green-500 pl-6 py-2">
                 <h4 className="font-bold text-lg text-gray-900 mb-2">
-                  Apple's First Spatial Computing Hackathon, Best Design
+                  Apple&apos;s First Spatial Computing Hackathon, Best Design
                 </h4>
                 <p className="text-gray-700">
                   Led a 4 man team to win Best Design at said Hackathon. Learned
@@ -175,10 +175,10 @@ export default function PortfolioResume() {
                   No To Vaping: Game Installation
                 </h4>
                 <p className="text-gray-700">
-                  Designed and coded a 'vending machine' game exhibition at
-                  Serangoon MRT in collaboration with HPB as a freelancer,
-                  achieving dispense limit (prize on win) & high user engagement
-                  during its run.
+                  Designed and coded a &apos;vending machine&apos; game
+                  exhibition at Serangoon MRT in collaboration with HPB as a
+                  freelancer, achieving dispense limit (prize on win) & high
+                  user engagement during its run.
                 </p>
               </div>
             </div>
