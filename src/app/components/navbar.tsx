@@ -34,7 +34,7 @@ const Navbar = () => {
   };
 
   const rightItems = [
-    { href: "/About", label: "About" },
+    { href: "/AboutHeKai", label: "About" },
     { href: "/Resume", label: "Resume" },
   ];
 

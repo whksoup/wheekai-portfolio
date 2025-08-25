@@ -182,7 +182,7 @@ export const projects: Project[] = [
     type: "art",
     slug: "sketch",
     href: "/Spider",
-    image: "/Assets/Sketches/Momkey1.webp",
+    image: "/Assets/Sketches/momkey.webp",
     subtitle: "Student Project",
     title: "Designing adaptive interfaces for Taiwan's elderly",
     tags: ["Art"],
