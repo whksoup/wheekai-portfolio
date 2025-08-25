@@ -241,8 +241,8 @@ export default function Home() {
         mediaType="image"
         mediaSrc="/Assets/PYT/ShapePrototypes.webp"
         alt=""
-        mediaWidth={undefined}
-        mediaHeight={undefined}
+        caption="Shape typologies in categories: Polygons, Convex, Circular, Concave."
+        objectFit="contain"
       />
       <ImageGalleryGray
         rows={3}

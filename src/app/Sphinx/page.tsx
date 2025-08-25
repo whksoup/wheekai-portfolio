@@ -193,8 +193,6 @@ export default function Home() {
         }
         mediaSrc="/Assets/Sphinx/Phone.webp"
         mediaType="image"
-        mediaHeight={"300"}
-        mediaWidth="300"
         objectFit="contain"
         alt=""
         caption=""

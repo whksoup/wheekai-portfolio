@@ -124,8 +124,6 @@ export default function Home() {
         mediaType="image"
         alt="Topography of Canning"
         caption=""
-        mediaWidth={"500"}
-        mediaHeight={undefined}
       />
       <ImageGalleryGray
         images={[
@@ -294,8 +292,6 @@ export default function Home() {
         mediaType="image"
         mediaSrc="/Assets/CanningClimb/Grasshopper.webp"
         alt=""
-        mediaWidth={"200"}
-        mediaHeight={"200"}
       />
       <ImageGalleryGray
         rows={3}

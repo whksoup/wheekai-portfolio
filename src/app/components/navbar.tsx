@@ -34,8 +34,8 @@ const Navbar = () => {
   };
 
   const rightItems = [
-    { href: "/about", label: "About" },
-    { href: "/resume", label: "Resume" },
+    { href: "/About", label: "About" },
+    { href: "/Resume", label: "Resume" },
   ];
 
   return (
