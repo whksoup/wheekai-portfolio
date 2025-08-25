@@ -361,7 +361,7 @@ export default function Home() {
       <SingleColumnImageGray
         images={[
           {
-            src: "/Assets/Spider/DrawbridgePrototyping1.webm",
+            src: "/Assets/Spider/drawbridgeProto.webm",
             alt: "Tweaking the rail profiles and lengths, the strength/haptic profile of the action, the height of the horizontal levels etc.",
           },
         ]}
