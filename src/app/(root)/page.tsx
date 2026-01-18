@@ -1,10 +1,12 @@
 "use client";
 import Image from "next/image";
 import BirdSimulation from "@/app/components/MatterBirdSimulationCopy";
-
+import Prototyping from "@/app/components/prototyping";
 import Intro from "@/app/components/Intro";
+import ImageGridSection from "@/app/components/image-grid-section";
 
 import SystemDesignText from "@/app/components/SystemDesignText";
+import { Spacer } from "@/app/components/Spacer";
 
 import FullBleedImage from "@/app/components/FullBleedImage";
 import ProjectCard from "@/app/components/ProjectCard";
@@ -41,7 +43,6 @@ export default function Home() {
   return (
     <div className="">
       {/* Hero section */}
-
       {/* Sketch section */}
       <div className="flex-grow flex items-center justify-center p-4 relative  ">
         <BirdSimulation />
@@ -64,7 +65,6 @@ export default function Home() {
         }
         align="left"
       />
-
       <FullBleedImage
         slideshow={[
           {
@@ -99,11 +99,10 @@ export default function Home() {
         marginBottom="mb-16"
         subtitle="Introduction"
         text={
-          "He Kai is currently freelancing as an AR simulation/hardware dev at a research center, and working with SERIAL_CO as a designer. He has had previous working experiences at NOK (Next of Kin) Design Studio and The Interactive Materials Lab. "
+          "He Kai is currently freelancing as an AR simulation/hardware dev at a research center, and working with LEGO designing phygital experiences. He has had previous working experiences at NOK (Next of Kin) Design Studio and The Interactive Materials Lab. "
         }
         align="right"
       />
-
       {hasCustomSlugs ? (
         <SystemDesignText
           column="right"
@@ -134,7 +133,6 @@ export default function Home() {
         paragraph=""
         marginBottom="mb-0"
       />
-
       {categories.map((cat) => {
         const gridProjects = projects
           .filter((p) => p.type === cat)
@@ -158,6 +156,69 @@ export default function Home() {
           </div>
         );
       })}
+      <Spacer size="18rem" />
+      <FullBleedImage
+        slideshow={[
+          {
+            src: "/Assets/ARTexture/ARTexture_1.webm",
+            alt: "First",
+            caption: "",
+            type: "video",
+          },
+        ]}
+        aspectRatio="aspect-[16/5]"
+        interval={4000}
+        transitionDuration={800}
+        src={""}
+      />
+      <Spacer size="5rem" />
+      <SystemDesignText
+        column="left"
+        sectionTitle="Here's what He Kai is currently doing with his free time..."
+        heading="Exploring Lofi AR as Materials for MR "
+        paragraph={
+          "In lightweight mixed reality applications, virtual materials often sacrifice fidelity and resolution in exchange for performance;\n\nVirtual objects often lack the realistic shadows, reflections, and perfect alignments necessary for conventionally attractive and believable aesthetics. \n\nWhat if we thought of low fidelity AR as a material, similar to how designers could be asked to design with cardboard or 'ugly' materials?\n\nCurrently, these explorations focus on 'weaving' digital materials with physical surfaces to create 'hybrid' material experiences."
+        }
+      />
+      <ImageGridSection
+        rows={2}
+        imageScale={1.0}
+        imageGap="gap--10"
+        marginBottom="mb-20"
+        images={[
+          {
+            src: "/Assets/ARTexture/Texture_1.webp",
+            alt: "Beautiful Landscape",
+            aspectRatio: "aspect-16/9",
+            type: "image",
+          },
+          {
+            src: "/Assets/ARTexture/Texture_21.webp",
+            alt: "Beautiful Landscape",
+            aspectRatio: "aspect-16/9",
+            type: "image",
+          },
+          {
+            src: "/Assets/ARTexture/Texture_3.webp",
+            alt: "Beautiful Landscape",
+            aspectRatio: "aspect-16/9",
+            type: "image",
+          },
+          {
+            src: "/Assets/ARTexture/Texture_5.webp",
+            alt: "Beautiful Landscape",
+            aspectRatio: "aspect-16/9",
+            type: "image",
+          },
+        ]}
+      />
+      <SystemDesignText
+        column="right"
+        sectionTitle=""
+        heading="That's all for now!"
+        paragraph="Documenting the process on github soon..."
+        marginBottom="mb-8"
+      />
     </div>
   );
 }
