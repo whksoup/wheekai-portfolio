@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import BirdSimulation from "@/app/components/MatterBirdSimulationCopy";
-import Prototyping from "@/app/components/prototyping";
+//import Prototyping from "@/app/components/prototyping";
 import Intro from "@/app/components/Intro";
 import ImageGridSection from "@/app/components/image-grid-section";
 

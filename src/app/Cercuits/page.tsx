@@ -10,9 +10,9 @@ import HeaderText from "@/app/components/LeadHeader";
 import TitleCard from "@/app/components/TitleCard";
 //import ProcessBrief from "@/app/components/ProcessBrief";
 import ProjectDescriptor from "@/app/components/ProjectDescriptor";
-import FullBleedImage from "@/app/components/FullBleedImage";
+//import FullBleedImage from "@/app/components/FullBleedImage";
 import VideoPage from "@/app/components/VideoPage";
-import SingleColumnHeaderText from "@/app/components/SingleColumnHeaderText";
+//import SingleColumnHeaderText from "@/app/components/SingleColumnHeaderText";
 import VideoEmbed from "@/app/components/VideoEmbed";
 import YouMightLike from "@/app/components/YouMightLike";
 import { projects } from "@/app/Data/projects";
@@ -31,7 +31,7 @@ export default function Home() {
             research developed by the Interactive Materials Lab.
             <br />
             <br />
-            "What if our precious pots and plates were tactile, or squishable?"
+            What if our precious pots and plates were tactile, or squishable?
             <br />
             <br />
             My team saw the opportunity to turn craft ceramics, traditionally
