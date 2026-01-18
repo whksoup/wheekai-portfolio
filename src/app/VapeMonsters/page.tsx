@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <HeaderText>
-        An Interactive Exhibit in collaboration with Singapore's Health
+        An Interactive Exhibit in collaboration with Singapore&apos;s Health
         Promotion Board
       </HeaderText>
       <TitleCard
@@ -23,7 +23,7 @@ export default function Home() {
         description={
           <>
             In 2026, I worked with SERIAL_CO to design and implement a public
-            interactive exhibit for Singapore's 2025 Anti-Vaping Campaign.
+            interactive exhibit for Singapore&apos;s 2025 Anti-Vaping Campaign.
             <br />
             <br />
             This involved designing new sensor/architecture solutions for a
