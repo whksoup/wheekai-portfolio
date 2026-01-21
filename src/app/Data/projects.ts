@@ -123,7 +123,7 @@ export const projects: Project[] = [
     slug: "eye",
     href: "/Tamari",
     image: "/Assets/Intro/Tamari.webp",
-    subtitle: "2025 Undergrad Thesis",
+    subtitle: "Hackathon",
     title: "",
     tags: ["UX Research", "App Design", "Hackathon"],
     wip: false,
