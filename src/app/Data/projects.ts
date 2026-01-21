@@ -124,7 +124,7 @@ export const projects: Project[] = [
     href: "/Tamari",
     image: "/Assets/Intro/Tamari.webp",
     subtitle: "Hackathon",
-    title: "",
+    title: "Apple's First Spatial Computing Hackathon! Best Design: Tamari",
     tags: ["UX Research", "App Design", "Hackathon"],
     wip: false,
     year: "2025",
