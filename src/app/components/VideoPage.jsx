@@ -6,6 +6,7 @@ export default function VideoPage({
   style,
   className = "",
 }) {
+  const safeStyle = typeof style === "object" && style !== null ? style : {};
   return (
     <div
       className={`flex justify-center items-center p-0 m-0 ${className}`}
