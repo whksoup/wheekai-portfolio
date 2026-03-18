@@ -1,4 +1,5 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, isValidElement, Children } from "react";
+import VideoWithFallback from "@/app/components/VideoWithFallback";
 
 interface TitleCardProps {
   title: string;
@@ -6,8 +7,61 @@ interface TitleCardProps {
   description: string | ReactNode;
   tags?: string[];
   children?: ReactNode;
-  videoSrc?: string; // For local video files
-  youtubeId?: string; // For YouTube embeds
+  videoSrc?: string;
+  videoPoster?: string;
+  youtubeId?: string;
+}
+
+/**
+ * Recursively walks children and replaces any raw <video> element with
+ * VideoWithFallback, preserving all props (src, className, poster, etc).
+ * This means page.tsx never needs to change — pass a raw <video> as before.
+ */
+function upgradeVideoChildren(children: ReactNode): ReactNode {
+  return Children.map(children, (child) => {
+    if (!isValidElement(child)) return child;
+
+    // If this element is a <video>, swap it out
+    if (child.type === "video") {
+      const {
+        src,
+        poster,
+        className,
+        "aria-label": ariaLabel,
+        autoPlay,
+        loop,
+        muted,
+        playsInline,
+        controls,
+      } = child.props as React.VideoHTMLAttributes<HTMLVideoElement> & {
+        "aria-label"?: string;
+      };
+
+      return (
+        <VideoWithFallback
+          src={src || ""}
+          poster={poster}
+          aria-label={ariaLabel}
+          className={className}
+          autoPlay={autoPlay ?? true}
+          loop={loop ?? true}
+          muted={muted ?? true}
+          playsInline={playsInline ?? true}
+          controls={controls ?? false}
+        />
+      );
+    }
+
+    // Otherwise recurse into its children in case video is nested
+    if (child.props?.children) {
+      return React.cloneElement(child, {
+        ...child.props,
+        children: upgradeVideoChildren(child.props.children),
+      });
+    }
+
+    return child;
+  });
 }
 
 const TitleCard: React.FC<TitleCardProps> = ({
@@ -17,6 +71,7 @@ const TitleCard: React.FC<TitleCardProps> = ({
   tags = [],
   children,
   videoSrc,
+  videoPoster,
   youtubeId,
 }) => {
   return (
@@ -52,12 +107,11 @@ const TitleCard: React.FC<TitleCardProps> = ({
           </p>
         </div>
 
-        {/* Right Column */}
+        {/* Right Column — raw <video> children are auto-upgraded */}
         <div className="w-full md:w-[60%] flex justify-center">
           {children ? (
-            children
+            upgradeVideoChildren(children)
           ) : youtubeId ? (
-            // YouTube Embed
             <div className="w-full aspect-video rounded-xl overflow-hidden shadow-lg">
               <iframe
                 className="w-full h-full"
@@ -66,29 +120,19 @@ const TitleCard: React.FC<TitleCardProps> = ({
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-              ></iframe>
+              />
             </div>
           ) : videoSrc ? (
-            // Local Video Player
             <div className="w-full aspect-video rounded-xl overflow-hidden shadow-lg">
-              <video
-                className="w-full h-full object-cover"
-                controls
-                autoPlay
-                muted
-                loop
-              >
-                <source
-                  src={videoSrc}
-                  type={`video/${videoSrc.split(".").pop() || "mp4"}`}
-                />
-                Your browser does not support the video tag.
-              </video>
+              <VideoWithFallback
+                src={videoSrc}
+                poster={videoPoster}
+                className="object-cover"
+              />
             </div>
           ) : (
-            // Default placeholder
-            <div className="w-full max-w-[400px] md:max-w-none aspect-square bg-gray-300 rounded-xl shadow-inner flex items-center justify-center">
-              <span className="text-gray-500 text-sm">Margin Debugger</span>
+            <div className="w-full max-w-[400px] md:max-w-none aspect-square bg-gray-200 rounded-xl shadow-inner flex items-center justify-center">
+              <span className="text-gray-400 text-sm">No media</span>
             </div>
           )}
         </div>

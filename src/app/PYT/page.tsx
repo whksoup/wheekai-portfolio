@@ -13,6 +13,7 @@ import VideoEmbed from "@/app/components/VideoEmbed";
 import FullBleedImage from "@/app/components/FullBleedImage";
 import YouMightLike from "@/app/components/YouMightLike";
 import { projects } from "@/app/Data/projects";
+import VideoWithFallback from "@/app/components/VideoWithFallback";
 
 // Heavy components — deferred until after initial render
 const Prototyping = lazy(() => import("@/app/components/prototyping"));
@@ -52,14 +53,12 @@ export default function Home() {
           </>
         }
       >
-        <video
-          src="/Assets/PYT/EyeSculpt.webm"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="rounded-xl aspect-square max-w-[600px] w-full h-full object-contain shadow-inner"
-        />
+        <div className="rounded-xl aspect-square max-w-[600px] w-full overflow-hidden shadow-inner">
+          <VideoWithFallback
+            src="/Assets/PYT/EyeSculpt.webm"
+            className="object-contain"
+          />
+        </div>
       </TitleCard>
       {/* Section 2: Three-column layout */}
       <ProjectDescriptor
