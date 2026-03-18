@@ -219,6 +219,7 @@ export default function Home() {
         paragraph="Documenting the process on github soon..."
         marginBottom="mb-8"
       />
+      <div className="pb-24 md:pb-32"></div>;
     </div>
   );
 }

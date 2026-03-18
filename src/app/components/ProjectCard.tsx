@@ -30,13 +30,13 @@ export default function ProjectCard({
     align === "center"
       ? "col-start-2 col-end-6" // middle 2/3 (cols 2–5)
       : align === "right"
-      ? "col-start-3 col-end-7" // right 2/3 (cols 3–6)
-      : "col-start-1 col-end-5"; // default left 2/3 (cols 1–4)
+        ? "col-start-3 col-end-7" // right 2/3 (cols 3–6)
+        : "col-start-1 col-end-5"; // default left 2/3 (cols 1–4)
 
   // Shared content
   const content = (
     <div
-      className={`grid grid-cols-6 w-full max-w-6xl mx-auto ${marginTop} ${marginBottom}`}
+      className={`grid grid-cols-6 w-full max-w-6xl mx-auto px-4 md:px-8 ${marginTop} ${marginBottom}`}
     >
       <div className={`${alignClass} flex flex-col gap-4`}>
         {/* Hero Image */}

@@ -19,12 +19,12 @@ export default function Intro({
     align === "center"
       ? "col-start-2 col-end-6" // spans 2–5
       : align === "right"
-      ? "col-start-3 col-end-7" // spans 3–6
-      : "col-start-1 col-end-5"; // spans 1–4 (default left)
+        ? "col-start-3 col-end-7" // spans 3–6
+        : "col-start-1 col-end-5"; // spans 1–4 (default left)
 
   return (
     <section className={`flex justify-center ${marginBottom} ${bgColor}`}>
-      <div className="mt-16 md:mt-24 grid grid-cols-6 w-full max-w-6xl">
+      <div className="mt-16 md:mt-24 grid grid-cols-6 w-full max-w-6xl px-4 md:px-8">
         <div className={`${alignClass} flex flex-col`}>
           {subtitle && (
             <div className="flex items-center gap-4 mb-2">

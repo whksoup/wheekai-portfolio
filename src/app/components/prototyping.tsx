@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import VideoWithFallback from "@/app/components/VideoWithFallback";
 
 interface PrototypingProps {
   subtitle?: string;
@@ -10,12 +11,15 @@ interface PrototypingProps {
   caption?: string;
   mediaType?: "image" | "mp4" | "webm";
   reverse?: boolean;
-
-  // NEW props for controlling media size and fit
-  mediaWidth?: string; // e.g. "75%", "400px"
-  mediaHeight?: string; // e.g. "auto", "300px"
+  mediaWidth?: string;
+  mediaHeight?: string;
   objectFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
+  /** Optional still frame shown while the video is buffering */
+  poster?: string;
 }
+
+const BLUR_PLACEHOLDER =
+  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI4IiB2aWV3Qm94PSIwIDAgOCA4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiNlNWU3ZWIiLz48L3N2Zz4=";
 
 const Prototyping: React.FC<PrototypingProps> = ({
   subtitle = "Prototyping 1",
@@ -26,27 +30,12 @@ const Prototyping: React.FC<PrototypingProps> = ({
   caption = "",
   mediaType = "image",
   reverse = false,
-
   mediaWidth,
   mediaHeight,
   objectFit = "cover",
+  poster,
 }) => {
   const isVideo = mediaType === "mp4" || mediaType === "webm";
-
-  const videoStyle: React.CSSProperties = {
-    maxWidth: mediaWidth || "75%",
-    height: mediaHeight || "auto",
-    objectFit,
-    borderRadius: "0.5rem",
-  };
-
-  const imgWrapperStyle: React.CSSProperties = {
-    position: "relative",
-    width: mediaWidth || "100%",
-    height: mediaHeight || "400px", // fallback height for fill
-    borderRadius: "0.5rem",
-    overflow: "hidden",
-  };
 
   return (
     <section className="mb-24 flex justify-center p-4 md:p-8">
@@ -67,34 +56,52 @@ const Prototyping: React.FC<PrototypingProps> = ({
         </div>
 
         {/* Media */}
-        <div className="w-full md:w-2/3">
+        <div className="w-full md:w-2/3 min-w-0">
           <div className="space-y-2">
             <div className="w-full flex justify-center">
               {mediaSrc ? (
                 isVideo ? (
-                  <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    style={videoStyle}
-                    className="h-auto rounded-lg"
+                  // VideoWithFallback normalises <source src> → src attribute,
+                  // which is equivalent and required for the onCanPlay fallback.
+                  // mediaWidth/mediaHeight are applied via a wrapping div so the
+                  // VideoWithFallback's internal layout (position:relative,
+                  // w-full h-full) still works correctly.
+                  <div
+                    className="rounded-lg overflow-hidden"
+                    style={{
+                      width: mediaWidth || "100%",
+                      maxWidth: "100%",
+                      height: mediaHeight || "auto",
+                    }}
                   >
-                    <source src={mediaSrc} type={`video/${mediaType}`} />
-                    Your browser does not support the video tag.
-                  </video>
-                ) : (
-                  <div style={imgWrapperStyle}>
-                    <Image
+                    <VideoWithFallback
                       src={mediaSrc}
-                      alt={alt}
-                      fill
-                      style={{ objectFit }}
+                      poster={poster}
+                      aria-label={alt}
+                      className={`object-${objectFit}`}
                     />
                   </div>
+                ) : (
+                  <Image
+                    src={mediaSrc}
+                    alt={alt}
+                    width={0}
+                    height={0}
+                    sizes="(max-width: 768px) 100vw, 66vw"
+                    loading="lazy"
+                    placeholder="blur"
+                    blurDataURL={BLUR_PLACEHOLDER}
+                    className="rounded-lg"
+                    style={{
+                      width: mediaWidth || "100%",
+                      maxWidth: "100%",
+                      height: mediaHeight || "auto",
+                      objectFit,
+                    }}
+                  />
                 )
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-gray-500">
+                <div className="w-full flex items-center justify-center text-gray-400 text-sm">
                   {alt}
                 </div>
               )}

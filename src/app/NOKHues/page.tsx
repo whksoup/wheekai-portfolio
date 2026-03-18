@@ -29,7 +29,7 @@ export default function Home() {
           "INTERACTION DESIGN",
           "DESIGN RESEARCH",
           "SERVICE DESIGN",
-          "SCHOOL PROJECT",
+          "EXHIBIT DESIGN",
         ]}
         paragraphs={[
           "In this 5 month design project, I worked with NOK to produce Horizon Hues for KPMG's Singapore Design Week Exhibition 2024.\n\nHorizon Hues is an interactive data visualization of KPMG employee travel data: Emissions, trips per year, travel sentiments, etc.",

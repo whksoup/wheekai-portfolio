@@ -1,4 +1,6 @@
 import Image from "next/image";
+import VideoWithFallback from "@/app/components/VideoWithFallback";
+
 interface TextImageTwoThirdsProps {
   title?: string;
   heading: string;
@@ -11,6 +13,8 @@ interface TextImageTwoThirdsProps {
   marginBottom?: string;
   className?: string;
   caption?: string;
+  /** Optional still frame shown while the video is buffering */
+  poster?: string;
 }
 
 export default function TextImageTwoThirds({
@@ -25,8 +29,9 @@ export default function TextImageTwoThirds({
   marginBottom = "mb-48",
   className = "",
   caption,
+  poster,
 }: TextImageTwoThirdsProps) {
-  const isVideo = imageSrc?.match(/\.(webm|mp4|webm)$/i); // Check if video file
+  const isVideo = imageSrc?.match(/\.(webm|mp4)$/i);
 
   return (
     <section
@@ -43,7 +48,7 @@ export default function TextImageTwoThirds({
           <h2 className="text-2xl md:text-3xl font-semibold leading-snug">
             {heading}
           </h2>
-          <p className=" text-base md:text-lg leading-relaxed text-gray-700 whitespace-pre-line">
+          <p className="text-base md:text-lg leading-relaxed text-gray-700 whitespace-pre-line">
             {body}
           </p>
         </div>
@@ -52,29 +57,31 @@ export default function TextImageTwoThirds({
         <div className="w-full md:w-2/3">
           <div className="space-y-2">
             <div
-              className={`relative ${imageAspectRatio} bg-gray-300 rounded-lg shadow-inner w-full`}
+              className={`relative ${imageAspectRatio} bg-gray-200 rounded-lg shadow-inner w-full overflow-hidden`}
             >
               {imageSrc ? (
                 isVideo ? (
-                  <video
+                  // VideoWithFallback handles shimmer → poster → video
+                  <VideoWithFallback
                     src={imageSrc}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover rounded-lg"
+                    poster={poster}
                     aria-label={alt}
+                    className="absolute inset-0"
                   />
                 ) : (
                   <Image
                     src={imageSrc}
                     alt={alt}
                     fill
-                    className="w-full h-full object-cover rounded-lg"
+                    loading="lazy"
+                    placeholder="blur"
+                    blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI4IiB2aWV3Qm94PSIwIDAgOCA4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiNlNWU3ZWIiLz48L3N2Zz4="
+                    className="object-cover rounded-lg"
                   />
                 )
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-gray-500">
+                // Empty state — matches the shimmer colour so it looks intentional
+                <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
                   {alt}
                 </div>
               )}

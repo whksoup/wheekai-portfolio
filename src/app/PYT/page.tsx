@@ -46,7 +46,6 @@ export default function Home() {
           className="rounded-xl aspect-square max-w-[600px] w-full h-full object-contain shadow-inner"
         />
       </TitleCard>
-
       {/* Section 2: Three-column layout */}
       <ProjectDescriptor
         team={[
@@ -67,7 +66,6 @@ export default function Home() {
           "Synthesised data and re-designed UI components.",
         ]}
       />
-
       <div className="mb-16 flex justify-center">
         <ScrollButton targetId="finalOutcome">To Project Outcome</ScrollButton>
       </div>
@@ -153,7 +151,6 @@ export default function Home() {
           },
         ]}
       />
-
       <Insight
         title="'Modelling with my tools and hands feels instinctive and familiar.'"
         highlightColorClass={["text-green-500", "text-red-500"]}
@@ -223,7 +220,6 @@ export default function Home() {
         ]}
         summaryCaption="Prototypes evaluated on functionality and intuitivity foremost. Users performed extremely basic tasks like chamfering or blending 2 surfaces, adding protrusions, making indents"
       />
-
       <SystemDesignText
         column="right"
         sectionTitle="I found out that..."
@@ -340,7 +336,6 @@ export default function Home() {
         overlayIntensity="from-black/70"
         captionClassName="text-center"
       />
-
       <Insight
         title="'The shape and material of the proxy, and it's interface with the active tool were the largest determinants for user experience.'"
         highlightColorClass={["text-green-500", "text-blue-500"]}
@@ -361,7 +356,6 @@ export default function Home() {
           },
         ]}
       />
-
       <Prototyping
         subtitle="Discovery 2"
         title="Active relationships between tool ergonomics and active brush parameters"
@@ -502,7 +496,6 @@ export default function Home() {
         paragraph="Project Your Touch explores interactions that
             use known physical geometry to control virtual surfaces, finding that this new way of interaction:"
       />
-
       <TextImageTwoThirds
         heading="Has more intuitive input dimensions than regular VR"
         body="... leveraging pressure, shear force, brush angles, brush contact area, etc, in a manner that mirrors how we manipulate plastic matter in real life."
@@ -528,7 +521,6 @@ export default function Home() {
         alt="Placeholder graphic"
         imageSrc="/Assets/PYT/DonutComponentVisual.webp"
       />
-
       <SystemDesignText
         column="left"
         sectionTitle=""
@@ -579,7 +571,6 @@ export default function Home() {
         rounded="rounded-xl"
         className="bg-gray-100"
       />
-
       <Insight
         title="'Reflections TLDR: I'm really glad I did this thesis!'"
         highlightColorClass={["text-green-500", "text-blue-500"]}
@@ -607,8 +598,8 @@ export default function Home() {
           },
         ]}
       />
-
       <YouMightLike projects={projects} currentHref="/PYT" />
+      <div className="pb-24 md:pb-32"></div>;
     </>
   );
 }

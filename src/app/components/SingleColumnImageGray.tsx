@@ -1,13 +1,17 @@
 import React from "react";
 import Image from "next/image";
+import VideoWithFallback from "@/app/components/VideoWithFallback";
+
 interface MediaItem {
   src: string;
   alt?: string;
+  /** Optional still frame shown while the video is buffering */
+  poster?: string;
 }
 
 interface SingleColumnMediaGrayProps {
   backgroundColor?: string;
-  images?: MediaItem[]; // ✅ allow multiple
+  images?: MediaItem[];
   marginBottom?: string;
   containerPadding?: string;
   paddingTop?: string;
@@ -17,9 +21,12 @@ interface SingleColumnMediaGrayProps {
   imageClassName?: string;
   aspectRatio?: string;
   autoplay?: boolean;
-  rows?: number; // ✅ new
-  rowGap?: string; // ✅ new
+  rows?: number;
+  rowGap?: string;
 }
+
+const BLUR_PLACEHOLDER =
+  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI4IiB2aWV3Qm94PSIwIDAgOCA4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiNlNWU3ZWIiLz48L3N2Zz4=";
 
 const SingleColumnMediaGray: React.FC<SingleColumnMediaGrayProps> = ({
   backgroundColor = "bg-gray-100",
@@ -44,7 +51,6 @@ const SingleColumnMediaGray: React.FC<SingleColumnMediaGrayProps> = ({
         <div
           className={`${backgroundColor} rounded-lg ${paddingTop} ${paddingBottom}`}
         >
-          {/* Single or multi-row media container */}
           <div className={`flex flex-col items-center ${rowGap}`}>
             {images.slice(0, rows).map((image, idx) => {
               const isVideo =
@@ -56,23 +62,28 @@ const SingleColumnMediaGray: React.FC<SingleColumnMediaGrayProps> = ({
                     <div className="flex flex-col items-center">
                       <div className={`relative w-full ${aspectRatio}`}>
                         {isVideo ? (
-                          <video
+                          // VideoWithFallback handles shimmer → poster → video.
+                          // controls/autoPlay/muted/loop are forwarded based on
+                          // the autoplay prop — matching original behaviour.
+                          <VideoWithFallback
                             src={image.src}
-                            className={`w-full h-full ${imageClassName} rounded-md`}
-                            controls={!autoplay}
+                            poster={image.poster}
+                            aria-label={image.alt}
                             autoPlay={autoplay}
                             muted={autoplay}
                             loop={autoplay}
-                            playsInline
-                          >
-                            Your browser does not support the video tag.
-                          </video>
+                            controls={!autoplay}
+                            className={`rounded-md ${imageClassName}`}
+                          />
                         ) : (
                           <Image
                             src={image.src}
                             alt={image.alt || ""}
                             width={800}
                             height={600}
+                            loading="lazy"
+                            placeholder="blur"
+                            blurDataURL={BLUR_PLACEHOLDER}
                             className={`w-full h-auto ${imageClassName}`}
                           />
                         )}
@@ -84,10 +95,12 @@ const SingleColumnMediaGray: React.FC<SingleColumnMediaGrayProps> = ({
                       )}
                     </div>
                   ) : (
+                    // Empty slot with shimmer instead of flat grey
                     <div
                       className={`w-full ${
                         aspectRatio || "aspect-video"
-                      } bg-gray-300 rounded-md`}
+                      } bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200
+                        bg-[length:200%_100%] animate-shimmer rounded-md`}
                     />
                   )}
                 </div>
@@ -95,7 +108,6 @@ const SingleColumnMediaGray: React.FC<SingleColumnMediaGrayProps> = ({
             })}
           </div>
 
-          {/* Summary caption */}
           {summaryCaption && (
             <div className="mt-16 text-center">
               <p className="text-base text-gray-700 max-w-2xl mx-auto">
