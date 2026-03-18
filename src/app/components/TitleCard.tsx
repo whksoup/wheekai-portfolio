@@ -1,4 +1,4 @@
-import React, { ReactNode, isValidElement, Children } from "react";
+import React, { ReactNode } from "react";
 import VideoWithFallback from "@/app/components/VideoWithFallback";
 
 interface TitleCardProps {
@@ -10,58 +10,6 @@ interface TitleCardProps {
   videoSrc?: string;
   videoPoster?: string;
   youtubeId?: string;
-}
-
-/**
- * Recursively walks children and replaces any raw <video> element with
- * VideoWithFallback, preserving all props (src, className, poster, etc).
- * This means page.tsx never needs to change — pass a raw <video> as before.
- */
-function upgradeVideoChildren(children: ReactNode): ReactNode {
-  return Children.map(children, (child) => {
-    if (!isValidElement(child)) return child;
-
-    // If this element is a <video>, swap it out
-    if (child.type === "video") {
-      const {
-        src,
-        poster,
-        className,
-        "aria-label": ariaLabel,
-        autoPlay,
-        loop,
-        muted,
-        playsInline,
-        controls,
-      } = child.props as React.VideoHTMLAttributes<HTMLVideoElement> & {
-        "aria-label"?: string;
-      };
-
-      return (
-        <VideoWithFallback
-          src={src || ""}
-          poster={poster}
-          aria-label={ariaLabel}
-          className={className}
-          autoPlay={autoPlay ?? true}
-          loop={loop ?? true}
-          muted={muted ?? true}
-          playsInline={playsInline ?? true}
-          controls={controls ?? false}
-        />
-      );
-    }
-
-    // Otherwise recurse into its children in case video is nested
-    if (child.props?.children) {
-      return React.cloneElement(child, {
-        ...child.props,
-        children: upgradeVideoChildren(child.props.children),
-      });
-    }
-
-    return child;
-  });
 }
 
 const TitleCard: React.FC<TitleCardProps> = ({
@@ -107,10 +55,10 @@ const TitleCard: React.FC<TitleCardProps> = ({
           </p>
         </div>
 
-        {/* Right Column — raw <video> children are auto-upgraded */}
+        {/* Right Column */}
         <div className="w-full md:w-[60%] flex justify-center">
           {children ? (
-            upgradeVideoChildren(children)
+            children
           ) : youtubeId ? (
             <div className="w-full aspect-video rounded-xl overflow-hidden shadow-lg">
               <iframe
@@ -122,11 +70,13 @@ const TitleCard: React.FC<TitleCardProps> = ({
                 allowFullScreen
               />
             </div>
-          ) : videoSrc ? (
+          ) : typeof videoSrc === "string" && videoSrc ? (
             <div className="w-full aspect-video rounded-xl overflow-hidden shadow-lg">
               <VideoWithFallback
                 src={videoSrc}
-                poster={videoPoster}
+                poster={
+                  typeof videoPoster === "string" ? videoPoster : undefined
+                }
                 className="object-cover"
               />
             </div>
