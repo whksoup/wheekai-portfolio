@@ -1,21 +1,35 @@
-import ImageGridSection from "@/app/components/image-grid-section";
-import TextImageTwoThirds from "@/app/components/TextImageTwoThirds";
-import Insight from "@/app/components/insight";
-import ScrollButton from "@/app/components/ScrollButton.client"; // Import the client component
-import Prototyping from "@/app/components/prototyping";
-import ImageGalleryGray from "@/app/components/imageGalleryGray";
-import SingleColumnImageGray from "@/app/components/SingleColumnImageGray";
-import SystemDesignText from "@/app/components/SystemDesignText";
+import lazy from "next/dynamic";
+
+//export const dynamic = "force-static";
+// Light components — render immediately
 import HeaderText from "@/app/components/LeadHeader";
 import TitleCard from "@/app/components/TitleCard";
-import ProcessBrief from "@/app/components/ProcessBrief";
 import ProjectDescriptor from "@/app/components/ProjectDescriptor";
-import FullBleedImage from "@/app/components/FullBleedImage";
-//import ProjectCard from "@/app/components/ProjectCard";
+import SystemDesignText from "@/app/components/SystemDesignText";
+import ScrollButton from "@/app/components/ScrollButton.client";
+import ProcessBrief from "@/app/components/ProcessBrief";
+import Insight from "@/app/components/insight";
 import VideoEmbed from "@/app/components/VideoEmbed";
-import { projects } from "@/app/Data/projects";
+import FullBleedImage from "@/app/components/FullBleedImage";
 import YouMightLike from "@/app/components/YouMightLike";
-export const dynamic = "force-static";
+import { projects } from "@/app/Data/projects";
+
+// Heavy components — deferred until after initial render
+const Prototyping = lazy(() => import("@/app/components/prototyping"));
+const ImageGalleryGray = lazy(
+  () => import("@/app/components/imageGalleryGray"),
+);
+const ImageGridSection = lazy(
+  () => import("@/app/components/image-grid-section"),
+);
+const TextImageTwoThirds = lazy(
+  () => import("@/app/components/TextImageTwoThirds"),
+);
+const SingleColumnImageGray = lazy(
+  () => import("@/app/components/SingleColumnImageGray"),
+);
+
+export const dynamic = "force-static"; // ← keep this too
 export default function Home() {
   return (
     <>
