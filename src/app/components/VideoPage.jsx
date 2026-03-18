@@ -6,11 +6,14 @@ export default function VideoPage({
   style,
   className = "",
 }) {
+  // Guard against style being passed as a string (e.g. style={""})
+  // React requires style to be an object — silently ignore if not
   const safeStyle = typeof style === "object" && style !== null ? style : {};
+
   return (
     <div
       className={`flex justify-center items-center p-0 m-0 ${className}`}
-      style={style}
+      style={safeStyle}
     >
       <div
         style={{
