@@ -15,6 +15,7 @@ import FullBleedImage from "@/app/components/FullBleedImage";
 import VideoEmbed from "@/app/components/VideoEmbed";
 import { projects } from "@/app/Data/projects";
 import YouMightLike from "@/app/components/YouMightLike";
+export const dynamic = "force-static";
 export default function Home() {
   return (
     <>

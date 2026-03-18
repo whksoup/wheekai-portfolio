@@ -16,6 +16,7 @@ import VideoPage from "@/app/components/VideoPage";
 import VideoEmbed from "@/app/components/VideoEmbed";
 import YouMightLike from "@/app/components/YouMightLike";
 import { projects } from "@/app/Data/projects";
+export const dynamic = "force-static";
 export default function Home() {
   return (
     <>
