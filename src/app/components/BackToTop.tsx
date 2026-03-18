@@ -28,7 +28,7 @@ export default function BackToTop() {
 
     const scrollPosition = window.scrollY + window.innerHeight * 0.2;
 
-    for (let section of sections) {
+    for (const section of sections) {
       const rect = section.getBoundingClientRect();
       const offsetTop = rect.top + window.scrollY;
 

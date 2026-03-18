@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import VideoWithFallback from "@/app/components/VideoWithFallback";
+//import VideoWithFallback from "@/app/components/VideoWithFallback";
 
 interface SlideItem {
   src: string;
