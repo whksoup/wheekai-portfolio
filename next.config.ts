@@ -1,6 +1,7 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
-  trailingSlash: true,
+  // ❌ remove this
+  // trailingSlash: true,
+
   images: {
     unoptimized: true,
   },
