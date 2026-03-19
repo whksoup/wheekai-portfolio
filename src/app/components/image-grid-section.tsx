@@ -1,13 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import dynamic from "next/dynamic";
-import { useState, useEffect, useRef } from "react";
 
-const VideoWithFallback = dynamic(
-  () => import("@/app/components/VideoWithFallback"),
-  { ssr: false },
-);
+import { useState, useEffect, useRef } from "react";
 
 interface GridVideoProps {
   src: string;
