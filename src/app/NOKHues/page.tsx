@@ -1,11 +1,8 @@
 import HeaderText from "@/app/components/LeadHeader";
-//import TitleCard from "@/app/components/TitleCard";
-//import ProcessBrief from "@/app/components/ProcessBrief";
 import ProjectDescriptor from "@/app/components/ProjectDescriptor";
 import FullBleedImage from "@/app/components/FullBleedImage";
 import VideoPage from "@/app/components/VideoPage";
 import SingleColumnHeaderText from "@/app/components/SingleColumnHeaderText";
-
 import { projects } from "@/app/Data/projects";
 import YouMightLike from "@/app/components/YouMightLike";
 
@@ -22,9 +19,8 @@ export default function Home() {
         overlayIntensity="from-black/70"
         captionClassName="text-center"
       />
-      {/* Section 1: Two-column layout */}
       <SingleColumnHeaderText
-        title="KPMG’s cognitive design exhibition at Singapore Design Week 2024"
+        title="KPMG's cognitive design exhibition at Singapore Design Week 2024"
         tags={[
           "INTERACTION DESIGN",
           "DESIGN RESEARCH",
@@ -48,7 +44,6 @@ export default function Home() {
           </a>
         </p>
       </div>
-      {/* Section 2: Three-column layout */}
       <ProjectDescriptor
         team={["NOK Creative Tech Team", "Wong He Kai, Creative Tech Intern"]}
         responsibilities={["Designed visuals, sensors, and art concepts"]}

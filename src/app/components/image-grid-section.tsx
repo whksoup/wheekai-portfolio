@@ -1,5 +1,104 @@
+"use client";
+
 import Image from "next/image";
-import VideoWithFallback from "@/app/components/VideoWithFallback";
+import dynamic from "next/dynamic";
+import { useState, useEffect, useRef } from "react";
+
+const VideoWithFallback = dynamic(
+  () => import("@/app/components/VideoWithFallback"),
+  { ssr: false },
+);
+
+interface GridVideoProps {
+  src: string;
+  alt: string;
+  poster?: string;
+  isMobile: boolean;
+}
+
+function GridVideo({ src, alt, poster, isMobile }: GridVideoProps) {
+  const [tapped, setTapped] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Unload video when scrolled out of view
+  useEffect(() => {
+    if (!tapped) return;
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting && videoRef.current) {
+          videoRef.current.pause();
+          videoRef.current.src = "";
+          videoRef.current.load();
+          setTapped(false); // reset to thumbnail state
+        }
+      },
+      { rootMargin: "100px" },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [tapped]);
+
+  // Mobile: show thumbnail + play button until tapped
+  if (isMobile && !tapped) {
+    return (
+      <div ref={containerRef} className="relative w-full h-full">
+        <button
+          onClick={() => setTapped(true)}
+          className="relative w-full h-full rounded-lg overflow-hidden bg-gray-200 block"
+          aria-label={`Play ${alt}`}
+        >
+          {poster ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={poster}
+              alt={alt}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full bg-gray-200" />
+          )}
+          {/* Play button overlay */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="bg-black/50 rounded-full w-14 h-14 flex items-center justify-center">
+              <svg
+                className="w-6 h-6 text-white ml-1"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+          </div>
+        </button>
+      </div>
+    );
+  }
+
+  // Desktop, or mobile after tap: play video
+  return (
+    <div ref={containerRef} className="w-full h-full">
+      <video
+        ref={videoRef}
+        src={src}
+        poster={poster}
+        autoPlay
+        loop={!isMobile}
+        muted
+        playsInline
+        controls={isMobile}
+        className="w-full h-full object-cover rounded-lg"
+        onCanPlay={(e) => {
+          (e.target as HTMLVideoElement).play().catch(() => {});
+        }}
+      />
+    </div>
+  );
+}
 
 interface ImageGridSectionProps {
   marginBottom?: string;
@@ -11,7 +110,6 @@ interface ImageGridSectionProps {
     src?: string;
     alt: string;
     type?: "image" | "video";
-    /** Optional still frame shown while the video is buffering */
     poster?: string;
     aspectRatio?: string;
   }>;
@@ -30,6 +128,12 @@ export default function ImageGridSection({
     { alt: "Research Image 4", aspectRatio: "aspect-video" },
   ],
 }: ImageGridSectionProps) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
   const visibleImages = images.slice(0, rows * 2);
 
   return (
@@ -56,12 +160,11 @@ export default function ImageGridSection({
               >
                 {image.src ? (
                   image.type === "video" ? (
-                    // VideoWithFallback handles shimmer → poster → video
-                    <VideoWithFallback
+                    <GridVideo
                       src={image.src}
+                      alt={image.alt}
                       poster={image.poster}
-                      aria-label={image.alt}
-                      controls
+                      isMobile={isMobile}
                     />
                   ) : (
                     <div className="relative w-full h-full">

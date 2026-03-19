@@ -1,22 +1,20 @@
 import ImageGridSection from "@/app/components/image-grid-section";
 import TextImageTwoThirds from "@/app/components/TextImageTwoThirds";
 import Insight from "@/app/components/insight";
-import ScrollButton from "@/app/components/ScrollButton.client"; // Import the client component
+import ScrollButton from "@/app/components/ScrollButton.client";
 import Prototyping from "@/app/components/prototyping";
 import ImageGalleryGray from "@/app/components/imageGalleryGray";
 import SingleColumnImageGray from "@/app/components/SingleColumnImageGray";
 import SystemDesignText from "@/app/components/SystemDesignText";
 import HeaderText from "@/app/components/LeadHeader";
 import TitleCard from "@/app/components/TitleCard";
-//import ProcessBrief from "@/app/components/ProcessBrief";
 import ProjectDescriptor from "@/app/components/ProjectDescriptor";
-//import FullBleedImage from "@/app/components/FullBleedImage";
 import VideoPage from "@/app/components/VideoPage";
-//import SingleColumnHeaderText from "@/app/components/SingleColumnHeaderText";
 import VideoEmbed from "@/app/components/VideoEmbed";
 import YouMightLike from "@/app/components/YouMightLike";
+import VideoWithFallback from "@/app/components/VideoWithFallback";
 import { projects } from "@/app/Data/projects";
-export const dynamic = "force-static";
+
 export default function Home() {
   return (
     <>
@@ -40,18 +38,15 @@ export default function Home() {
           </>
         }
       >
-        <video
-          src="/Assets/Cercuits/IntroVideo.webm"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="rounded-xl aspect-square max-w-[600px] w-full h-full object-contain shadow-inner"
-        />
+        <div className="rounded-xl aspect-square max-w-[600px] w-full overflow-hidden shadow-inner">
+          <VideoWithFallback
+            src="/Assets/Cercuits/IntroVideo.webm"
+            poster="/Assets/Cercuits/IntroVideo_poster.webp"
+            className="object-contain"
+          />
+        </div>
       </TitleCard>
-      {/* Section 1: Two-column layout */}
 
-      {/* Section 2: Three-column layout */}
       <ProjectDescriptor
         team={[
           "Gan Jie Lin, Designer",
@@ -104,29 +99,25 @@ export default function Home() {
             src: "/Assets/Cercuits/InitialProcess.webp",
             alt: "A standard process involves cutting a pattern with vinyl, masking the ceramic with it, sandblasting the pattern, and painting conductive ink onto the inset.",
           },
-
           {
             type: "image",
             src: "/Assets/Cercuits/GrasshopperResult.webp",
             alt: "The outcome of the pattern shown above. Some things translate poorly in reality: pattern details erode at thin areas, straight edges deform when stretched too far along a concave surface.",
           },
-
           {
             type: "image",
             src: "/Assets/Cercuits/FishScales_1.webp",
             alt: "I was also interested in visual fidelity: how fine can the marks made be, and how do they vary in outcome relative to the direction of the sandblasting?",
           },
-
           {
             type: "image",
             src: "/Assets/Cercuits/FishScales_1_Outcome.webp",
-            alt: "I learned that sandblasting was in large part an exercise in skill and patience: varying where the sand is blasted, how long, how close, in relation to what topology, all mattered significantly. ",
+            alt: "I learned that sandblasting was in large part an exercise in skill and patience: varying where the sand is blasted, how long, how close, in relation to what topology, all mattered significantly.",
           },
         ]}
         summaryCaption=""
         rows={2}
-        // Smaller cells to fit more content
-        backgroundColor="bg-gray-50" // Lighter background
+        backgroundColor="bg-gray-50"
       />
       <Prototyping
         subtitle="Individual Exploration 2"
@@ -137,6 +128,7 @@ export default function Home() {
         mediaSrc="/Assets/Cercuits/SwarmSimulation.webm"
         mediaWidth="100%"
         mediaType="webm"
+        poster="/Assets/Cercuits/SwarmSimulation_poster.webp"
         alt=""
         caption="Prototype of a 'self wiring' boid simulation, connecting particular wires at particular points."
       />
@@ -147,19 +139,16 @@ export default function Home() {
             src: "/Assets/Cercuits/ChaoticBoids.webp",
             alt: "A boid simulation around a polka dot patterned dish. Tuning the speed of the simulation up created a frenetic zig pattern to the particles.",
           },
-
           {
             type: "image",
             src: "/Assets/Cercuits/VaseBoids_3.webp",
             alt: "Simulated around more complex topology. I wanted to find out if it could link particular diamonds together, while keeping other lines separate.",
           },
-
           {
             type: "image",
             src: "/Assets/Cercuits/Grasshopper_1_Outcome.webp",
             alt: "A looping pattern",
           },
-
           {
             type: "image",
             src: "/Assets/Cercuits/VaseBoids_Product.webp",
@@ -170,7 +159,6 @@ export default function Home() {
             src: "/Assets/Cercuits/Matching_Topology.webp",
             alt: "A separate prototype with a 'button' on a complex 3d surface. How was this possible?",
           },
-
           {
             type: "image",
             src: "/Assets/Cercuits/Gaussian_CurvatureAnalysis.webp",
@@ -179,8 +167,7 @@ export default function Home() {
         ]}
         summaryCaption=""
         rows={3}
-        // Smaller cells to fit more content
-        backgroundColor="bg-gray-50" // Lighter background
+        backgroundColor="bg-gray-50"
       />
       <Prototyping
         subtitle="Breakthrough Concept"
@@ -191,10 +178,10 @@ export default function Home() {
         mediaSrc="/Assets/Cercuits/ScentDiffuser.webm"
         mediaWidth="100%"
         mediaType="webm"
+        poster="/Assets/Cercuits/ScentDiffuser_poster.webp"
         alt=""
         caption="Inspired by a mechanism we observed in the first image below."
       />
-
       <ImageGalleryGray
         images={[
           {
@@ -205,14 +192,13 @@ export default function Home() {
           {
             type: "image",
             src: "/Assets/Cercuits/DoubleCurvature_Slider.webp",
-            alt: "A double curvature slider on a tiny dish. ",
+            alt: "A double curvature slider on a tiny dish.",
           },
           {
             type: "image",
             src: "/Assets/Cercuits/Silicone_Haptics.webp",
             alt: "A set of push buttons actuated via a thinly casted silicone membrane.",
           },
-
           {
             type: "image",
             src: "/Assets/Cercuits/Thread_1.webp",
@@ -231,8 +217,7 @@ export default function Home() {
         ]}
         summaryCaption=""
         rows={3}
-        // Smaller cells to fit more content
-        backgroundColor="bg-gray-50" // Lighter background
+        backgroundColor="bg-gray-50"
       />
       <VideoPage
         src="/Assets/Cercuits/Typology.webm"
@@ -275,6 +260,7 @@ export default function Home() {
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-16/9",
             type: "video",
+            poster: "/Assets/Cercuits/Process_poster.webp",
           },
         ]}
       />
@@ -304,7 +290,6 @@ export default function Home() {
         backgroundColor="bg-gray-100"
         summaryCaption=""
       />
-
       <VideoEmbed
         videoId="7qPS80oVu1c"
         aspectRatio="4/3"
@@ -313,7 +298,6 @@ export default function Home() {
         rounded="rounded-xl"
         className="bg-gray-100"
       />
-
       <SystemDesignText
         column="left"
         sectionTitle="Product Concept"
@@ -326,7 +310,7 @@ export default function Home() {
         title=""
         heading="Reframing object affordances"
         imageSrc="/Assets/Cercuits/HeroShot.webp"
-        body="Parts of the teapot significant to tea ceremonies, like the main rib of the body and the pot rim, are recontextualized as controller interactions. e.g, the pot's body, traced with fingers before pouring the tea, adapts the same interaction in the form of a volume slider. "
+        body="Parts of the teapot significant to tea ceremonies, like the main rib of the body and the pot rim, are recontextualized as controller interactions. e.g, the pot's body, traced with fingers before pouring the tea, adapts the same interaction in the form of a volume slider."
         imageAspectRatio="aspect-video"
         alt="Placeholder graphic"
         marginBottom="mb-16"
@@ -341,7 +325,6 @@ export default function Home() {
         alt="Placeholder graphic"
         marginBottom="mb-16"
       />
-
       <TextImageTwoThirds
         title=""
         heading="Superflat"
@@ -351,7 +334,6 @@ export default function Home() {
         alt="Placeholder graphic"
         marginBottom="mb-16"
       />
-
       <Insight
         title="A dust-filled 11 weeks! Reflections:"
         highlightColorClass={[
@@ -362,7 +344,6 @@ export default function Home() {
         insights={[
           {
             label: "TRUE",
-
             headline:
               "Working in multiple modalities at once is a skill to learn by itself!",
             description:

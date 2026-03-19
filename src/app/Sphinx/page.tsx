@@ -417,6 +417,7 @@ export default function Home() {
         imageAspectRatio="aspect-full"
         alt="Placeholder graphic"
         imageSrc="/Assets/Sphinx/VoiceDemo.webm"
+        poster="/Assets/Sphinx/VoiceDemo_poster.webp"
       />
       <FullBleedImage
         src="/Assets/Sphinx/Riddle.webp"

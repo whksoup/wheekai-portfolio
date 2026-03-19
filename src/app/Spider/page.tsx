@@ -1,14 +1,12 @@
 import ImageGridSection from "@/app/components/image-grid-section";
 import TextImageTwoThirds from "@/app/components/TextImageTwoThirds";
 import Insight from "@/app/components/insight";
-import ScrollButton from "@/app/components/ScrollButton.client"; // Import the client component
+import ScrollButton from "@/app/components/ScrollButton.client";
 import Prototyping from "@/app/components/prototyping";
 import ImageGalleryGray from "@/app/components/imageGalleryGray";
 import SingleColumnImageGray from "@/app/components/SingleColumnImageGray";
 import SystemDesignText from "@/app/components/SystemDesignText";
 import HeaderText from "@/app/components/LeadHeader";
-//import TitleCard from "@/app/components/TitleCard";
-//import ProcessBrief from "@/app/components/ProcessBrief";
 import ProjectDescriptor from "@/app/components/ProjectDescriptor";
 import FullBleedImage from "@/app/components/FullBleedImage";
 import VideoPage from "@/app/components/VideoPage";
@@ -16,7 +14,7 @@ import SingleColumnHeaderText from "@/app/components/SingleColumnHeaderText";
 import VideoEmbed from "@/app/components/VideoEmbed";
 import YouMightLike from "@/app/components/YouMightLike";
 import { projects } from "@/app/Data/projects";
-export const dynamic = "force-static";
+
 export default function Home() {
   return (
     <>
@@ -32,7 +30,6 @@ export default function Home() {
         overlayIntensity="from-black/70"
         captionClassName="text-center"
       />
-      {/* Section 1: Two-column layout */}
       <SingleColumnHeaderText
         title="Can AI find new typologies for skill toys?"
         tags={[
@@ -47,7 +44,6 @@ export default function Home() {
           "In this 3 month design platform, my groupmate and I were tasked to design and manufacture a toy <strong> with 1 caveat:\n\n</strong> To invent and incorporate new generative AI workflows where possible.\n\nOur team wanted to create something only AI could lead to, and we landed on something unexpectedly tactile.",
         ]}
       />
-      {/* Section 2: Three-column layout */}
       <ProjectDescriptor
         team={[
           "Hirari Haniuda, Designer",
@@ -98,20 +94,18 @@ export default function Home() {
             type: "video",
             src: "/Assets/Spider/PointCloud.webm",
             alt: "A point cloud, fed through stable diffusion for an early building board game concept",
+            poster: "/Assets/Spider/PointCloud_poster.webp",
           },
-
           {
             type: "image",
             src: "/Assets/Spider/Prompt1.webp",
             alt: "We experimented with different prompt formats for concept generation, with various language models",
           },
-
           {
             type: "image",
             src: "/Assets/Spider/Prompt2.webp",
             alt: "Different prompt formats for straightforward text>image models",
           },
-
           {
             type: "image",
             src: "/Assets/Spider/Hypersketch1.webp",
@@ -120,8 +114,7 @@ export default function Home() {
         ]}
         summaryCaption=""
         rows={2}
-        // Smaller cells to fit more content
-        backgroundColor="bg-gray-50" // Lighter background
+        backgroundColor="bg-gray-50"
       />
       <Prototyping
         subtitle="Prototyping 2"
@@ -132,6 +125,7 @@ export default function Home() {
         mediaSrc="/Assets/Spider/PuzzleBox1.webm"
         mediaWidth="100%"
         mediaType="webm"
+        poster="/Assets/Spider/PuzzleBox1_poster.webp"
         alt=""
         caption="A puzzle box you disassemble with a 'wand'"
       />
@@ -158,6 +152,7 @@ export default function Home() {
           {
             src: "/Assets/Spider/PuzzleBox2.webm",
             alt: "The 'cross' brace string in the previous image set, for example, inspired this cube, which was a puzzle box that folded into a gift that could be lifted from the top.",
+            poster: "/Assets/Spider/PuzzleBox2_poster.webp",
           },
         ]}
         imageClassName="object-scale-down"
@@ -187,7 +182,6 @@ export default function Home() {
             src: "/Assets/Spider/Crucifix.webp",
             alt: "A balancing game on a cross",
           },
-
           {
             type: "image",
             src: "/Assets/Spider/Chandelier.webp",
@@ -197,17 +191,18 @@ export default function Home() {
             type: "video",
             src: "/Assets/Spider/Golf.webm",
             alt: "",
+            poster: "/Assets/Spider/Golf_poster.webp",
           },
           {
             type: "video",
             src: "/Assets/Spider/Spacer.webm",
             alt: "",
+            poster: "/Assets/Spider/Spacer_poster.webp",
           },
         ]}
         summaryCaption=""
         rows={3}
-        // Smaller cells to fit more content
-        backgroundColor="bg-gray-50" // Lighter background
+        backgroundColor="bg-gray-50"
       />
       <SystemDesignText
         column="left"
@@ -227,7 +222,6 @@ export default function Home() {
         insights={[
           {
             label: "GOOD",
-
             headline: "AI gets a team onto the same page, fast.",
             description:
               "I realized that my group mate and I were able to build towards prototypes way faster, as we had a high resolution ground truth to work from.",
@@ -256,6 +250,7 @@ export default function Home() {
         mediaSrc="/Assets/Spider/FirstSpider.webm"
         mediaWidth="100%"
         mediaType="webm"
+        poster="/Assets/Spider/FirstSpider_poster.webp"
         alt=""
         caption="Inspired by a mechanism we observed in the first image below."
       />
@@ -278,36 +273,36 @@ export default function Home() {
             type: "video",
             src: "/Assets/Spider/Whoops.webm",
             alt: "A GPT answer described a rube goldberg machine ''travelling backwards''. So we tried making the ball go up!",
+            poster: "/Assets/Spider/Whoops_poster.webp",
           },
           {
             type: "image",
             src: "/Assets/Spider/Proto1.webp",
             alt: "There were no real affordances in the early prototypes, which had some sort of appeal, from user feedback.",
           },
-
           {
             type: "video",
             src: "/Assets/Spider/JointIteration.webm",
             alt: "30+ Iterations on a hinge design: We wanted a hinge that maximized a range of motion along one axis while being constrained tightly along the other two. It had to be easily printed/injection molded, and modular.",
+            poster: "/Assets/Spider/JointIteration_poster.webp",
           },
-
           {
             type: "video",
             src: "/Assets/Spider/Proto2.webm",
             alt: "Acrylic was rigid like metal, yet more pliable, cheaper for prototyping. It gave a 'science experiment' aesthetic which we enjoyed exploring!",
+            poster: "/Assets/Spider/Proto2_poster.webp",
           },
           {
             type: "video",
             src: "/Assets/Spider/Winners.webm",
             alt: "With a hoop addition, there was a satisfying and achievable goal to the toy. But it also made the play binary, creating clear winners and losers (which discouraged experimentation), and restricted creative expression.",
+            poster: "/Assets/Spider/Winners_poster.webp",
           },
         ]}
         summaryCaption=""
         rows={3}
-        // Smaller cells to fit more content
-        backgroundColor="bg-gray-50" // Lighter background
+        backgroundColor="bg-gray-50"
       />
-
       <SystemDesignText
         column="left"
         sectionTitle="The key issue now was the difficulty."
@@ -318,6 +313,7 @@ export default function Home() {
         title=""
         heading="Creating something that preserved the open-ended discovery of this..."
         imageSrc="/Assets/Spider/AdamDiscovery.webm"
+        poster="/Assets/Spider/AdamDiscovery_poster.webp"
         body="He managed to keep the ball moving while the toy was turned on its side!"
         imageAspectRatio="aspect-video"
         alt="Placeholder graphic"
@@ -328,6 +324,7 @@ export default function Home() {
         title=""
         heading="And the emotional satisfaction of this!"
         imageSrc="/Assets/Spider/JaredHappy.webm"
+        poster="/Assets/Spider/JaredHappy_poster.webp"
         body=""
         imageAspectRatio="aspect-video"
         alt="Placeholder graphic"
@@ -354,6 +351,7 @@ export default function Home() {
         }
         mediaSrc="/Assets/Spider/MeHappy2.webm"
         mediaType="webm"
+        poster="/Assets/Spider/MeHappy2_poster.webp"
         mediaHeight={"600"}
         objectFit="contain"
         alt=""
@@ -364,6 +362,7 @@ export default function Home() {
           {
             src: "/Assets/Spider/drawbridgeProto.webm",
             alt: "Tweaking the rail profiles and lengths, the strength/haptic profile of the action, the height of the horizontal levels etc.",
+            poster: "/Assets/Spider/drawbridgeProto_poster.webp",
           },
         ]}
         imageMaxWidth="max-w-xl"
@@ -372,7 +371,6 @@ export default function Home() {
         backgroundColor="bg-gray-100"
         summaryCaption=""
       />
-
       <SystemDesignText
         column="left"
         sectionTitle="Form Refinement"
@@ -427,7 +425,6 @@ export default function Home() {
           },
         ]}
       />
-
       <Prototyping
         subtitle="Detail 1"
         title="How did we achieve consistently straight rails in manufacturing?"
@@ -449,11 +446,11 @@ export default function Home() {
         mediaSrc="/Assets/Spider/HeatBending.webm"
         mediaWidth="60%"
         mediaType="webm"
+        poster="/Assets/Spider/HeatBending_poster.webp"
         alt=""
         caption=""
         reverse
       />
-
       <Prototyping
         subtitle="Detail 2"
         title="How did we constrain the motion of the joints?"
@@ -509,9 +506,7 @@ export default function Home() {
           "With the tactility, expressiveness and depth rivalling the yoyo and lego block. Here's a video:"
         }
       />
-
       <VideoEmbed videoId="SK-UOPVvEDk" maxWidth="max-w-screen-md" />
-
       <ImageGridSection
         rows={2}
         imageScale={1.0}
@@ -543,7 +538,6 @@ export default function Home() {
           },
         ]}
       />
-
       <Insight
         title="A crazy 12 weeks! What I've Learned: "
         highlightColorClass={[
@@ -554,7 +548,6 @@ export default function Home() {
         insights={[
           {
             label: "TRUE",
-
             headline: "Designing with AI goes so much deeper than a prompt",
             description:
               "Between images, videos, photoshops as inputs, AI shouldn't just be seen as a starting point, but another iterative tool that should be valued for its high resolution, its ability to draw from wide subcultures and form languages, and above all its inconsistencies with reality.",

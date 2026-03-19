@@ -1,21 +1,18 @@
 import ImageGridSection from "@/app/components/image-grid-section";
 import TextImageTwoThirds from "@/app/components/TextImageTwoThirds";
 import Insight from "@/app/components/insight";
-import ScrollButton from "@/app/components/ScrollButton.client"; // Import the client component
+import ScrollButton from "@/app/components/ScrollButton.client";
 import Prototyping from "@/app/components/prototyping";
 import ImageGalleryGray from "@/app/components/imageGalleryGray";
-
 import SystemDesignText from "@/app/components/SystemDesignText";
 import HeaderText from "@/app/components/LeadHeader";
-
 import ProjectDescriptor from "@/app/components/ProjectDescriptor";
 import FullBleedImage from "@/app/components/FullBleedImage";
-//import ProjectCard from "@/app/components/ProjectCard";
-
 import { projects } from "@/app/Data/projects";
 import YouMightLike from "@/app/components/YouMightLike";
-import SingleColumnHeaderText from "../components/SingleColumnHeaderText";
-import VideoPage from "../components/VideoPage";
+import SingleColumnHeaderText from "@/app/components/SingleColumnHeaderText";
+import VideoPage from "@/app/components/VideoPage";
+
 export default function Home() {
   return (
     <>
@@ -31,7 +28,6 @@ export default function Home() {
         overlayIntensity="from-black/70"
         captionClassName="text-center"
       />
-      {/* Section 1: Two-column layout */}
       <SingleColumnHeaderText
         title="HMW challenge Singapore's notion of safety in play?"
         tags={[
@@ -44,7 +40,6 @@ export default function Home() {
           "In this 3 month Design Platform, my groupmates and I were tasked to challenge Singapore's notions around play space design. \n\nInspired by recent research studies in Europe about risk in adolescent play,  and the idea of open improvisation a la lego and music, we conceptualized Canning Climb, a cultural playground hewn into Singapore's Fort Canning Park. ",
         ]}
       />
-      {/* Section 2: Three-column layout */}
       <ProjectDescriptor
         team={[
           "Ms Grace Tan Sze Ern, Platform Supervisor",
@@ -72,7 +67,6 @@ export default function Home() {
         className="mb-16"
         style={""}
       />
-
       <div className="mb-16 flex justify-center">
         <ScrollButton targetId="finalOutcome">To Project Outcome</ScrollButton>
       </div>
@@ -105,7 +99,6 @@ export default function Home() {
         alt="Placeholder graphic"
         caption=""
       />
-
       <SystemDesignText
         column="right"
         sectionTitle=""
@@ -113,7 +106,6 @@ export default function Home() {
         paragraph="As a more discursive project, I wanted to find a site that looked 'too hostile' for play habitation. "
         marginBottom="mb-8"
       />
-
       <Prototyping
         subtitle="Site Research"
         title="Finding Fort Canning"
@@ -132,19 +124,16 @@ export default function Home() {
             src: "/Assets/CanningClimb/CulturalCollage.webp",
             alt: "Layout of different cultural spaces in Fort Canning",
           },
-
           {
             type: "image",
             src: "/Assets/CanningClimb/UserBehaviours.webp",
             alt: "Map showing the population demographic changes up the hill; Kids generally stay around the bottom due to the physical demand.",
           },
-
           {
             type: "image",
             src: "/Assets/CanningClimb/TreeHistory.webp",
             alt: "We documented the different heritage trees in the space, realizing that they reflected the changing history of the space",
           },
-
           {
             type: "image",
             src: "/Assets/CanningClimb/KidsObserved.webp",
@@ -153,8 +142,7 @@ export default function Home() {
         ]}
         summaryCaption="User Research"
         rows={2}
-        // Smaller cells to fit more content
-        backgroundColor="bg-gray-50" // Lighter background
+        backgroundColor="bg-gray-50"
       />
       <ImageGalleryGray
         images={[
@@ -163,19 +151,16 @@ export default function Home() {
             src: "/Assets/CanningClimb/book1.webp",
             alt: "Modern kids are often sensory-deprived. The 'bad behavior' we see in classrooms is frequently a deficit of vestibular and proprioceptive input, which is only fixed by unstructured, vigorous outdoor play.",
           },
-
           {
             type: "image",
             src: "/Assets/CanningClimb/book2.webp",
             alt: "Play's primary function isn't always positive or productive. It is inherently ambiguous, serving as a brain's way to simulate and become resilient to randomness, fear, and the unpredictable nature of existence.",
           },
-
           {
             type: "image",
             src: "/Assets/CanningClimb/book3.webp",
             alt: "A great playground isn't a catalogue of equipment, but a dynamic landscape that invites a child's own story-making and discovery.",
           },
-
           {
             type: "image",
             src: "/Assets/CanningClimb/book4.webp",
@@ -196,8 +181,7 @@ export default function Home() {
           "As someone who insists on validating design decisions on objectivity, I personally struggled with the critical nature, unresolved nature of this project. \n\nI read books so this project could have a foundation to build upon. (And I love reading)"
         }
         rows={3}
-        // Smaller cells to fit more content
-        backgroundColor="bg-gray-50" // Lighter background
+        backgroundColor="bg-gray-50"
       />
       <Insight
         title="Building an alternative vision of Fort Canning's features"
@@ -205,7 +189,6 @@ export default function Home() {
         insights={[
           {
             label: "INTERESTING",
-
             headline:
               "Terrain and elevation could be reframed as a challenge, sparking engagement through mastery",
             description:
@@ -220,7 +203,6 @@ export default function Home() {
           },
         ]}
       />
-
       <Prototyping
         subtitle="Prototyping"
         title="Designing provocative prototypes"
@@ -233,7 +215,6 @@ export default function Home() {
         mediaWidth={undefined}
         mediaHeight={undefined}
       />
-
       <ImageGalleryGray
         images={[
           {
@@ -241,19 +222,17 @@ export default function Home() {
             src: "/Assets/CanningClimb/ChosenSite.webp",
             alt: "The site we settled on had 3 levels of increasing steepness, which we thought could form a difficulty curve",
           },
-
           {
             type: "image",
             src: "/Assets/CanningClimb/TreeSnipe.webp",
             alt: "It would also intersect a couple of heritage trees with unique material 'shedding'",
           },
-
           {
             type: "video",
             src: "/Assets/CanningClimb/PlayArtefacts.webm",
             alt: "A set of tools were designed to enable a wide variety of roleplay and material engagement.",
+            poster: "/Assets/CanningClimb/PlayArtefacts_poster.webp",
           },
-
           {
             type: "image",
             src: "/Assets/CanningClimb/Sketch1.webp",
@@ -264,7 +243,6 @@ export default function Home() {
             src: "/Assets/CanningClimb/ClayProto.webp",
             alt: "Early clay prototype with interactions overlayed.",
           },
-
           {
             type: "image",
             src: "/Assets/CanningClimb/EarlyRender.webp",
@@ -273,10 +251,8 @@ export default function Home() {
         ]}
         summaryCaption="Concept Illustrations"
         rows={3}
-        // Smaller cells to fit more content
-        backgroundColor="bg-gray-50" // Lighter background
+        backgroundColor="bg-gray-50"
       />
-
       <SystemDesignText
         column="right"
         sectionTitle="With a fairly modular set-up, informed by height dimensions, etc..."
@@ -301,11 +277,7 @@ export default function Home() {
             src: "/Assets/CanningClimb/Materials.webp",
             alt: "",
           },
-          {
-            type: "image",
-            src: "/Assets/CanningClimb/MockUp.webp",
-            alt: "",
-          },
+          { type: "image", src: "/Assets/CanningClimb/MockUp.webp", alt: "" },
           {
             type: "image",
             src: "/Assets/CanningClimb/L3Schematic.webp",
@@ -361,7 +333,6 @@ export default function Home() {
           },
         ]}
       />
-
       <FullBleedImage
         src="/Assets/CanningClimb/HeroShot.webp"
         alt=""
@@ -383,7 +354,6 @@ export default function Home() {
           "Falls occur around angled impact attenuation surfaces designed to cushion injury, never overreaching the 3 meter freefall height limit.\n\nThe angles also obscure areas above, creating elements of discovery for children climbing upwards."
         }
         imageAspectRatio="aspect-video"
-        //alt="Placeholder graphic"
         marginBottom="mb-16"
         imageSrc="/Assets/CanningClimb/level1Obstacle.webp"
       />
@@ -418,6 +388,7 @@ export default function Home() {
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-16/9",
             type: "video",
+            poster: "/Assets/CanningClimb/zoomOut_poster.webp",
           },
           {
             src: "/Assets/CanningClimb/L2Render.webp",
@@ -451,14 +422,12 @@ export default function Home() {
           },
         ]}
       />
-
       <Insight
         title="'Reflections'"
         highlightColorClass={["text-red-500", "text-red-500", "text-blue-500"]}
         insights={[
           {
             label: "TO BE IMPROVED",
-
             headline: "I wish we validated more.",
             description:
               "Maybe it's the nature of a critical inquiry project and how it's conducted, but I wish we took time to test our assertions, instead of arguing from theory. The design outcomes were evaluated on imaginativeness and discursiveness, but I think I could have done more on validation.",
@@ -478,7 +447,6 @@ export default function Home() {
           },
         ]}
       />
-
       <YouMightLike projects={projects} currentHref="/CanningClimb" />
     </>
   );

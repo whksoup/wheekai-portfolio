@@ -118,6 +118,7 @@ export default function Home() {
         mediaSrc="/Assets/Tamari/TamariData.webm"
         mediaWidth="60%"
         mediaType="webm"
+        poster="/Assets/Tamari/TamariData_poster.webp"
         alt=""
         caption=""
       />

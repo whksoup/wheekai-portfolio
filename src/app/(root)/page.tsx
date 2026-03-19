@@ -1,18 +1,14 @@
 "use client";
 import Image from "next/image";
 import BirdSimulation from "@/app/components/MatterBirdSimulationCopy";
-//import Prototyping from "@/app/components/prototyping";
 import Intro from "@/app/components/Intro";
 import ImageGridSection from "@/app/components/image-grid-section";
-
 import SystemDesignText from "@/app/components/SystemDesignText";
 import { Spacer } from "@/app/components/Spacer";
-
 import FullBleedImage from "@/app/components/FullBleedImage";
 import ProjectCard from "@/app/components/ProjectCard";
 import ProjectGrid from "@/app/components/ProjectGrid";
 import { projects } from "@/app/Data/projects";
-
 import { useSearchParams } from "next/navigation";
 
 export default function Home() {
@@ -23,8 +19,8 @@ export default function Home() {
   ];
 
   const searchParams = useSearchParams();
-  const slugsParam = searchParams.get("slugs"); // e.g. "pyt-toys-plant"
-  const hasCustomSlugs = slugsParam !== null; // true if user added slugs in URL
+  const slugsParam = searchParams.get("slugs");
+  const hasCustomSlugs = slugsParam !== null;
 
   const slugs = slugsParam ? slugsParam.split("-") : [];
 
@@ -32,7 +28,8 @@ export default function Home() {
     ? projects
         .filter((p) => slugs.includes(p.slug))
         .sort((a, b) => slugs.indexOf(a.slug) - slugs.indexOf(b.slug))
-    : projects.slice(0, 3); // fallback
+    : projects.slice(0, 3);
+
   const categoryHeaders: Record<string, string> = {
     spatial: "Spatial Computing",
     product: "Product Design",
@@ -40,24 +37,23 @@ export default function Home() {
   };
 
   const aligns: ("left" | "center" | "right")[] = ["left", "center", "right"];
+
   return (
     <div className="">
       {/* Hero section */}
-      {/* Sketch section */}
-      <div className="flex-grow flex items-center justify-center p-4 relative  ">
+      <div className="flex-grow flex items-center justify-center p-4 relative">
         <BirdSimulation />
-
-        {/* Overlay image */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <Image
-            src="/Assets/Intro/HKTest.webp" // make sure this path is correct relative to your public folder
+            src="/Assets/Intro/HKTest.webp"
             alt="Overlay"
-            width={200} // pick an actual width in px
+            width={200}
             height={200}
             className="max-w-full max-h-full"
           />
         </div>
       </div>
+
       <Intro
         subtitle="Introduction 01"
         text={
@@ -65,6 +61,7 @@ export default function Home() {
         }
         align="left"
       />
+
       <FullBleedImage
         slideshow={[
           {
@@ -85,7 +82,7 @@ export default function Home() {
           },
           {
             src: "/Assets/Intro/AndrewVR.webm",
-            alt: "Third",
+            alt: "Fourth",
             caption: "",
             type: "video",
           },
@@ -95,6 +92,7 @@ export default function Home() {
         transitionDuration={800}
         src={""}
       />
+
       <Intro
         marginBottom="mb-16"
         subtitle="Introduction"
@@ -103,6 +101,7 @@ export default function Home() {
         }
         align="right"
       />
+
       {hasCustomSlugs ? (
         <SystemDesignText
           column="right"
@@ -118,7 +117,7 @@ export default function Home() {
           paragraph=""
         />
       )}
-      {/* Modular top 3 projects with forced align order */}
+
       {selectedProjects.map((project, i) => (
         <ProjectCard
           key={project.slug}
@@ -126,6 +125,7 @@ export default function Home() {
           align={aligns[i] ?? "left"}
         />
       ))}
+
       <SystemDesignText
         column="left"
         sectionTitle=""
@@ -133,6 +133,7 @@ export default function Home() {
         paragraph=""
         marginBottom="mb-0"
       />
+
       {categories.map((cat) => {
         const gridProjects = projects
           .filter((p) => p.type === cat)
@@ -150,13 +151,15 @@ export default function Home() {
         return (
           <div key={cat} className="mb-16">
             <h2 className="text-2xl font-bold mb-6 text-center capitalize">
-              {categoryHeaders[cat] || cat} {/* fallback to cat if missing */}
+              {categoryHeaders[cat] || cat}
             </h2>
             <ProjectGrid projects={gridProjects} />
           </div>
         );
       })}
+
       <Spacer size="18rem" />
+
       <FullBleedImage
         slideshow={[
           {
@@ -171,7 +174,9 @@ export default function Home() {
         transitionDuration={800}
         src={""}
       />
+
       <Spacer size="5rem" />
+
       <SystemDesignText
         column="left"
         sectionTitle="Here's what He Kai is currently doing with his free time..."
@@ -180,6 +185,7 @@ export default function Home() {
           "In lightweight mixed reality applications, virtual materials often sacrifice fidelity and resolution in exchange for performance;\n\nVirtual objects often lack the realistic shadows, reflections, and perfect alignments necessary for conventionally attractive and believable aesthetics. \n\nWhat if we thought of low fidelity AR as a material, similar to how designers could be asked to design with cardboard or 'ugly' materials?\n\nCurrently, these explorations focus on 'weaving' digital materials with physical surfaces to create 'hybrid' material experiences."
         }
       />
+
       <ImageGridSection
         rows={2}
         imageScale={1.0}
@@ -212,6 +218,7 @@ export default function Home() {
           },
         ]}
       />
+
       <SystemDesignText
         column="right"
         sectionTitle=""
@@ -219,7 +226,8 @@ export default function Home() {
         paragraph="Documenting the process on github soon..."
         marginBottom="mb-8"
       />
-      <div className="pb-24 md:pb-32"></div>;
+
+      <div className="pb-24 md:pb-32" />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 interface VideoWithFallbackProps {
   src: string;
@@ -14,18 +14,6 @@ interface VideoWithFallbackProps {
   "aria-label"?: string;
 }
 
-/**
- * VideoWithFallback
- *
- * Wraps a <video> element with a shimmer skeleton that displays:
- *   1. Always:         shimmer skeleton while the video is loading
- *   2. If provided:    poster image once available (hides shimmer)
- *   3. On canPlay:     video fades in and everything else is removed
- *
- * Uses loading="lazy" semantics via IntersectionObserver so off-screen
- * videos don't begin loading until they're near the viewport — critical
- * for long pages on mobile / Vercel cold starts.
- */
 export default function VideoWithFallback({
   src,
   poster,
@@ -37,64 +25,72 @@ export default function VideoWithFallback({
   controls = false,
   "aria-label": ariaLabel,
 }: VideoWithFallbackProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
-  const [posterLoaded, setPosterLoaded] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Only mount the <video> element once the container is near the viewport.
+  // This prevents off-screen videos from consuming memory on mobile.
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect(); // only need to trigger once
+        }
+      },
+      { rootMargin: "200px" }, // start loading 200px before entering viewport
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    // Outer wrapper is position:relative so the skeleton, poster, and video
-    // can all occupy the same space and we cross-fade between them.
-    <div className="relative w-full h-full overflow-hidden rounded-lg">
-      {/* ── 1. Shimmer skeleton ─────────────────────────────────────────── */}
-      {/* Stays visible until the video (or at minimum the poster) is ready */}
-      <div
-        aria-hidden="true"
-        className={`
-          absolute inset-0 rounded-lg
-          bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200
-          bg-[length:200%_100%]
-          animate-shimmer
-          transition-opacity duration-500
-          ${videoReady || posterLoaded ? "opacity-0 pointer-events-none" : "opacity-100"}
-        `}
-      />
+    <div
+      ref={containerRef}
+      className="relative w-full h-full overflow-hidden rounded-lg bg-gray-200"
+    >
+      {/* Shimmer — shown until video is ready */}
+      {!videoReady && (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 rounded-lg bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 bg-[length:200%_100%] animate-shimmer"
+        />
+      )}
 
-      {/* ── 2. Poster image (optional) ──────────────────────────────────── */}
-      {/* Shown after the poster img loads, hidden once video is ready */}
-      {poster && (
+      {/* Poster — shown if provided, until video is ready */}
+      {poster && !videoReady && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={poster}
           alt={ariaLabel ?? ""}
-          onLoad={() => setPosterLoaded(true)}
           aria-hidden="true"
-          className={`
-            absolute inset-0 w-full h-full object-cover rounded-lg
-            transition-opacity duration-500
-            ${posterLoaded && !videoReady ? "opacity-100" : "opacity-0 pointer-events-none"}
-          `}
+          className="absolute inset-0 w-full h-full object-cover rounded-lg"
         />
       )}
 
-      {/* ── 3. Video ────────────────────────────────────────────────────── */}
-      <video
-        ref={videoRef}
-        src={src}
-        poster={poster}
-        autoPlay={autoPlay}
-        loop={loop}
-        muted={muted}
-        playsInline={playsInline}
-        controls={controls}
-        aria-label={ariaLabel}
-        onCanPlay={() => setVideoReady(true)}
-        className={`
-          w-full h-full object-cover rounded-lg
-          transition-opacity duration-700
-          ${videoReady ? "opacity-100" : "opacity-0"}
-          ${className}
-        `}
-      />
+      {/* Video — only rendered once in viewport, fades in on canPlay */}
+      {isInView && (
+        <video
+          src={src}
+          poster={poster}
+          autoPlay={autoPlay}
+          loop={loop}
+          muted={muted}
+          playsInline={playsInline}
+          controls={controls}
+          preload="none"
+          aria-label={ariaLabel}
+          onCanPlay={() => setVideoReady(true)}
+          className={`w-full h-full object-cover rounded-lg transition-opacity duration-700 ${
+            videoReady ? "opacity-100" : "opacity-0"
+          } ${className}`}
+        />
+      )}
     </div>
   );
 }

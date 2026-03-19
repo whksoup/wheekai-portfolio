@@ -178,6 +178,7 @@ export default function Home() {
           {
             src: "/Assets/Quiver/stengMechanism.webm",
             alt: " ",
+            poster: "/Assets/Quiver/stengMechanism_poster.webp",
           },
         ]}
         imageClassName="object-fill"
@@ -252,6 +253,7 @@ export default function Home() {
           {
             src: "/Assets/Quiver/TengFindings.webm",
             alt: " ",
+            poster: "/Assets/Quiver/TengFindings_poster.webp",
           },
         ]}
         imageClassName="object-fill"
@@ -277,6 +279,7 @@ export default function Home() {
             src: "/Assets/Quiver/TENGtris.webm",
             alt: "Beautiful Landscape",
             aspectRatio: "aspect-square",
+            poster: "/Assets/Quiver/Tengtris_poster.webp",
             type: "video",
           },
           {
@@ -319,6 +322,7 @@ export default function Home() {
           "Quiver was able to run seamlessly, and consistently for 3 hours of play. \n\nThese 3 inputs can be calibrated for different environments and action contexts. \n\nFor this project, the context was 2 opposing public bus stops, where passers-by inadvertently activate and play a multiplayer TETRIS game, building a bridge towards each other before a car smashes it down."
         }
         mediaSrc="/Assets/Quiver/OrangeAndGreen.webm"
+        poster="/Assets/Quiver/OrangeAndGreen_poster.webp"
         mediaType="webm"
         alt=""
       />

@@ -1,9 +1,7 @@
 import Insight from "@/app/components/insight";
-
 import SystemDesignText from "@/app/components/SystemDesignText";
 import HeaderText from "@/app/components/LeadHeader";
 import TitleCard from "@/app/components/TitleCard";
-//import ProcessBrief from "@/app/components/ProcessBrief";
 import ProjectDescriptor from "@/app/components/ProjectDescriptor";
 import { projects } from "@/app/Data/projects";
 import YouMightLike from "@/app/components/YouMightLike";
@@ -32,7 +30,6 @@ export default function Home() {
         }
       />
 
-      {/* Section 2: Three-column layout */}
       <ProjectDescriptor
         team={[
           "Wong He Kai, Designer (under SERIAL_CO)",
@@ -50,6 +47,7 @@ export default function Home() {
           "Developed tools for data collection for Health Promotion Board to tweak and evaluate future games",
         ]}
       />
+
       <div className="w-full flex justify-center py-8">
         <div className="w-full md:w-[60%] max-w-[700px] aspect-square overflow-hidden rounded-xl shadow-lg">
           <iframe
@@ -61,6 +59,7 @@ export default function Home() {
           />
         </div>
       </div>
+
       <div className="flex justify-center mt-8">
         <p className="text-center text-50 opacity-100">
           Read more about the campaign{" "}
@@ -74,6 +73,7 @@ export default function Home() {
           </a>
         </p>
       </div>
+
       <SystemDesignText
         column="left"
         sectionTitle="Designing for novel interactions in public"
@@ -113,6 +113,7 @@ export default function Home() {
           },
         ]}
       />
+
       <YouMightLike projects={projects} currentHref="/VapeMonsters" />
     </>
   );
