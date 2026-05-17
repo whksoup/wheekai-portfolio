@@ -27,6 +27,19 @@ export const projects: Project[] = [
     year: "2025",
   },
   {
+    name: "VReact : AR Simulations for Medical practice",
+    type: "spatial",
+    slug: "augmented_reality",
+    href: "/VReact",
+    image: "/Assets/VReact/Bed.webp",
+    subtitle: "2026",
+    title:
+      "Designing a modular interaction system for patient simulations.",
+    tags: ["UX Research", "Tool Design", "Interactive Design"],
+    wip: false,
+    year: "2026",
+  },
+  {
     name: "Spider: A Toy ft. ChatGPT",
     type: "product",
     slug: "fun_objects",
