@@ -4,14 +4,13 @@ import Insight from "@/app/components/insight";
 import ScrollButton from "@/app/components/ScrollButton.client"; // Import the client component
 import Prototyping from "@/app/components/prototyping";
 import ImageGalleryGray from "@/app/components/imageGalleryGray";
-import SingleColumnImageGray from "@/app/components/SingleColumnImageGray";
 import SystemDesignText from "@/app/components/SystemDesignText";
 import HeaderText from "@/app/components/LeadHeader";
 import TitleCard from "@/app/components/TitleCard";
 //import ProcessBrief from "@/app/components/ProcessBrief";
 import ProjectDescriptor from "@/app/components/ProjectDescriptor";
 import FullBleedImage from "@/app/components/FullBleedImage";
-import VideoPage from "@/app/components/VideoPage";
+
 import { projects } from "@/app/Data/projects";
 import YouMightLike from "@/app/components/YouMightLike";
 import VideoWithFallback from "@/app/components/VideoWithFallback";
