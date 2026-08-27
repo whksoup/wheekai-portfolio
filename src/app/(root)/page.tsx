@@ -10,6 +10,7 @@ import ProjectCard from "@/app/components/ProjectCard";
 import ProjectGrid from "@/app/components/ProjectGrid";
 import { projects } from "@/app/Data/projects";
 import { useSearchParams } from "next/navigation";
+import CurrentlyWorkingOn from "@/app/components/CurrentlyWorkingOn";
 
 export default function Home() {
   const categories: ("spatial" | "product" | "art")[] = [
@@ -97,10 +98,44 @@ export default function Home() {
         marginBottom="mb-16"
         subtitle="Introduction"
         text={
-          "He Kai is currently freelancing as an AR simulation/hardware dev at a research center, and working with LEGO designing phygital experiences. He has had previous working experiences at NOK (Next of Kin) Design Studio and The Interactive Materials Lab. "
+          "He Kai is currently freelancing as an AR simulation/hardware dev at a research center, and designing museum experiences for ArtScience Museum SG. He has had previous working experiences at NOK (Next of Kin) Design Studio, LEGO and The Interactive Materials Lab. "
         }
         align="right"
       />
+            <Intro
+        marginBottom="mb-48"
+        subtitle="Introduction"
+        text={
+          "He Kai is currently freelancing as an AR simulation/hardware dev at a research center, and working with LEGO designing phygital experiences. He has had previous working experiences at NOK (Next of Kin) Design Studio and The Interactive Materials Lab. "
+        }
+        align="left"
+      />
+
+      {/* ↓↓↓ NEW ↓↓↓ */}
+      <CurrentlyWorkingOn
+        items={[
+          {
+            title: "Haircut Simulator",
+            blurb:
+              "A grooming tool for hair on a 3D head. The goal: Creating IKEA style manuals for haircutting, that I can send to my barber for analysis and re-creation.",
+            repo: "https://github.com/whksoup/haircut-simulator",
+            iframe: {
+              src: "https://haircut-simulator-two.vercel.app/",
+              label: "Open the simulator",
+            },
+          },
+          {
+            title: "Mixed Reality Puppets",
+            blurb: "New updates to the Quest 3 now give full camera access to developers! \nThis project explores the possibility of mixed reality dolls for kids' play.",
+            repo: "https://github.com/whksoup/ar-dolls-1",
+            video: {
+              src: "/Assets/Puppets/DollStart.webm",
+              poster: "/Assets/Puppets/pope.webp",
+            },
+          },
+        ]}
+      />
+   
 
       {hasCustomSlugs ? (
         <SystemDesignText
@@ -179,7 +214,7 @@ export default function Home() {
 
       <SystemDesignText
         column="left"
-        sectionTitle="Here's what He Kai is currently doing with his free time..."
+        sectionTitle="If you want to chat about.."
         heading="Exploring Lofi AR as Materials for MR "
         paragraph={
           "In lightweight mixed reality applications, virtual materials often sacrifice fidelity and resolution in exchange for performance;\n\nVirtual objects often lack the realistic shadows, reflections, and perfect alignments necessary for conventionally attractive and believable aesthetics. \n\nWhat if we thought of low fidelity AR as a material, similar to how designers could be asked to design with cardboard or 'ugly' materials?\n\nCurrently, these explorations focus on 'weaving' digital materials with physical surfaces to create 'hybrid' material experiences."
@@ -223,7 +258,7 @@ export default function Home() {
         column="right"
         sectionTitle=""
         heading="That's all for now!"
-        paragraph="Documenting the process on github soon..."
+        paragraph="Thank you for reading."
         marginBottom="mb-8"
       />
 
