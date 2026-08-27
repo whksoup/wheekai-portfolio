@@ -46,7 +46,7 @@ const SCENE_BG = "#14161a";
 export default function CurrentlyWorkingOn({ items }: { items: WipItem[] }) {
   return (
     <section className="mx-auto mb-24 max-w-6xl px-4">
-      <h2 className="mb-2 text-2xl font-bold">In my free time, these are the things I'm currently working on:</h2>
+      <h2 className="mb-2 text-2xl font-bold">In my free time, these are the things I&apos;m currently working on:</h2>
       <p className="mb-8 max-w-xl text-sm text-neutral-500">
         These are literal works in progress, fresh off the latest stable branch. Feel free to reach out if you have any ideas to build on these!
       </p>
