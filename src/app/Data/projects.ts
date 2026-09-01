@@ -16,7 +16,7 @@ export const projects: Project[] = [
   {
     name: "PYT : Alternative Control Interactions for Virtual Reality Sculpting",
     type: "spatial",
-    slug: "spatial_computing",
+    slug: "spatial computing",
     href: "/PYT",
     image: "/Assets/PYT/Donut.webp",
     subtitle: "2025 Undergrad Thesis",
@@ -29,7 +29,7 @@ export const projects: Project[] = [
   {
     name: "VReact : AR Simulations for Medical practice",
     type: "spatial",
-    slug: "augmented_reality",
+    slug: "service",
     href: "/VReact",
     image: "/Assets/VReact/Bed.webp",
     subtitle: "2026",
@@ -42,7 +42,7 @@ export const projects: Project[] = [
   {
     name: "Spider: A Toy ft. ChatGPT",
     type: "product",
-    slug: "fun_objects",
+    slug: "fun objects",
     href: "/Spider",
     image: "/Assets/Spider/HeroShot2.webp",
     subtitle: "Student Project",
@@ -55,7 +55,7 @@ export const projects: Project[] = [
   {
     name: "Sphinx: Quiet digital interfaces for Taiwanese Elderly",
     type: "product",
-    slug: "quietInterfaces",
+    slug: "quiet interfaces",
     href: "/Sphinx",
     image: "/Assets/Sphinx/HeroShot.webp",
     subtitle: "Student Project",
@@ -67,7 +67,7 @@ export const projects: Project[] = [
   {
     name: "Quiver: A $5 Motion Sensor",
     type: "product",
-    slug: "sails",
+    slug: "product design",
     href: "/Quiver",
     image: "/Assets/Quiver/Quiver_HeroShotWide.webp",
     subtitle: "Student Project",
@@ -79,7 +79,7 @@ export const projects: Project[] = [
   {
     name: "Canning Climb: Exploring safety tolerances in Play Space Design",
     type: "product",
-    slug: "play",
+    slug: "play design",
     href: "/CanningClimb",
     image: "/Assets/CanningClimb/HeroShot.webp",
     subtitle: "Student Project",
@@ -96,7 +96,7 @@ export const projects: Project[] = [
   {
     name: "Say No: Vape Monsters Vending Machine",
     type: "product",
-    slug: "vape",
+    slug: "game design",
     href: "/VapeMonsters",
     image: "/Assets/NOK/No Vaping.webp",
     subtitle: "Student Project",
@@ -108,7 +108,7 @@ export const projects: Project[] = [
   {
     name: "Horizon Hues for KPMG: Visualizing travel",
     type: "product",
-    slug: "Hues",
+    slug: "public exhibit work",
     href: "/NOKHues",
     image: "/Assets/NOK/HeroShot.webp",
     subtitle: "Student Project",
@@ -145,7 +145,7 @@ export const projects: Project[] = [
   {
     name: "Ceramic Circuits: Upcycling useless family heirlooms",
     type: "art",
-    slug: "china",
+    slug: "speculative projects",
     href: "/Cercuits",
     image: "/Assets/Cercuits/HeroShot.webp",
     subtitle: "Student Project",

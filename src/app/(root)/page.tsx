@@ -117,7 +117,7 @@ export default function Home() {
           {
             title: "Haircut Simulator",
             blurb:
-              "A grooming tool for hair on a 3D head. The goal: Creating IKEA style manuals for haircutting, that I can send to my barber for analysis and re-creation.",
+              "A grooming tool for hair on a 3D head. The goal: Creating IKEA style manuals to democratize expensive haircuts.",
             repo: "https://github.com/whksoup/haircut-simulator",
             iframe: {
               src: "https://haircut-simulator-two.vercel.app/",
@@ -141,7 +141,7 @@ export default function Home() {
         <SystemDesignText
           column="right"
           sectionTitle=""
-          heading={`He Kai thinks you might like some of the following projects about ${slugs[0]}`}
+          heading={`He Kai thinks you might like some of the following projects about ${slugs[0]}.`}
           paragraph=""
         />
       ) : (
