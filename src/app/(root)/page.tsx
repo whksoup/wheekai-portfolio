@@ -8,7 +8,7 @@ import { Spacer } from "@/app/components/Spacer";
 import FullBleedImage from "@/app/components/FullBleedImage";
 import ProjectCard from "@/app/components/ProjectCard";
 import ProjectGrid from "@/app/components/ProjectGrid";
-import { projects } from "@/app/Data/projects";
+import { projects, resolveSlugs } from "@/app/Data/projects";
 import { useSearchParams } from "next/navigation";
 import CurrentlyWorkingOn from "@/app/components/CurrentlyWorkingOn";
 
@@ -21,15 +21,22 @@ export default function Home() {
 
   const searchParams = useSearchParams();
   const slugsParam = searchParams.get("slugs");
-  const hasCustomSlugs = slugsParam !== null;
 
-  const slugs = slugsParam ? slugsParam.split("-") : [];
+  // Tolerates old link formats: "quietInterfaces", "spatial_computing", etc.
+  const {
+    projects: matchedProjects,
+    usedFallback,
+  } = resolveSlugs(slugsParam);
 
-  const selectedProjects = slugs.length
-    ? projects
-        .filter((p) => slugs.includes(p.slug))
-        .sort((a, b) => slugs.indexOf(a.slug) - slugs.indexOf(b.slug))
+  // A stale link (most slugs dead) degrades to the default three, not a
+  // near-empty page.
+  const selectedProjects = matchedProjects.length
+    ? matchedProjects
     : projects.slice(0, 3);
+
+  // Only personalise the heading when the link actually resolved.
+  const hasCustomSlugs = matchedProjects.length > 0 && !usedFallback;
+  const headingTopic = hasCustomSlugs ? matchedProjects[0].slug : null;
 
   const categoryHeaders: Record<string, string> = {
     spatial: "Spatial Computing",
@@ -102,7 +109,7 @@ export default function Home() {
         }
         align="right"
       />
-            <Intro
+      <Intro
         marginBottom="mb-48"
         subtitle="Introduction"
         text={
@@ -111,7 +118,6 @@ export default function Home() {
         align="left"
       />
 
-      {/* ↓↓↓ NEW ↓↓↓ */}
       <CurrentlyWorkingOn
         items={[
           {
@@ -126,7 +132,8 @@ export default function Home() {
           },
           {
             title: "Mixed Reality Puppets",
-            blurb: "New updates to the Quest 3 now give full camera access to developers! \nThis project explores the possibility of mixed reality dolls for kids' play.",
+            blurb:
+              "New updates to the Quest 3 now give full camera access to developers! \nThis project explores the possibility of mixed reality dolls for kids' play.",
             repo: "https://github.com/whksoup/ar-dolls-1",
             video: {
               src: "/Assets/Puppets/DollStart.webm",
@@ -135,13 +142,12 @@ export default function Home() {
           },
         ]}
       />
-   
 
-      {hasCustomSlugs ? (
+      {headingTopic ? (
         <SystemDesignText
           column="right"
           sectionTitle=""
-          heading={`He Kai thinks you might like some of the following projects about ${slugs[0]}.`}
+          heading={`He Kai thinks you might like some of the following projects about ${headingTopic}.`}
           paragraph=""
         />
       ) : (
@@ -157,7 +163,7 @@ export default function Home() {
         <ProjectCard
           key={project.slug}
           {...project}
-          align={aligns[i] ?? "left"}
+          align={aligns[i % aligns.length]}
         />
       ))}
 
